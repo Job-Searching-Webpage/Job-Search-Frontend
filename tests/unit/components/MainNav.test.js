@@ -10,4 +10,22 @@ describe("MainNav", () => {
     });
     expect(wrapper.text()).toMatch("Job Search LTD");
   });
+  it("displayes menu items for navigation", () => {
+    const wrapper = mount(MainNav);
+    //wrapper.find finds the first element "li"
+    //findAll fidn al the elements "li"
+    const navigationMenuItem = wrapper.findAll(
+      "[data-test='main-nav-list-item']"
+    );
+    const navigationMenuText = navigationMenuItem.map((item) => item.text());
+    expect(navigationMenuText).toEqual([
+      "Teams",
+      "Locations",
+      "Life at Job Search LTD",
+      "How we hire",
+      "Students",
+      "Jobs",
+    ]);
+    console.log(navigationMenuText);
+  });
 });
