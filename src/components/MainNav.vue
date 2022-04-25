@@ -32,19 +32,22 @@
           />
         </div>
       </div>
+
+      <sub-navigation v-if="isLoggedIn" />
     </div>
   </header>
 </template>
 
 <script>
 import ActionButton from "@/components/ActionButton";
-import ProfileImage from "@/components/ProfileImage";
-
+import ProfileImage from "@/components/ProfileImage.vue";
+import SubNavigation from "@/components/SubNavigation.vue";
 export default {
   name: "MainNav",
   components: {
     ActionButton,
     ProfileImage,
+    SubNavigation,
   },
   data() {
     return {
