@@ -28,4 +28,26 @@ describe("MainNav", () => {
     ]);
     console.log(navigationMenuText);
   });
+
+  describe("when user is logged out", () => {
+    it("prompts user to sign in", () => {
+      const wrapper = mount(MainNav);
+      const loginButton = wrapper.find("[data-test='login-button']");
+      expect(loginButton.exists()).toBe(true);
+    });
+  });
+
+  describe("when user is logged in", () => {
+    it("displays user profile image instead", async () => {
+      const wrapper = mount(MainNav);
+      let profileImage = wrapper.find("[data-test='profile-image']");
+      expect(profileImage.exists()).toBe(false);
+
+      const loginButton = wrapper.find("[data-test='login-button']");
+      await loginButton.trigger("click");
+
+      profileImage = wrapper.find("[data-test='profile-image']");
+      expect(profileImage.exists()).toBe(true);
+    });
+  });
 });
