@@ -1,17 +1,17 @@
-import { mount } from "@vue/test-utils";
+import { shallowMount } from "@vue/test-utils";
 
 import MainNav from "@/components/MainNav.vue";
 
 describe("MainNav", () => {
   it("displays company name", async () => {
-    const wrapper = mount(MainNav); //returns a object that is a wrapper around MainNav
+    const wrapper = shallowMount(MainNav); //returns a object that is a wrapper around MainNav
     await wrapper.setData({
       company: "Job Search LTD",
     });
     expect(wrapper.text()).toMatch("Job Search LTD");
   });
   it("displayes menu items for navigation", () => {
-    const wrapper = mount(MainNav);
+    const wrapper = shallowMount(MainNav);
     //wrapper.find finds the first element "li"
     //findAll fidn al the elements "li"
     const navigationMenuItem = wrapper.findAll(
@@ -31,7 +31,7 @@ describe("MainNav", () => {
 
   describe("when user is logged out", () => {
     it("prompts user to sign in", () => {
-      const wrapper = mount(MainNav);
+      const wrapper = shallowMount(MainNav);
       const loginButton = wrapper.find("[data-test='login-button']");
       expect(loginButton.exists()).toBe(true);
     });
@@ -39,7 +39,7 @@ describe("MainNav", () => {
 
   describe("when user is logged in", () => {
     it("displays user profile image instead", async () => {
-      const wrapper = mount(MainNav);
+      const wrapper = shallowMount(MainNav);
       let profileImage = wrapper.find("[data-test='profile-image']");
       expect(profileImage.exists()).toBe(false);
 
@@ -48,6 +48,17 @@ describe("MainNav", () => {
 
       profileImage = wrapper.find("[data-test='profile-image']");
       expect(profileImage.exists()).toBe(true);
+    });
+    it("displays subnavigation menu with additional info", async () => {
+      const wrapper = shallowMount(MainNav);
+      let subnav = wrapper.find("[data-test='subnav']");
+      expect(subnav.exists()).toBe(false);
+
+      const loginButton = wrapper.find("[data-test='login-button']");
+      await loginButton.trigger("click");
+
+      subnav = wrapper.find("[data-test='subnav']");
+      expect(subnav.exists()).toBe(true);
     });
   });
 });
