@@ -9,7 +9,12 @@
           <JobSearchForm />
         </div>
 
-        <div class="col-start-7 col-span-5"></div>
+        <div class="col-start-7 col-span-5 self-center justify-self-center">
+          <img
+            class="w-80 h-80 object-contain"
+            src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/95/Vue.js_Logo_2.svg/2367px-Vue.js_Logo_2.svg.png"
+          />
+        </div>
 
         <div class="col-start-12 col-span-1"></div>
       </div>
@@ -17,8 +22,8 @@
   </main>
 </template>
 <script>
-import HeadLine from "@/components/HeadLine.vue";
-import JobSearchForm from "@/components/jobSearchForm.vue";
+import HeadLine from "@/components/JobSearch/HeadLine.vue";
+import JobSearchForm from "@/components/JobSearch/jobSearchForm.vue";
 export default {
   name: "Hero",
   components: {

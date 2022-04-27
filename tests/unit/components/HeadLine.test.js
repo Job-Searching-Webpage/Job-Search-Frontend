@@ -1,6 +1,6 @@
 import { mount } from "@vue/test-utils";
 import { nextTick } from "vue";
-import HeadLine from "@/components/HeadLine";
+import HeadLine from "@/components/JobSearch/HeadLine";
 
 describe("HeadLine", () => {
   //runs before every it test function
