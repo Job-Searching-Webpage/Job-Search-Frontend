@@ -1,17 +1,24 @@
-import { shallowMount } from "@vue/test-utils";
+import { shallowMount, RouterLinkStub } from "@vue/test-utils";
 
 import MainNav from "@/components/Navigation/MainNav";
 
 describe("MainNav", () => {
-  it("displays company name", async () => {
-    const wrapper = shallowMount(MainNav); //returns a object that is a wrapper around MainNav
-    await wrapper.setData({
-      company: "Job Search LTD",
-    });
+  const createConfig = () => ({
+    global: {
+      stubs: {
+        "router-link": RouterLinkStub,
+      },
+    },
+  });
+  beforeEach(() => {
+    const wrapper = shallowMount(MainNav, createConfig()); //returns a object that is a wrapper around MainNav
+  });
+  it("displays company name", () => {
+    const wrapper = shallowMount(MainNav, createConfig());
     expect(wrapper.text()).toMatch("Job Search LTD");
   });
   it("displayes menu items for navigation", () => {
-    const wrapper = shallowMount(MainNav);
+    const wrapper = shallowMount(MainNav, createConfig());
     //wrapper.find finds the first element "li"
     //findAll fidn al the elements "li"
     const navigationMenuItem = wrapper.findAll(
@@ -31,7 +38,7 @@ describe("MainNav", () => {
 
   describe("when user is logged out", () => {
     it("prompts user to sign in", () => {
-      const wrapper = shallowMount(MainNav);
+      const wrapper = shallowMount(MainNav, createConfig());
       const loginButton = wrapper.find("[data-test='login-button']");
       expect(loginButton.exists()).toBe(true);
     });
@@ -39,7 +46,7 @@ describe("MainNav", () => {
 
   describe("when user is logged in", () => {
     it("displays user profile image instead", async () => {
-      const wrapper = shallowMount(MainNav);
+      const wrapper = shallowMount(MainNav, createConfig());
       let profileImage = wrapper.find("[data-test='profile-image']");
       expect(profileImage.exists()).toBe(false);
 
@@ -50,7 +57,7 @@ describe("MainNav", () => {
       expect(profileImage.exists()).toBe(true);
     });
     it("displays subnavigation menu with additional info", async () => {
-      const wrapper = shallowMount(MainNav);
+      const wrapper = shallowMount(MainNav, createConfig());
       let subnav = wrapper.find("[data-test='subnav']");
       expect(subnav.exists()).toBe(false);
 
