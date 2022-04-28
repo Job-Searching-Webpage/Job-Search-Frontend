@@ -10,9 +10,7 @@ describe("MainNav", () => {
       },
     },
   });
-  beforeEach(() => {
-    const wrapper = shallowMount(MainNav, createConfig()); //returns a object that is a wrapper around MainNav
-  });
+
   it("displays company name", () => {
     const wrapper = shallowMount(MainNav, createConfig());
     expect(wrapper.text()).toMatch("Job Search LTD");
