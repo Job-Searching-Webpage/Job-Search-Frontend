@@ -1,6 +1,6 @@
 import { mount } from "@vue/test-utils";
 
-import { SubNavigation } from "@/components/Navigation/SubNavigation";
+import SubNavigation from "@/components/Navigation/SubNavigation";
 
 describe("SubNavigation bar", () => {
   const createConfig = (routeName) => ({
