@@ -3,6 +3,7 @@
     <router-link
       :to="jobPageLink"
       class="block mx-auto bg-white border border-solid border-brand-gray-2 rounded hover:shadow-gray"
+      data-test="job-page-link"
     >
       <div class="pt-5 pb-2 mx-8 border-b border-solid border-brand-gray-2">
         <h2 class="mb-2 text-2xl">
@@ -10,7 +11,7 @@
         </h2>
         <div class="flex flex-row align-middle">
           <div class="mr-5">
-            <span>{{ job.organisation }}</span>
+            <span>{{ job.organization }}</span>
           </div>
 
           <div>
@@ -61,7 +62,7 @@ export default {
   },
   computed: {
     jobPageLink() {
-      return "/jobs/results/${this.job.id}";
+      return `/jobs/results/${this.job.id}`; //non funziona senza backtick `
     },
   },
 };
