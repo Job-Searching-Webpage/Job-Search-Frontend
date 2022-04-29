@@ -5,20 +5,38 @@ jest.mock("axios");
 import JobListings from "@/components/JobResults/JobListings.vue";
 
 describe("JobListings", () => {
+  const createRoute = (queryParams = {}) => ({
+    query: {
+      page: "5",
+      ...queryParams,
+    },
+  });
+
+  const createConfig = ($route) => ({
+    global: {
+      mocks: {
+        $route,
+      },
+    },
+  });
+
   it("fetches jobs", () => {
     axios.get.mockResolvedValue({
       data: [],
     });
-    console.log(axios.get());
-    shallowMount(JobListings);
+    const $route = createRoute();
+    shallowMount(JobListings, createConfig($route));
     expect(axios.get).toHaveBeenCalledWith("http://localhost:3000/jobs");
   });
 
-  it("creates jobs listing for each received job", async () => {
+  it("creates jobs listing for a max of 10  of each received job", async () => {
     axios.get.mockResolvedValue({ data: Array(15).fill({}) });
-    const wrapper = shallowMount(JobListings);
+    const queryParams = { page: "1" };
+    const $route = createRoute(queryParams);
+
+    const wrapper = shallowMount(JobListings, createConfig($route));
     await flushPromises();
     const jobListings = wrapper.findAll("[data-test='job-listing']");
-    expect(jobListings).toHaveLength(15);
+    expect(jobListings).toHaveLength(10);
   });
 });

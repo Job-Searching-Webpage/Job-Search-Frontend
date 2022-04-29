@@ -1,12 +1,18 @@
 <template>
   <main class="flex-auto p-8 bg-brand-gray-2">
-    <ol></ol>
-    <job-listing
-      v-for="job in jobs"
-      :key="job.id"
-      :job="job"
-      data-test="job-listing"
-    />
+    <ol>
+      <job-listing
+        v-for="job in displayedJobs"
+        :key="job.id"
+        :job="job"
+        data-test="job-listing"
+      />
+    </ol>
+    <div class="mt-8 mx-auto">
+      <div class="flex-row flex-nowrap">
+        <p class="text-sm flex-grow">Page {{ currentPage }}</p>
+      </div>
+    </div>
   </main>
 </template>
 
@@ -24,6 +30,18 @@ export default {
     return {
       jobs: [],
     };
+  },
+  computed: {
+    currentPage() {
+      const pageString = this.$route.query.page || "1";
+      return Number.parseInt(pageString);
+    },
+    displayedJobs() {
+      const pageNumber = this.currentPage;
+      const firstJobIndex = (pageNumber - 1) * 10;
+      const lastJobIndex = pageNumber * 10;
+      return this.jobs.slice(firstJobIndex, lastJobIndex);
+    },
   },
   async mounted() {
     const response = await axios.get("http://localhost:3000/jobs");
