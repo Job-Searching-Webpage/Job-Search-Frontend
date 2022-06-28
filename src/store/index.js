@@ -1,5 +1,7 @@
 import { createStore } from "vuex";
 
+export const LOGIN_USER = "LOGIN_USER";
+
 export const state = () => {
   return {
     isLoggedIn: false,
