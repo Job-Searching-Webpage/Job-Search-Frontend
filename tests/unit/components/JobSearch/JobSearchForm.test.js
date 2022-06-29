@@ -1,5 +1,5 @@
 import { mount } from "@vue/test-utils";
-import JobSearchForm from "@/components/JobSearch/jobSearchForm.vue";
+import JobSearchForm from "@/components/JobSearch/jobSearchForm";
 
 describe("JobsSearchForm", () => {
   describe("when user submits form", () => {

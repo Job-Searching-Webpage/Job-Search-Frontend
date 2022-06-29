@@ -38,6 +38,7 @@
 <script>
 import ActionButton from "@/components/Shared/ActionButton.vue";
 import TextInput from "@/components/Shared/TextInput.vue";
+
 export default {
   name: "JobSearchForm",
   components: {

@@ -4,7 +4,7 @@ import SubNavigation from "@/components/Navigation/SubNavigation";
 
 describe("SubNavigation bar", () => {
   const createConfig = (routeName) => ({
-    lobal: {
+    global: {
       mocks: {
         $route: {
           name: routeName,

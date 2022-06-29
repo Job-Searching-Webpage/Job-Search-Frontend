@@ -5,7 +5,7 @@ import HeadLine from "@/components/JobSearch/HeadLine";
 describe("HeadLine", () => {
   //runs before every it test function
   beforeEach(() => {
-    jest.useFakeTimers();
+    jest.useFakeTimers("legacy");
   });
   afterEach(() => {
     jest.useRealTimers();
