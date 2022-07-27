@@ -63,11 +63,7 @@ describe("JobListings", () => {
         page: "3",
       };
       const $route = createRoute(queryParams);
-      const $store = createStore({
-        state: {
-          jobs: Array(15).fill({}),
-        },
-      });
+      const $store = createStore();
       const wrapper = shallowMount(JobListings, createConfig($route, $store));
       expect(wrapper.text()).toMatch("Page 3");
     });
@@ -78,11 +74,7 @@ describe("JobListings", () => {
         page: "1",
       };
       const $route = createRoute(queryParams);
-      const $store = createStore({
-        state: {
-          jobs: Array(15).fill({}),
-        },
-      });
+      const $store = createStore();
       const wrapper = shallowMount(JobListings, createConfig($route, $store));
       const previousPage = wrapper.find("[data-test='previous-page-link']");
       expect(previousPage.exists()).toBe(false);
