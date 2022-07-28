@@ -1,10 +1,10 @@
 <template>
   <header-container>
-    <template v-slot:title>
+    <template #title>
       <h1 class="w-full text-4xl font-normal">Teams</h1>
     </template>
 
-    <template v-slot:subtitle>
+    <template #subtitle>
       <h2 class="w-full my-4 text-base font-light">
         It's awesome here. Why don't u come join us?
       </h2>
