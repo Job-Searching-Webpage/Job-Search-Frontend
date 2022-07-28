@@ -9,7 +9,9 @@
             class="w-1/2 h-8"
           >
             <input :id="organization" type="checkbox" class="mr-3" />
-            <label :for="organization">{{ organization }}</label>
+            <label :for="organization" data-test="organization">{{
+              organization
+            }}</label>
           </li>
         </ul>
       </fieldset>
@@ -17,6 +19,9 @@
   </accordion>
 </template>
 <script>
+import { mapGetters } from "vuex";
+import { UNIQUE_ORGANIZATIONS } from "@/store";
+
 import Accordion from "@/components/Shared/Accordion.vue";
 
 export default {
@@ -25,9 +30,10 @@ export default {
     Accordion,
   },
   computed: {
-    UNIQUE_ORGANIZATIONS() {
-      return this.$store.getters.UNIQUE_ORGANIZATIONS;
-    },
+    ...mapGetters([UNIQUE_ORGANIZATIONS]),
+    //UNIQUE_ORGANIZATIONS() {
+    // return this.$store.getters.UNIQUE_ORGANIZATIONS;
+    //},
   },
 };
 </script>
