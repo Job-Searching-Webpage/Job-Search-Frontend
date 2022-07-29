@@ -17,8 +17,9 @@ export const state = () => {
     selectedOrganizations: [],
   };
 };
+
 export const mutations = {
-  LOGIN_USER(state) {
+  [LOGIN_USER](state) {
     state.isLoggedIn = true;
   },
   [RECEIVE_JOBS](state, jobs) {
@@ -36,6 +37,8 @@ export const getters = {
     return uniqueOrganizations;
   },
   [FILTERED_JOBS_BY_ORGANIZATIONS](state) {
+    if (state.selectedOrganizations.length === 0) return state.jobs;
+
     return state.jobs.filter((job) =>
       state.selectedOrganizations.includes(job.organization)
     );
