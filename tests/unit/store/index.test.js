@@ -12,6 +12,11 @@ describe("state", () => {
     const startingState = state();
     expect(startingState.jobs).toEqual([]);
   });
+
+  it("Stores organizations that the user would like to filter jobs by", () => {
+    const startingState = state();
+    expect(startingState.selectedOrganizations).toEqual([]);
+  });
 });
 
 describe("mutations", () => {
@@ -35,6 +40,14 @@ describe("mutations", () => {
       expect(state).toEqual({ jobs: [{ id: 1, title: "Java Engineer" }] });
     });
   });
+
+  describe("ADD_SELECTED_ORGANIZATIONS", () => {
+    it("Updates the organizations that the user has chosen to filter jobs by", () => {
+      const state = { selectedOrganizations: [] };
+      mutations.ADD_SELECTED_ORGANIZATIONS(state, ["Org1", "Org2"]);
+      expect(state).toEqual({ selectedOrganizations: ["Org1", "Org2"] });
+    });
+  });
 });
 
 describe("getters", () => {
@@ -49,6 +62,25 @@ describe("getters", () => {
       };
       const result = getters.UNIQUE_ORGANIZATIONS(state);
       expect(result).toEqual(new Set(["Google", "Amazon"]));
+    });
+  });
+
+  describe("FILTERED_JOBS_BY_ORGANIZATIONS", () => {
+    it("identifies jobs that are associated by the given organization", () => {
+      const state = {
+        jobs: [
+          { organization: "Google" },
+          { organization: "Microsoft" },
+          { organization: "Amazon" },
+        ],
+        selectedOrganizations: ["Google", "Microsoft"],
+      };
+
+      const filteredJobs = getters.FILTERED_JOBS_BY_ORGANIZATIONS(state);
+      expect(filteredJobs).toEqual([
+        { organization: "Google" },
+        { organization: "Microsoft" },
+      ]);
     });
   });
 });
