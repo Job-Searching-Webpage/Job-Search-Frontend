@@ -11,8 +11,8 @@ describe("JobListings", () => {
   });
 
   const createStore = (config = {}) => ({
-    state: {
-      jobs: Array(15).fill({}),
+    getters: {
+      FILTERED_JOBS_BY_ORGANIZATIONS: [],
     },
     dispatch: jest.fn(),
     ...config,
@@ -42,7 +42,11 @@ describe("JobListings", () => {
   it("creates jobs listing for a max of 10  of each received job", async () => {
     const queryParams = { page: "1" };
     const $route = createRoute(queryParams);
-    const $store = createStore();
+    const $store = createStore({
+      getters: {
+        FILTERED_JOBS_BY_ORGANIZATIONS: Array(numberOFJobsInStore).fill({}),
+      },
+    });
 
     const wrapper = shallowMount(JobListings, createConfig($route, $store));
     await flushPromises();
