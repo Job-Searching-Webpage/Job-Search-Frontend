@@ -25,4 +25,32 @@ describe("JobFiltersSidebarOrganizations", () => {
     const organizations = organizationLabels.map((node) => node.text());
     expect(organizations).toEqual(["Google", "Amazon"]);
   });
+
+  it("communicates that user has selected a checkbox for organization", async () => {
+    const commit = jest.fn();
+    const $store = {
+      getters: {
+        UNIQUE_ORGANIZATIONS: new Set(["Google", "Amazon"]),
+      },
+      commit,
+    };
+    const wrapper = mount(JobFiltersSidebarOrganizations, {
+      global: {
+        mocks: {
+          $store,
+        },
+        stubs: {
+          FontAwesomeIcon: true,
+        },
+      },
+    });
+    const clickableArea = wrapper.find("[data-test='clickable-area']");
+    await clickableArea.trigger("click");
+    const googleInput = wrapper.find("[data-test='Google']");
+    await googleInput.setChecked();
+
+    expect(commit).toHaveBeenCalledWith("ADD_SELECTED_ORGANIZATIONS", [
+      "Google",
+    ]);
+  });
 });
