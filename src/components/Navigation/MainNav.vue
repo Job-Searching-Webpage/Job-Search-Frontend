@@ -49,7 +49,7 @@ import { mapMutations, mapState } from "vuex";
 import ActionButton from "@/components/Shared/ActionButton";
 import ProfileImage from "@/components/Navigation/ProfileImage.vue";
 import SubNavigation from "@/components/Navigation/SubNavigation.vue";
-import { LOGIN_USER } from "@/store";
+import { LOGIN_USER } from "@/store/constants";
 
 export default {
   name: "MainNav",
