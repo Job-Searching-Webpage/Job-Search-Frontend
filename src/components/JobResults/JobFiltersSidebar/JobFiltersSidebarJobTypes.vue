@@ -47,8 +47,9 @@ export default {
   },
   methods: {
     ...mapMutations([ADD_SELECTED_JOB_TYPES]),
-    selectOrganization() {
+    selectJobType() {
       this.ADD_SELECTED_JOB_TYPES(this.selectedJobTypes);
+      this.$router.push({ name: "JobResults" });
     },
   },
 };
