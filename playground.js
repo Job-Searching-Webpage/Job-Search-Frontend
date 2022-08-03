@@ -17,8 +17,8 @@ const person = reactive({
   lastName: "Deep",
 });
 
-const firstName = toRef(person, "firstName");
-const lastName = toRef(person, "lastName");
+const { firstName, lastName } = toRefs(person);
+
 const title = computed(() => `${firstName.value} ${lastName.value} the Great`);
 console.log(title.value);
 
