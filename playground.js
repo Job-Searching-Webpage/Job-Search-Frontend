@@ -11,11 +11,18 @@ console.log(c.value);
 
 //with reactive you don't need to use ref and then access the value with
 //the .value property
+
 const person = reactive({
-  name: "John",
+  firstName: "John",
+  lastName: "Deep",
 });
-const title = computed(() => person.name + " the Great");
+const title = computed(
+  () => `${person.firstName} ${person.lastName} the Great`
+);
 console.log(title.value);
 
-person.name = "Peter";
+person.firstName = "Evil";
+console.log(title.value);
+
+person.lastName = "Ivan";
 console.log(title.value);
