@@ -19,10 +19,14 @@ const person = reactive({
 const title = computed(
   () => `${person.firstName} ${person.lastName} the Great`
 );
+const titleLength = computed(() => title.value.length);
 console.log(title.value);
+console.log(titleLength.value);
 
-person.firstName = "Evil";
+person.firstName = "Machiavelli";
 console.log(title.value);
+console.log(titleLength.value);
 
-person.lastName = "Ivan";
+person.lastName = "Ivan IV";
 console.log(title.value);
+console.log(titleLength.value);
