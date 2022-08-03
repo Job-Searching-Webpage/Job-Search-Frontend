@@ -142,7 +142,7 @@ describe("getters", () => {
       const state = {
         selectedJobTypes: ["Full-time", "Part-time"],
       };
-      const job = { jobType: "Full-time" };
+      const job = { jobType: "Part-time" };
       const includeJob = getters.INCLUDE_JOB_BY_JOB_TYPE(state)(job);
       expect(includeJob).toBe(true);
     });
