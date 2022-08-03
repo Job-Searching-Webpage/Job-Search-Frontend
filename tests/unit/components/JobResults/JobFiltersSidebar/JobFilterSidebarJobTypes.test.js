@@ -57,5 +57,26 @@ describe("JobFiltersSidebarJobTypes", () => {
         "Full-time",
       ]);
     });
+    it("navigates user to job results page to see fresh batch of jobs", async () => {
+      const $store = {
+        getters: {
+          UNIQUE_JOB_TYPES: new Set(["Full-time", "Part-time"]),
+        },
+        commit: jest.fn(),
+      };
+      const push = jest.fn();
+      const $router = { push };
+
+      const wrapper = mount(
+        JobFiltersSidebarJobTypes,
+        createConfig($store, $router)
+      );
+      const clickableArea = wrapper.find("[data-test='clickable-area']");
+      await clickableArea.trigger("click");
+      const fullTimeInput = wrapper.find("[data-test='Full-time']");
+      await fullTimeInput.setChecked();
+
+      expect(push).toHaveBeenCalledWith({ name: "JobResults" });
+    });
   });
 });
