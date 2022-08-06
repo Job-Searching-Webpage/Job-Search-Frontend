@@ -34,6 +34,7 @@ export default {
       FILTERED_JOBS,
     };
   },
+
   // computed: {
   //   ...mapGetters([FILTERED_JOBS]),
   //this.$store.getters.FILTERED_JOBS =>this.FILTERED_JOBS
