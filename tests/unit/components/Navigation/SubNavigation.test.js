@@ -40,7 +40,7 @@ describe("SubNavigation bar", () => {
       });
       useStore.mockReturnValue({
         getters: {
-          FILTERED_JOBS: [{ id: 1 }, { id: 2 }],
+          FILTERED_JOBS: [],
         },
       });
       const wrapper = mount(SubNavigation, createConfig());
