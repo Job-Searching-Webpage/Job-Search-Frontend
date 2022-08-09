@@ -16,16 +16,19 @@
 
 <script>
 //import { useRoute } from "vue-router";
-import { computed } from "vue";
-import { useStore } from "vuex";
+//import { computed } from "vue";
+//import { useStore } from "vuex";
 import useConfirmRoute from "@/composables/useConfirmRoute";
 //import { mapGetters } from "vuex";
 //import { FILTERED_JOBS } from "@/store/constants";
+
+import { useFilteredJobs } from "@/store/composables";
 export default {
   name: "SubNavigation",
   setup() {
-    const store = useStore();
-    const FILTERED_JOBS = computed(() => store.getters.FILTERED_JOBS);
+    const FILTERED_JOBS = useFilteredJobs();
+    // const store = useStore();
+    // const FILTERED_JOBS = computed(() => store.getters.FILTERED_JOBS);
 
     const onJobResultsPage = useConfirmRoute("JobResults");
     // const route = useRoute();
