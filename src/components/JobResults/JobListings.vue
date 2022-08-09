@@ -63,17 +63,6 @@ export default {
       currentPage,
       maxPage
     );
-    // const previousPage = computed(() => {
-    //   const previousPage = currentPage.value - 1;
-    //   const firstPage = 1;
-    //   return previousPage >= firstPage ? previousPage : undefined;
-    // });
-
-    // const nextPage = computed(() => {
-    //   const nextPage = currentPage.value + 1;
-    //   const maxPage = Math.ceil(filteredJobs.value.length / 10);
-    //   return nextPage <= maxPage ? nextPage : undefined;
-    // });
 
     const displayedJobs = computed(() => {
       const firstJobIndex = (currentPage.value - 1) * 10;
@@ -88,36 +77,5 @@ export default {
       nextPage,
     };
   },
-
-  // computed: {
-  //   ...mapGetters([FILTERED_JOBS]),
-  //   currentPage() {
-  //     const pageString = this.$route.query.page || "1";
-  //     return Number.parseInt(pageString);
-  //   },
-  //   previousPage() {
-  //     const previousPage = this.currentPage - 1;
-  //     const firstPage = 1;
-  //     return previousPage >= firstPage ? firstPage : undefined;
-  //   },
-  //   nextPage() {
-  //     const nextPage = this.currentPage + 1;
-  //     const maxPage = Math.ceil(this.FILTERED_JOBS.length / 10);
-  //     return nextPage <= maxPage ? nextPage : undefined;
-  //   },
-  //   displayedJobs() {
-  //     const pageNumber = this.currentPage;
-  //     const firstJobIndex = (pageNumber - 1) * 10;
-  //     const lastJobIndex = pageNumber * 10;
-  //     return this.FILTERED_JOBS.slice(firstJobIndex, lastJobIndex);
-  //   },
-  // },
-  // async mounted() {
-  //   //this.$store.dispatch(FETCH_JOBS);
-  //   this.FETCH_JOBS();
-  // },
-  // methods: {
-  //   ...mapActions([FETCH_JOBS]),
-  // },
 };
 </script>
