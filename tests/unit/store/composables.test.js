@@ -1,10 +1,10 @@
 import { useStore } from "vuex";
 jest.mock("vuex");
 
-import { useFiltererdJobs } from "@/store/composables";
+import { useFilteredJobs } from "@/store/composables";
 
 describe("composables", () => {
-  describe("useFiltererdJobs", () => {
+  describe("useFilteredJobs", () => {
     it("retrieves filtered jobs from the store", () => {
       useStore.mockReturnValue({
         getters: {
@@ -12,7 +12,7 @@ describe("composables", () => {
         },
       });
 
-      const result = useFiltererdJobs();
+      const result = useFilteredJobs();
       expect(result.value).toEqual([{ id: 1 }]);
     });
   });
