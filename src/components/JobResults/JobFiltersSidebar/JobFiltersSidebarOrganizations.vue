@@ -32,7 +32,7 @@ import { ref } from "vue";
 import { useStore } from "vuex";
 import { useRouter } from "vue-router";
 
-import { useUnique_Organizations } from "@/store/composables";
+import { useUniqueOrganizations } from "@/store/composables";
 
 import { ADD_SELECTED_ORGANIZATIONS } from "@/store/constants";
 
@@ -48,7 +48,7 @@ export default {
     const router = useRouter();
 
     const selectedOrganizations = ref([]);
-    const uniqueOrganiaztions = useUnique_Organizations();
+    const uniqueOrganiaztions = useUniqueOrganizations();
 
     const selectOrganization = () => {
       store.commit(ADD_SELECTED_ORGANIZATIONS, selectedOrganizations.value);
