@@ -1,9 +1,14 @@
 import { computed } from "vue";
 import { useStore } from "vuex";
 
-import { FILTERED_JOBS } from "@/store/constants";
+import { FILTERED_JOBS, UNIQUE_JOB_TYPES } from "@/store/constants";
 
 export const useFilteredJobs = () => {
   const store = useStore();
   return computed(() => store.getters[FILTERED_JOBS]);
+};
+
+export const useUniqueJobTypes = () => {
+  const store = useStore();
+  return computed(() => store.getters[UNIQUE_JOB_TYPES]);
 };
