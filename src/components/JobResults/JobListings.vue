@@ -52,26 +52,23 @@ export default {
     onMounted(useFetchJobsDispatch);
 
     const filteredJobs = useFilteredJobs();
+
     const currentPage = useCurrentPage();
 
-    const maxPage = computed(() => Math.ceil(filteredJobs.length / 10));
+    const maxPage = computed(() => Math.ceil(filteredJobs.value.length / 10));
     const { previousPage, nextPage } = usePreviousAndNextPages(
       currentPage,
       maxPage
     );
 
     const displayedJobs = computed(() => {
-      const firstJobIndex = (currentPage.value - 1) * 10;
-      const lastJobIndex = firstJobIndex + 10;
+      const pageNumber = currentPage.value;
+      const firstJobIndex = (pageNumber - 1) * 10;
+      const lastJobIndex = pageNumber * 10;
       return filteredJobs.value.slice(firstJobIndex, lastJobIndex);
     });
 
-    return {
-      displayedJobs,
-      currentPage,
-      previousPage,
-      nextPage,
-    };
+    return { displayedJobs, previousPage, currentPage, nextPage };
   },
 };
 </script>
