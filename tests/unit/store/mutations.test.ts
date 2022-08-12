@@ -1,4 +1,5 @@
 import mutations from "@/store/mutations";
+import { Job } from "@/api/types";
 import { GlobalState } from "@/store/types";
 import state from "@/store/state";
 
@@ -7,6 +8,19 @@ describe("mutations", () => {
     const initialState = state();
     return { ...initialState, ...config };
   };
+  const createJob = (config: Partial<Job> = {}): Job => ({
+    id: 1,
+    title: "Angular Developer",
+    organization: "Vue and Me",
+    degree: "Master's",
+    jobType: "Intern",
+    locations: ["Lisbon"],
+    minimumQualifications: [],
+    preferredQualifications: [],
+    description: [],
+    dateAdded: "2021-07-04",
+    ...config,
+  });
 
   describe("LOGIN_USER", () => {
     it("logs the user in", () => {
@@ -18,30 +32,33 @@ describe("mutations", () => {
 
   describe("RECEIVE_JOBS", () => {
     it("receives jobs from API response", () => {
-      const state = { jobs: [] };
-      mutations.RECEIVE_JOBS(state, [
-        {
-          id: 1,
-          title: "Java Engineer",
-        },
-      ]);
-      expect(state).toEqual({ jobs: [{ id: 1, title: "Java Engineer" }] });
+      const startingState = createState({ jobs: [] });
+      const jobOne = createJob();
+      const jobTwo = createJob();
+      mutations.RECEIVE_JOBS(startingState, [jobOne, jobTwo]);
+      expect(startingState.jobs).toEqual([jobOne, jobTwo]);
     });
   });
 
   describe("ADD_SELECTED_ORGANIZATIONS", () => {
     it("Updates the organizations that the user has chosen to filter jobs by", () => {
-      const state = { selectedOrganizations: [] };
-      mutations.ADD_SELECTED_ORGANIZATIONS(state, ["Org1", "Org2"]);
-      expect(state).toEqual({ selectedOrganizations: ["Org1", "Org2"] });
+      const startingState = createState({ selectedOrganizations: [] });
+      mutations.ADD_SELECTED_ORGANIZATIONS(startingState, ["Org1", "Org2"]);
+      expect(startingState.selectedOrganizations).toEqual(["Org1", "Org2"]);
     });
   });
 
   describe("ADD_SELECTED_JOB_TYPES", () => {
     it("Updates the job types that the user has chosen to filter jobs by", () => {
-      const state = { selectedJobTypes: [] };
-      mutations.ADD_SELECTED_JOB_TYPES(state, ["Full-time", "Part-time"]);
-      expect(state).toEqual({ selectedJobTypes: ["Full-time", "Part-time"] });
+      const startingState = createState({ selectedJobTypes: [] });
+      mutations.ADD_SELECTED_JOB_TYPES(startingState, [
+        "Full-time",
+        "Part-time",
+      ]);
+      expect(startingState.selectedJobTypes).toEqual([
+        "Full-time",
+        "Part-time",
+      ]);
     });
   });
 });
