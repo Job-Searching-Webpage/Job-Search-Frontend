@@ -12,7 +12,7 @@ const useStoreMock = useStore as jest.Mock;
 
 describe("composables", () => {
   describe("useFilteredJobs", () => {
-    it("retrieves filtered jobs from the store", () => {
+    it("retrieves filtered jobs from store", () => {
       useStoreMock.mockReturnValue({
         getters: {
           FILTERED_JOBS: [{ id: 1 }],
@@ -23,8 +23,9 @@ describe("composables", () => {
       expect(result.value).toEqual([{ id: 1 }]);
     });
   });
+
   describe("useUniqueJobTypes", () => {
-    it("retrieves unique job types from the store", () => {
+    it("retrieves unique job types from store", () => {
       useStoreMock.mockReturnValue({
         getters: {
           UNIQUE_JOB_TYPES: new Set(["Full-time"]),
@@ -37,7 +38,7 @@ describe("composables", () => {
   });
 
   describe("useUniqueOrganizations", () => {
-    it("retrieves unique organizations from the store", () => {
+    it("retrieves unique job organizations from store", () => {
       useStoreMock.mockReturnValue({
         getters: {
           UNIQUE_ORGANIZATIONS: new Set(["Apple"]),
@@ -55,7 +56,6 @@ describe("composables", () => {
       useStoreMock.mockReturnValue({
         dispatch,
       });
-
       useFetchJobsDispatch();
       expect(dispatch).toHaveBeenCalledWith("FETCH_JOBS");
     });
