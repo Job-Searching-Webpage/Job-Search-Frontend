@@ -73,6 +73,7 @@ describe("getters", () => {
         INCLUDE_JOB_BY_ORGANIZATION,
         INCLUDE_JOB_BY_JOB_TYPE,
       };
+
       const job = createJob({ title: "Best job ever" });
       const state = createState({
         jobs: [job],
