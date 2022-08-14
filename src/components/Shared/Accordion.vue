@@ -16,10 +16,11 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
+import { defineComponent } from "vue";
 import { ref } from "vue";
 
-export default {
+export default defineComponent({
   name: "Accordion",
   props: {
     header: {
@@ -37,21 +38,5 @@ export default {
       isOpen,
     };
   },
-
-  //data() {
-  //  return {
-  //    isOpen: false,
-  //  };
-  //},
-  //computed: {
-  //  caretIcon() {
-  //    return this.isOpen ? ["fas", "angle-up"] : ["fas", "angle-down"];
-  //  },
-  //},
-  //methods: {
-  //  open() {
-  //    this.isOpen = !this.isOpen;
-  //  },
-  //},
-};
+});
 </script>
