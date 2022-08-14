@@ -10,24 +10,29 @@
     <h2 class="text-3xl font-light">Find your next job at Job Search LTD.</h2>
   </section>
 </template>
-<script>
-import nextElementInList from "@/utils/nextElementInList";
 
-export default {
+<script lang="ts">
+import { defineComponent } from "vue";
+import nextElementInList from "@/utils/nextElementInList";
+interface ActionClasses {
+  [x: string]: boolean;
+}
+interface Data {
+  action: string;
+  interval: number | undefined;
+}
+
+export default defineComponent({
   name: "HeadLine",
-  data() {
+  data(): Data {
     return {
       action: "Build",
-      interval: null,
+      interval: undefined,
     };
   },
   computed: {
-    actionClasses() {
+    actionClasses(): ActionClasses {
       return {
-        //build: this.action === "Build",
-        //create: this.action === "Create",
-        //design: this.action === "Design",
-        //code: this.action === "Code",
         [this.action.toLowerCase()]: true, //does the same thing
       };
     },
@@ -47,7 +52,7 @@ export default {
       }, 3000);
     },
   },
-};
+});
 </script>
 
 <style scoped>
