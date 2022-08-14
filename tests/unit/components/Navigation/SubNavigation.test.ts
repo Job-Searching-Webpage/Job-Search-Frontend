@@ -8,6 +8,7 @@ import SubNavigation from "@/components/Navigation/SubNavigation.vue";
 
 const useConfirmRouteMock = useConfirmRoute as jest.Mock;
 const useFilteredJobsMock = useFilteredJobs as jest.Mock;
+
 describe("SubNavigation bar", () => {
   const createConfig = () => ({
     global: {
