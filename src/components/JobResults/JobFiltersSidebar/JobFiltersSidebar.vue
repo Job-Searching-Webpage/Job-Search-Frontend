@@ -38,8 +38,9 @@ import {
   ADD_SELECTED_JOB_TYPES,
   ADD_SELECTED_ORGANIZATIONS,
 } from "@/store/constants";
+import { defineComponent } from "vue";
 
-export default {
+export default defineComponent({
   name: "JobFiltersSidebar",
   components: {
     ActionButton,
@@ -58,5 +59,5 @@ export default {
       ADD_SELECTED_ORGANIZATIONS,
     };
   },
-};
+});
 </script>
