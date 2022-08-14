@@ -14,38 +14,23 @@
   </div>
 </template>
 
-<script>
-//import { useRoute } from "vue-router";
-//import { computed } from "vue";
-//import { useStore } from "vuex";
+<script lang="ts">
+import { defineComponent } from "vue";
+
 import useConfirmRoute from "@/composables/useConfirmRoute";
-//import { mapGetters } from "vuex";
-//import { FILTERED_JOBS } from "@/store/constants";
 
 import { useFilteredJobs } from "@/store/composables";
-export default {
+export default defineComponent({
   name: "SubNavigation",
   setup() {
     const FILTERED_JOBS = useFilteredJobs();
-    // const store = useStore();
-    // const FILTERED_JOBS = computed(() => store.getters.FILTERED_JOBS);
 
     const onJobResultsPage = useConfirmRoute("JobResults");
-    // const route = useRoute();
-    // const onJobResultsPage = computed(() => route.name === "JobResults");
 
     return {
       onJobResultsPage,
       FILTERED_JOBS,
     };
   },
-
-  // computed: {
-  //   ...mapGetters([FILTERED_JOBS]),
-  //this.$store.getters.FILTERED_JOBS =>this.FILTERED_JOBS
-  //   onJobResultsPage() {
-  //     return this.$route.name === "JobResults";
-  //   },
-  // },
-};
+});
 </script>
