@@ -49,4 +49,11 @@ describe("mutations", () => {
       ]);
     });
   });
+  describe("ADD_SELECTED_DEGREES", () => {
+    it("keeps track of which degrees the user has chosen to filter jobs by", () => {
+      const startingState = createState({ selectedDegrees: [] });
+      mutations.ADD_SELECTED_DEGREES(startingState, ["Bachelor's", "Master's"]);
+      expect(startingState.selectedDegrees).toEqual(["Bachelor's", "Master's"]);
+    });
+  });
 });
