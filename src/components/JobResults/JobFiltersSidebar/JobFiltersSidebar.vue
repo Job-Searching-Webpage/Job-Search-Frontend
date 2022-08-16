@@ -16,12 +16,14 @@
         header="Job Types"
         :unique-values="uniqueJobTypes"
         :mutation="ADD_SELECTED_JOB_TYPES"
+        data-test="job-types-filter"
       />
 
       <job-filters-sidebar-checkbox-group
         header="Organizations"
         :unique-values="uniqueOrganizations"
         :mutation="ADD_SELECTED_ORGANIZATIONS"
+        data-test="job-organizations-filter"
       />
     </section>
   </div>
