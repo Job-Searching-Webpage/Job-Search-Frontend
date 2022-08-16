@@ -48,7 +48,6 @@ describe("MainNav", () => {
       "Students",
       "Jobs",
     ]);
-    console.log(navigationMenuText);
   });
 
   describe("when user is logged out", () => {
