@@ -29,7 +29,7 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
 import ActionButton from "@/components/Shared/ActionButton.vue";
 import Accordion from "@/components/Shared/Accordion.vue";
 
