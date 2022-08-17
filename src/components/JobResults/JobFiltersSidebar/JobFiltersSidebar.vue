@@ -12,9 +12,9 @@
 
       <job-filters-sidebar-checkbox-group
         header="Degrees"
-        :unique-values="uniqueDegreeValues"
-        :mutation="ADD_SELECTED_DEGREE"
-        data-test="job-types-filter"
+        :unique-values="uniqueDegrees"
+        :mutation="ADD_SELECTED_DEGREES"
+        data-test="degrees-filter"
       />
 
       <job-filters-sidebar-checkbox-group
@@ -61,6 +61,7 @@ export default defineComponent({
     const uniqueJobTypes = useUniqueJobTypes();
     const uniqueOrganizations = useUniqueOrganizations();
     const uniqueDegrees = useUniqueDegrees();
+
     return {
       uniqueJobTypes,
       uniqueOrganizations,
