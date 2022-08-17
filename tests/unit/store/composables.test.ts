@@ -7,6 +7,7 @@ import {
   useUniqueOrganizations,
   useFetchJobsDispatch,
   useUniqueDegrees,
+  useFetchDegreesDispatch,
 } from "@/store/composables";
 
 const useStoreMock = useStore as jest.Mock;
@@ -72,6 +73,17 @@ describe("composables", () => {
       });
       useFetchJobsDispatch();
       expect(dispatch).toHaveBeenCalledWith("FETCH_JOBS");
+    });
+  });
+
+  describe("useFetchDegreesDispatch", () => {
+    it("sends call to fetch degrees from API", () => {
+      const dispatch = jest.fn();
+      useStoreMock.mockReturnValue({
+        dispatch,
+      });
+      useFetchDegreesDispatch();
+      expect(dispatch).toHaveBeenCalledWith("FETCH_DEGREES");
     });
   });
 });

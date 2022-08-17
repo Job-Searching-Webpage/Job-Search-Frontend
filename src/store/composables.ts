@@ -7,6 +7,7 @@ import {
   UNIQUE_DEGREES,
   UNIQUE_ORGANIZATIONS,
   FETCH_JOBS,
+  FETCH_DEGREES,
 } from "@/store/constants";
 
 import { Job } from "@/api/types";
@@ -38,4 +39,9 @@ export const useUniqueDegrees = () => {
 export const useFetchJobsDispatch = () => {
   const store = useStore(key);
   return store.dispatch(FETCH_JOBS);
+};
+
+export const useFetchDegreesDispatch = () => {
+  const store = useStore(key);
+  return store.dispatch(FETCH_DEGREES);
 };
