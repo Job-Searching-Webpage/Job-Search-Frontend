@@ -56,6 +56,15 @@ describe("mutations", () => {
       expect(startingState.selectedDegrees).toEqual(["Bachelor's", "Master's"]);
     });
   });
+
+  describe("UPDATE_SKILLS_SEARCH_TERM", () => {
+    it("receives search term from API response", () => {
+      const startingState = createState({ skillsSearchTerm: "" });
+      mutations.UPDATE_SKILLS_SEARCH_TERM(startingState, "Vue");
+      expect(startingState.skillsSearchTerm).toEqual("Vue");
+    });
+  });
+
   describe("CLEAR_USER_JOB_FILTER_SELECTIONS", () => {
     it("removes all job filters that user has chosen", () => {
       const startingState = createState({
