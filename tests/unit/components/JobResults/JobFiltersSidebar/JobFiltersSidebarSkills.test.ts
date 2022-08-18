@@ -18,5 +18,6 @@ describe("JobFiltersSidebarSkills", () => {
       "[data-test= 'skills-search-input']"
     );
     const inputElement = skillsSearchInput.element as HTMLInputElement;
+    expect(inputElement.value).toBe("Programmer");
   });
 });
