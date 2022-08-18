@@ -15,6 +15,5 @@ export default defineComponent({
     JobFiltersSidebar,
     JobListings,
   },
-  methods: {},
 });
 </script>
