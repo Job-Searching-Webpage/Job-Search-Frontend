@@ -30,12 +30,11 @@ describe("JobListing", () => {
     expect(wrapper.text()).toMatch("AirBnB");
   });
   it("Renders Job location", () => {
-    const job = createJob({ locations: ["Orlando", "Jacksonville"] });
+    const job = createJob({ location: "Orlando" });
     const wrapper = mount(JobListing, createConfig(job));
     expect(wrapper.text()).toMatch("Orlando");
-    expect(wrapper.text()).toMatch("Jacksonville");
   });
-  it("Renders Job location", () => {
+  it("Renders Job qualifications", () => {
     const job = createJob({
       minimumQualifications: ["Code", "Develop"],
     });

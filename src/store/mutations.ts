@@ -7,6 +7,7 @@ import {
   ADD_SELECTED_DEGREES,
   CLEAR_USER_JOB_FILTER_SELECTIONS,
   UPDATE_SKILLS_SEARCH_TERM,
+  UPDATE_LOCATION_SEARCH_TERM,
 } from "@/store/constants";
 
 import { GlobalState } from "@/store/types";
@@ -39,6 +40,12 @@ const mutations = {
   },
   [UPDATE_SKILLS_SEARCH_TERM](state: GlobalState, skillsSearchTerm: string) {
     state.skillsSearchTerm = skillsSearchTerm;
+  },
+  [UPDATE_LOCATION_SEARCH_TERM](
+    state: GlobalState,
+    locationSearchTerm: string
+  ) {
+    state.locationSearchTerm = locationSearchTerm;
   },
 };
 

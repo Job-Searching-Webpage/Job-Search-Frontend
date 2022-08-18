@@ -16,12 +16,8 @@
 
           <div>
             <ul>
-              <li
-                v-for="location in job.locations"
-                :key="location"
-                class="inline-block mr-5"
-              >
-                {{ location }}
+              <li class="inline-block mr-5">
+                {{ job.location }}
               </li>
             </ul>
           </div>

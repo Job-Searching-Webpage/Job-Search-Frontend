@@ -5,6 +5,7 @@ export interface GlobalState {
   jobs: Job[];
   degrees: Degree[];
   skillsSearchTerm: string;
+  locationSearchTerm: string;
   selectedOrganizations: string[];
   selectedJobTypes: string[];
   selectedDegrees: string[];

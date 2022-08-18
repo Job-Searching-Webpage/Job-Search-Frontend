@@ -29,7 +29,10 @@ import { defineComponent, onMounted } from "vue";
 import { useStore } from "vuex";
 import { key } from "@/store";
 import { useRoute } from "vue-router";
-import { UPDATE_SKILLS_SEARCH_TERM } from "@/store/constants";
+import {
+  UPDATE_SKILLS_SEARCH_TERM,
+  UPDATE_LOCATION_SEARCH_TERM,
+} from "@/store/constants";
 
 import Accordion from "@/components/Shared/Accordion.vue";
 
@@ -53,8 +56,10 @@ export default defineComponent({
     const parseSkillSearchTerm = () => {
       const route = useRoute();
       const role = route.query.role || "";
+      const location = route.query.location || "";
       const store = useStore(key);
       store.commit(UPDATE_SKILLS_SEARCH_TERM, role);
+      store.commit(UPDATE_LOCATION_SEARCH_TERM, location);
     };
     onMounted(parseSkillSearchTerm);
   },
