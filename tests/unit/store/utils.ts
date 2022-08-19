@@ -19,7 +19,7 @@ export const createJob = (config: Partial<Job> = {}): Job => ({
   organization: "Vue and Me",
   degree: "Master's",
   jobType: "Intern",
-  locations: ["Lisbon"],
+  location: "Lisbon",
   minimumQualifications: [],
   preferredQualifications: [],
   description: [],
