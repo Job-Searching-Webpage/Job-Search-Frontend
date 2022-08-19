@@ -41,11 +41,11 @@ describe("MainNav", () => {
     );
     const navigationMenuText = navigationMenuItem.map((item) => item.text());
     expect(navigationMenuText).toEqual([
-      "Teams",
-      "Locations",
-      "Life at Job Search LTD",
-      "How we hire",
-      "Students",
+      // "Teams",
+      // "Locations",
+      // "Life at Job Search LTD",
+      // "How we hire",
+      // "Students",
       "Jobs",
     ]);
   });

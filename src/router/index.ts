@@ -33,6 +33,7 @@ const routes = [
     name: "Teams",
     component: TeamsView,
   },
+  //To ADD new routes for adminItems that are declared in mainnav
 ];
 
 const router = createRouter({
