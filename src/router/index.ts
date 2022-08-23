@@ -13,6 +13,9 @@ const TeamsView = () =>
   import(/* webpackChunkName: "teams"*/ "@/views/TeamsView.vue");
 //path name component
 
+const TeamView = () =>
+  import(/* webpackChunkName: "teams"*/ "@/views/TeamView.vue");
+
 const NewApplicantView = () =>
   import(/* webpackChunkName: "applicants"*/ "@/views/NewApplicantView.vue");
 
@@ -39,6 +42,11 @@ const routes = [
     path: "/teams",
     name: "Teams",
     component: TeamsView,
+  },
+  {
+    path: "/teams/results/:name",
+    name: "TeamListing",
+    component: TeamView,
   },
   {
     path: "/applicant/new",
