@@ -1,4 +1,70 @@
 {
+  "teams": [
+    {
+      "CF": "LLSLJM2900M100..",
+      "name": "Ledjo",
+      "cognome": "Lleshaj",
+      "dataNascita": "0000-00-00",
+      "birthplace": "Rreshen",
+      "nazionalita": "Albania",
+      "address": "Verona",
+      "phone": "+123456789",
+      "email": "ledjo.lleshaj@gmail.com",
+      "languages": ["Albanian", "Italian", "English"],
+      "patenta": true,
+      "macchina": true,
+      "qualification": "Bachelor",
+      "esperienze": [
+        {
+          "azienda": "UNIVR",
+          "periodo": "3 years",
+          "duties": "student",
+          "luogo": "Verona",
+          "payment": "€500"
+        }
+      ],
+      "backUpPerson": [
+        {
+          "name": "Silver",
+          "cognome": "Gjeka",
+          "email": "silver.gjeka@gmail.com",
+          "phone": "+123456789"
+        }
+      ]
+    },
+    {
+      "CF": "SGJ22GK07M..",
+      "name": "Silver",
+      "cognome": "Gjeka",
+      "dataNascita": "0000-00-00",
+      "birthplace": "Divjake",
+      "nazionalita": "Albania",
+      "address": "Verona",
+      "phone": "+123456789",
+      "email": "silver.gjeka@gmail.com",
+      "languages": ["Albanian", "Italian", "English"],
+      "patenta": true,
+      "macchina": true,
+      "qualification": "Bachelor",
+      "esperienze": [
+        {
+          "azienda": "UNIVR",
+          "periodo": "3 years",
+          "duties": "student",
+          "luogo": "Verona",
+          "payment": "€500"
+        }
+      ],
+      "backUpPerson": [
+        {
+          "name": "Ledjo",
+          "cognome": "Lleshaj",
+          "email": "ledjo.lleshaj@gmail.com",
+          "phone": "+123456789"
+        }
+      ]
+    }
+  ],
   "degrees": [
     {
       "id": 1,
