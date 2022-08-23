@@ -1,23 +1,21 @@
 <template>
-  <header-container>
-    <template #title>
-      <h1 class="w-full text-4xl font-normal">Teams</h1>
-    </template>
-
-    <template #subtitle>
-      <h2 class="w-full my-4 text-base font-light">
-        It's awesome here. Why don't u come join us?
-      </h2>
-    </template>
-  </header-container>
+  <div class="flex flex-row flex-nowrap w-full">
+    <team-filters-sidebar />
+    <team-listings />
+  </div>
 </template>
+
 <script lang="ts">
 import { defineComponent } from "vue";
-import HeaderContainer from "@/components/Shared/HeaderContainer.vue";
+
+import TeamFiltersSidebar from "@/components/TeamResults/TeamFiltersSidebar/TeamFiltersSidebar.vue";
+import TeamListings from "@/components/TeamResults/TeamListings.vue";
+
 export default defineComponent({
   name: "TeamsView",
   components: {
-    HeaderContainer,
+    TeamFiltersSidebar,
+    TeamListings,
   },
 });
 </script>
