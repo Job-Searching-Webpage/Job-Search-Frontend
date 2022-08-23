@@ -12,6 +12,13 @@ const JobView = () =>
 const TeamsView = () =>
   import(/* webpackChunkName: "teams"*/ "@/views/TeamsView.vue");
 //path name component
+
+const NewApplicantView = () =>
+  import(/* webpackChunkName: "applicants"*/ "@/views/NewApplicantView.vue");
+
+const NewJobView = () =>
+  import(/* webpackChunkName: "jobs"*/ "@/views/NewJobView.vue");
+
 const routes = [
   {
     path: "/",
@@ -33,7 +40,17 @@ const routes = [
     name: "Teams",
     component: TeamsView,
   },
-  //To ADD new routes for adminItems that are declared in mainnav
+  {
+    path: "/applicant/new",
+    name: "NewApplicant",
+    component: NewApplicantView,
+  },
+  {
+    path: "/jobs/new",
+    name: "NewJob",
+    component: NewJobView,
+  },
+  //To ADD NEW ROUTES
 ];
 
 const router = createRouter({

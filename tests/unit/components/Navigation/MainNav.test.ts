@@ -78,29 +78,29 @@ describe("MainNav", () => {
     });
   });
 
-  describe("when user is logged in", () => {
-    it("displays user profile image instead", () => {
-      const $store = {
-        state: {
-          isLoggedIn: true,
-        },
-      };
+  // describe("when user is logged in", () => {
+  //   it("displays user profile image instead", () => {
+  //     const $store = {
+  //       state: {
+  //         isLoggedIn: true,
+  //       },
+  //     };
 
-      const wrapper = shallowMount(MainNav, createConfig($store));
-      const profileImage = wrapper.find("[data-test='profile-image']");
-      expect(profileImage.exists()).toBe(true);
-    });
+  //     const wrapper = shallowMount(MainNav, createConfig($store));
+  //     const profileImage = wrapper.find("[data-test='profile-image']");
+  //     expect(profileImage.exists()).toBe(true);
+  //   });
 
-    it("displays subnavigation menu with additional info", () => {
-      const $store = {
-        state: {
-          isLoggedIn: true,
-        },
-      };
-      const wrapper = shallowMount(MainNav, createConfig($store));
+  //   it("displays subnavigation menu with additional info", () => {
+  //     const $store = {
+  //       state: {
+  //         isLoggedIn: true,
+  //       },
+  //     };
+  //     const wrapper = shallowMount(MainNav, createConfig($store));
 
-      const subnav = wrapper.find("[data-test='subnav']");
-      expect(subnav.exists()).toBe(true);
-    });
-  });
+  //     const subnav = wrapper.find("[data-test='subnav']");
+  //     expect(subnav.exists()).toBe(true);
+  //   });
+  // });
 });
