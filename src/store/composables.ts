@@ -3,14 +3,21 @@ import { useStore } from "vuex";
 
 import {
   FILTERED_JOBS,
+  FILTERED_TEAMS,
   UNIQUE_JOB_TYPES,
   UNIQUE_DEGREES,
+  UNIQUE_QUALIFICATIONS,
   UNIQUE_ORGANIZATIONS,
+  UNIQUE_LOCATIONS,
+  UNIQUE_LANGUAGES,
+  UNIQUE_DISPONIBILITIES,
+  UNIQUE_PATENTA,
   FETCH_JOBS,
   FETCH_DEGREES,
+  FETCH_TEAMS,
 } from "@/store/constants";
 
-import { Job } from "@/api/types";
+import { Job, Team } from "@/api/types";
 
 import { key } from "@/store";
 
@@ -18,6 +25,10 @@ import { key } from "@/store";
 export const useFilteredJobs = () => {
   const store = useStore(key);
   return computed<Job[]>(() => store.getters[FILTERED_JOBS]);
+};
+export const useFilteredTeams = () => {
+  const store = useStore(key);
+  return computed<Team[]>(() => store.getters[FILTERED_TEAMS]);
 };
 
 export const useUniqueJobTypes = () => {
@@ -35,6 +46,29 @@ export const useUniqueDegrees = () => {
   return computed<string[]>(() => store.getters[UNIQUE_DEGREES]);
 };
 
+export const useUniqueLocations = () => {
+  const store = useStore(key);
+  return computed<string[]>(() => store.getters[UNIQUE_LOCATIONS]);
+};
+export const useUniqueQualifications = () => {
+  const store = useStore(key);
+  return computed<string[]>(() => store.getters[UNIQUE_QUALIFICATIONS]);
+};
+export const useUniqueTeamLanguages = () => {
+  const store = useStore(key);
+  return computed<string[]>(() => store.getters[UNIQUE_LANGUAGES]);
+};
+
+export const useUniqueDisponibilities = () => {
+  const store = useStore(key);
+  return computed<string[]>(() => store.getters[UNIQUE_DISPONIBILITIES]);
+};
+
+export const useUniquePatenta = () => {
+  const store = useStore(key);
+  return computed<string[]>(() => store.getters[UNIQUE_PATENTA]);
+};
+
 /* ACTIONS */
 export const useFetchJobsDispatch = () => {
   const store = useStore(key);
@@ -44,4 +78,8 @@ export const useFetchJobsDispatch = () => {
 export const useFetchDegreesDispatch = () => {
   const store = useStore(key);
   return store.dispatch(FETCH_DEGREES);
+};
+export const useFetchTeamsDispatch = () => {
+  const store = useStore(key);
+  return store.dispatch(FETCH_TEAMS);
 };
