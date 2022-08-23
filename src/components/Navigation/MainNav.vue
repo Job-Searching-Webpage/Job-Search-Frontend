@@ -42,6 +42,10 @@
         v-if="isLoggedIn && onJobResultsPage"
         data-test="subnav"
       />
+      <sub-navigation
+        v-if="isLoggedIn && onTeamsPage"
+        data-test="subnav-teams"
+      />
       <sub-admin-navigation
         v-if="isLoggedIn && onLandingPage"
         bg-white
@@ -93,6 +97,7 @@ export default defineComponent({
   data() {
     const onJobResultsPage = useConfirmRoute("JobResults");
     const onLandingPage = useConfirmRoute("Home");
+    const onTeamsPage = useConfirmRoute("Teams");
 
     return {
       menuItems: [
@@ -109,6 +114,7 @@ export default defineComponent({
       ],
       onJobResultsPage,
       onLandingPage,
+      onTeamsPage,
     };
   },
   computed: {
