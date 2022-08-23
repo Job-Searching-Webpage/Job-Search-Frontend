@@ -5,9 +5,12 @@ import {
   ADD_SELECTED_ORGANIZATIONS,
   ADD_SELECTED_JOB_TYPES,
   ADD_SELECTED_DEGREES,
+  ADD_SELECTED_LOCATIONS,
   CLEAR_USER_JOB_FILTER_SELECTIONS,
   UPDATE_SKILLS_SEARCH_TERM,
   UPDATE_LOCATION_SEARCH_TERM,
+  UPDATE_NAME_SEARCH_TERM,
+  UPDATE_JOB_SEARCH_TERM,
 } from "@/store/constants";
 
 import { GlobalState } from "@/store/types";
@@ -32,6 +35,9 @@ const mutations = {
   [ADD_SELECTED_DEGREES](state: GlobalState, degrees: string[]) {
     state.selectedDegrees = degrees;
   },
+  [ADD_SELECTED_LOCATIONS](state: GlobalState, locations: string[]) {
+    state.selectedLocations = locations;
+  },
   [CLEAR_USER_JOB_FILTER_SELECTIONS](state: GlobalState) {
     state.selectedOrganizations = [];
     state.selectedJobTypes = [];
@@ -46,6 +52,12 @@ const mutations = {
     locationSearchTerm: string
   ) {
     state.locationSearchTerm = locationSearchTerm;
+  },
+  [UPDATE_NAME_SEARCH_TERM](state: GlobalState, nameSearchTerm: string) {
+    state.nameSearchTerm = nameSearchTerm;
+  },
+  [UPDATE_JOB_SEARCH_TERM](state: GlobalState, jobSearchTerm: string) {
+    state.jobSearchTerm = jobSearchTerm;
   },
 };
 
