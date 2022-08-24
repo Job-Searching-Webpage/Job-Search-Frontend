@@ -17,18 +17,18 @@
           <div>
             <ul>
               <li class="inline-block mr-5">
-                {{ team.adress }}
+                {{ team.address }}
               </li>
             </ul>
           </div>
         </div>
         <div class="px-8 py-4">
           <div>
-            <h3 class="mt-1 mb-2">Natinality</h3>
+            <h3 class="mt-1 mb-2">Languages</h3>
             <div>
               <ul class="pl-8 list-disc">
-                <li v-for="nazionalita in team.nazionalita" :key="nazionalita">
-                  {{ nazionalita }}
+                <li v-for="languages in team.languages" :key="languages">
+                  {{ languages }}
                 </li>
               </ul>
             </div>
@@ -57,7 +57,7 @@ export default defineComponent({
     },
   },
   setup(props) {
-    const teamPageLink = computed(() => `/teams/results/${props.team.name}`);
+    const teamPageLink = computed(() => `/teams/${props.team.id}`);
     return { teamPageLink };
   },
 });

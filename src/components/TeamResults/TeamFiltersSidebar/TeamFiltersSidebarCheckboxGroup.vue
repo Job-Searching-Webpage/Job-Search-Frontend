@@ -53,7 +53,7 @@ export default defineComponent({
     const selectValue = () => {
       store.commit(props.mutation, selectedValues.value);
       router.push({
-        name: "TeamResults",
+        name: "Teams",
       });
     };
 

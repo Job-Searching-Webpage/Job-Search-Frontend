@@ -3,7 +3,7 @@
     <ol>
       <team-listing
         v-for="team in displayedTeams"
-        :key="team.CF"
+        :key="team.id"
         :team="team"
         data-test="team-listing"
       />
@@ -57,7 +57,7 @@ export default defineComponent({
     //onMounted(useFetchDegreesDispatch);
 
     const filteredTeams = useFilteredTeams();
-
+    console.log(filteredTeams);
     const currentPage = useCurrentPage();
 
     const maxPage = computed(() => Math.ceil(filteredTeams.value.length / 10));

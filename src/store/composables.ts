@@ -43,30 +43,30 @@ export const useUniqueOrganizations = () => {
 
 export const useUniqueDegrees = () => {
   const store = useStore(key);
-  return computed<string[]>(() => store.getters[UNIQUE_DEGREES]);
+  return computed<Set<string>>(() => store.getters[UNIQUE_DEGREES]);
 };
 
 export const useUniqueLocations = () => {
   const store = useStore(key);
-  return computed<string[]>(() => store.getters[UNIQUE_LOCATIONS]);
+  return computed<Set<string>>(() => store.getters[UNIQUE_LOCATIONS]);
 };
 export const useUniqueQualifications = () => {
   const store = useStore(key);
-  return computed<string[]>(() => store.getters[UNIQUE_QUALIFICATIONS]);
+  return computed<Set<string>>(() => store.getters[UNIQUE_QUALIFICATIONS]);
 };
 export const useUniqueTeamLanguages = () => {
   const store = useStore(key);
-  return computed<string[]>(() => store.getters[UNIQUE_LANGUAGES]);
+  return computed<Set<string>>(() => store.getters[UNIQUE_LANGUAGES]);
 };
 
 export const useUniqueDisponibilities = () => {
   const store = useStore(key);
-  return computed<string[]>(() => store.getters[UNIQUE_DISPONIBILITIES]);
+  return computed<Set<string>>(() => store.getters[UNIQUE_DISPONIBILITIES]);
 };
 
 export const useUniquePatenta = () => {
   const store = useStore(key);
-  return computed<string[]>(() => store.getters[UNIQUE_PATENTA]);
+  return computed<Set<string>>(() => store.getters[UNIQUE_PATENTA]);
 };
 
 /* ACTIONS */

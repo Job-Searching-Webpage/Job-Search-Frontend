@@ -158,15 +158,17 @@ const getters = {
     return state.selectedTeamAddress.includes(team.address);
   },
   [FILTERED_TEAMS](state: GlobalState, getters: IncludeTeamGetters) {
-    return state.teams
-      .filter((team) => getters.INCLUDE_TEAM_BY_LOCATION(team))
-      .filter((team) => getters.INCLUDE_TEAM_BY_QUALIFICATION(team))
-      .filter((team) => getters.INCLUDE_TEAM_BY_LANGUAGE(team))
-      .filter((team) => getters.INCLUDE_TEAM_BY_JOB(team))
-      .filter((team) => getters.INCLUDE_TEAM_BY_NAME(team))
-      .filter((team) => getters.INCLUDE_TEAM_BY_DISPONIBILITY(team))
-      .filter((team) => getters.INCLUDE_TEAM_BY_PATENTA(team))
-      .filter((team) => getters.INCLUDE_TEAM_BY_ADDRESS(team));
+    return (
+      state.teams
+        .filter((team) => getters.INCLUDE_TEAM_BY_LOCATION(team))
+        .filter((team) => getters.INCLUDE_TEAM_BY_QUALIFICATION(team))
+        //.filter((team) => getters.INCLUDE_TEAM_BY_LANGUAGE(team))
+        .filter((team) => getters.INCLUDE_TEAM_BY_JOB(team))
+        .filter((team) => getters.INCLUDE_TEAM_BY_NAME(team))
+        .filter((team) => getters.INCLUDE_TEAM_BY_DISPONIBILITY(team))
+        .filter((team) => getters.INCLUDE_TEAM_BY_PATENTA(team))
+        .filter((team) => getters.INCLUDE_TEAM_BY_ADDRESS(team))
+    );
   },
 };
 export default getters;

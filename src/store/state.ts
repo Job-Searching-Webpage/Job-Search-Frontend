@@ -15,7 +15,6 @@ const state = (): GlobalState => {
     selectedDegrees: [],
     selectedQualifications: [],
     selectedLanguages: [],
-    //selectedTeamJob: [],
     selectedTeamDisponibility: [],
     selectedTeamPatenta: [],
     selectedTeamAddress: [],
