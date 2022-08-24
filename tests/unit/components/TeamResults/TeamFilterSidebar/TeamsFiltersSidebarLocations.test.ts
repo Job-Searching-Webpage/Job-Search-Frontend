@@ -7,13 +7,13 @@ const useUniqueLocationsMock = useUniqueLocations as jest.Mock;
 import TeamFiltersSidebarLocations from "@/components/TeamResults/TeamFiltersSidebar/TeamFiltersSidebarLocations.vue";
 
 describe("TeamFilterSidebarLocations", () => {
-  it("allows user to filter workers by car disponibility", () => {
+  it("allows user to filter workers by location", () => {
     useUniqueLocationsMock.mockReturnValue(new Set(["Earth", "Planet"]));
     const wrapper = shallowMount(TeamFiltersSidebarLocations);
-    const carOwningFilter = wrapper.findComponent({
+    const locationFilter = wrapper.findComponent({
       name: "TeamFiltersSidebarCheckboxGroup",
     });
-    const { uniqueValues, mutation } = carOwningFilter.props();
+    const { uniqueValues, mutation } = locationFilter.props();
     expect(uniqueValues).toEqual(new Set(["Earth", "Planet"]));
     expect(mutation).toBe("ADD_SELECTED_LOCATIONS");
   });
