@@ -80,6 +80,12 @@ const mutations = {
   [UPDATE_SKILLS_SEARCH_TERM](state: GlobalState, skillsSearchTerm: string) {
     state.skillsSearchTerm = skillsSearchTerm;
   },
+  [UPDATE_LOCATION_SEARCH_TERM](
+    state: GlobalState,
+    locationSearchTerm: string
+  ) {
+    state.locationSearchTerm = locationSearchTerm;
+  },
   [UPDATE_NAME_SEARCH_TERM](state: GlobalState, nameSearchTerm: string) {
     state.nameSearchTerm = nameSearchTerm;
   },
