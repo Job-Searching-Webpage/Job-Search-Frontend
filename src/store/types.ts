@@ -8,16 +8,14 @@ export interface GlobalState {
   degrees: Degree[];
   skillsSearchTerm: string;
   locationSearchTerm: string;
-  nameSearchTerm: string;
-  jobSearchTerm: string;
   selectedOrganizations: string[];
   selectedJobTypes: string[];
   selectedDegrees: string[];
-  selectedLocations: string[];
+
+  nameSearchTerm: string;
+  jobSearchTerm: string;
   selectedQualifications: string[];
   selectedLanguages: string[];
-  selectedTeamJob: string[];
-  selectedTeamName: string[];
   selectedTeamDisponibility: string[];
   selectedTeamPatenta: string[];
   selectedTeamAddress: string[];
