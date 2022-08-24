@@ -40,11 +40,7 @@ import { computed, onMounted, defineComponent } from "vue";
 
 import useCurrentPage from "@/composables/useCurrentPage";
 import usePreviousAndNextPages from "@/composables/usePreviousAndNextPages";
-import {
-  useFilteredTeams,
-  useFetchTeamsDispatch,
-  //useFetchDegreesDispatch,
-} from "@/store/composables";
+import { useFilteredTeams, useFetchTeamsDispatch } from "@/store/composables";
 import TeamListing from "@/components/TeamResults/TeamListing.vue";
 
 export default defineComponent({
@@ -54,10 +50,8 @@ export default defineComponent({
   },
   setup() {
     onMounted(useFetchTeamsDispatch);
-    //onMounted(useFetchDegreesDispatch);
 
     const filteredTeams = useFilteredTeams();
-    console.log(filteredTeams);
     const currentPage = useCurrentPage();
 
     const maxPage = computed(() => Math.ceil(filteredTeams.value.length / 10));
