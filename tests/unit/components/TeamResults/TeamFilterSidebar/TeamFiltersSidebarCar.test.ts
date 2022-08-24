@@ -8,13 +8,13 @@ import TeamFiltersSidebarCar from "@/components/TeamResults/TeamFiltersSidebar/T
 
 describe("TeamFilterSidebarCar", () => {
   it("allows user to filter workers by car disponibility", () => {
-    useUniqueCarsMock.mockReturnValue(new Set(["Full-time", "Part-time"]));
+    useUniqueCarsMock.mockReturnValue(new Set(["True", "False"]));
     const wrapper = shallowMount(TeamFiltersSidebarCar);
     const carOwningFilter = wrapper.findComponent({
       name: "TeamFiltersSidebarCheckboxGroup",
     });
     const { uniqueValues, mutation } = carOwningFilter.props();
-    expect(uniqueValues).toEqual(new Set(["Full-time", "Part-time"]));
+    expect(uniqueValues).toEqual(new Set(["True", "False"]));
     expect(mutation).toBe("ADD_SELECTED_CAR");
   });
 });
