@@ -18,6 +18,7 @@ export interface Degree {
 
 export interface Team {
   CF: string;
+  id: number;
   name: string;
   cognome: string;
   dataNascita: Date;
