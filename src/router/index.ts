@@ -44,7 +44,7 @@ const routes = [
     component: TeamsView,
   },
   {
-    path: "/teams/results/:name",
+    path: "/teams/:id",
     name: "TeamListing",
     component: TeamView,
   },
