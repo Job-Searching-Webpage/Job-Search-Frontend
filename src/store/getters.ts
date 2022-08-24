@@ -12,6 +12,7 @@ import {
   UNIQUE_LOCATIONS,
   UNIQUE_LANGUAGES,
   UNIQUE_PATENTA,
+  UNIQUE_CAR,
   UNIQUE_QUALIFICATIONS,
   INCLUDE_TEAM_BY_LOCATION,
   INCLUDE_TEAM_BY_QUALIFICATION,
@@ -21,6 +22,7 @@ import {
   UPDATE_NAME_SEARCH_TERM,
   INCLUDE_TEAM_BY_PERIOD,
   INCLUDE_TEAM_BY_PATENTA,
+  INCLUDE_TEAM_BY_CAR,
   INCLUDE_TEAM_BY_ADDRESS,
 } from "@/store/constants";
 
@@ -43,6 +45,7 @@ interface IncludeTeamGetters {
   INCLUDE_TEAM_BY_NAME: (team: Team) => boolean;
   INCLUDE_TEAM_BY_PERIOD: (team: Team) => boolean;
   INCLUDE_TEAM_BY_PATENTA: (team: Team) => boolean;
+  INCLUDE_TEAM_BY_CAR: (team: Team) => boolean;
   INCLUDE_TEAM_BY_ADDRESS: (team: Team) => boolean;
 }
 
@@ -109,6 +112,11 @@ const getters = {
     state.teams.forEach((team) => uniquePatenta.add(team.patenta));
     return uniquePatenta;
   },
+  [UNIQUE_CAR](state: GlobalState) {
+    const uniqueCar = new Set<string>();
+    state.teams.forEach((team) => uniqueCar.add(team.car));
+    return uniqueCar;
+  },
   [UNIQUE_QUALIFICATIONS](state: GlobalState) {
     const uniqueQualifications = new Set<string>();
     state.teams.forEach((team) => uniqueQualifications.add(team.qualification));
@@ -145,10 +153,10 @@ const getters = {
     if (state.selectedTeamPatenta.length === 0) return true;
     return state.selectedTeamPatenta.includes(team.patenta);
   },
-  //toDo: check if this is correct
-  // [INCLUDE_TEAM_BY_MACCHINA]: (state: GlobalState) => (team: Team) => {
-  //   return team.macchina;
-  // },
+  [INCLUDE_TEAM_BY_CAR]: (state: GlobalState) => (team: Team) => {
+    if (state.selectedTeamCar.length === 0) return true;
+    return state.selectedTeamCar.includes(team.car);
+  },
   [INCLUDE_TEAM_BY_ADDRESS]: (state: GlobalState) => (team: Team) => {
     if (state.selectedTeamAddress.length === 0) return true;
     return state.selectedTeamAddress.includes(team.address);
@@ -162,6 +170,7 @@ const getters = {
       .filter((team) => getters.INCLUDE_TEAM_BY_NAME(team))
       .filter((team) => getters.INCLUDE_TEAM_BY_PERIOD(team))
       .filter((team) => getters.INCLUDE_TEAM_BY_PATENTA(team))
+      .filter((team) => getters.INCLUDE_TEAM_BY_CAR(team))
       .filter((team) => getters.INCLUDE_TEAM_BY_ADDRESS(team));
   },
 };

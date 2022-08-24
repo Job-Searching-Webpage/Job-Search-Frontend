@@ -12,6 +12,7 @@ import {
   UNIQUE_LANGUAGES,
   UNIQUE_PERIODS,
   UNIQUE_PATENTA,
+  UNIQUE_CAR,
   FETCH_JOBS,
   FETCH_DEGREES,
   FETCH_TEAMS,
@@ -67,6 +68,10 @@ export const useUniquePeriods = () => {
 export const useUniquePatenta = () => {
   const store = useStore(key);
   return computed<Set<string>>(() => store.getters[UNIQUE_PATENTA]);
+};
+export const useUniqueCar = () => {
+  const store = useStore(key);
+  return computed<Set<string>>(() => store.getters[UNIQUE_CAR]);
 };
 
 /* ACTIONS */

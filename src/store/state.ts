@@ -17,6 +17,7 @@ const state = (): GlobalState => {
     selectedQualifications: [],
     selectedLanguages: [],
     selectedTeamPatenta: [],
+    selectedTeamCar: [],
     selectedTeamAddress: [],
   };
 };

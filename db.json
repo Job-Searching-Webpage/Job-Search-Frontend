@@ -15,7 +15,7 @@
       "email": "ledjo.lleshaj@gmail.com",
       "languages": ["Albanian", "Italian", "English"],
       "patenta": false,
-      "macchina": true,
+      "car": false,
       "qualification": "Bachelor",
       "esperienze": [
         {
@@ -50,7 +50,7 @@
       "email": "silver.gjeka@gmail.com",
       "languages": ["Greek", "Italian", "English"],
       "patenta": true,
-      "macchina": true,
+      "car": true,
       "qualification": "Master",
       "esperienze": [
         {

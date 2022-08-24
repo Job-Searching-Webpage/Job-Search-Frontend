@@ -32,6 +32,10 @@
       <accordion header="Driving License">
         <team-filters-sidebar-patenta />
       </accordion>
+
+      <accordion header="Owns a car">
+        <team-filters-sidebar-car />
+      </accordion>
     </section>
   </div>
 </template>
@@ -49,6 +53,7 @@ import TeamFiltersSidebarName from "@/components/TeamResults/TeamFiltersSidebar/
 import TeamFiltersSidebarPeriod from "@/components/TeamResults/TeamFiltersSidebar/TeamFiltersSidebarPeriod.vue";
 import TeamFiltersSidebarJob from "@/components/TeamResults/TeamFiltersSidebar/TeamFiltersSidebarJob.vue";
 import TeamFiltersSidebarPatenta from "@/components/TeamResults/TeamFiltersSidebar/TeamFiltersSidebarPatenta.vue";
+import TeamFiltersSidebarCar from "./TeamFiltersSidebarCar.vue";
 
 export default defineComponent({
   name: "TeamFiltersSidebar",
@@ -62,6 +67,7 @@ export default defineComponent({
     TeamFiltersSidebarPeriod,
     TeamFiltersSidebarJob,
     TeamFiltersSidebarPatenta,
+    TeamFiltersSidebarCar,
   },
 });
 </script>

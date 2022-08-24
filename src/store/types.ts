@@ -17,5 +17,6 @@ export interface GlobalState {
   selectedQualifications: string[];
   selectedLanguages: string[];
   selectedTeamPatenta: string[];
+  selectedTeamCar: string[];
   selectedTeamAddress: string[];
 }

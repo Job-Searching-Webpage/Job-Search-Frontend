@@ -9,6 +9,7 @@ import {
   ADD_SELECTED_LOCATIONS,
   ADD_SELECTED_TEAM_LANGUAGES,
   ADD_SELECTED_PATENTA,
+  ADD_SELECTED_CAR,
   ADD_SELECTED_QUALIFICATIONS,
   CLEAR_USER_JOB_FILTER_SELECTIONS,
   CLEAR_USER_TEAM_FILTER_SELECTIONS,
@@ -53,6 +54,9 @@ const mutations = {
   [ADD_SELECTED_PATENTA](state: GlobalState, patenta: string[]) {
     state.selectedTeamPatenta = patenta;
   },
+  [ADD_SELECTED_CAR](state: GlobalState, car: string[]) {
+    state.selectedTeamCar = car;
+  },
   [ADD_SELECTED_QUALIFICATIONS](state: GlobalState, qualifications: string[]) {
     state.selectedQualifications = qualifications;
   },
@@ -66,6 +70,7 @@ const mutations = {
   [CLEAR_USER_TEAM_FILTER_SELECTIONS](state: GlobalState) {
     state.selectedTeamAddress = [];
     state.selectedTeamPatenta = [];
+    state.selectedTeamCar = [];
     state.selectedLanguages = [];
     state.nameSearchTerm = "";
     state.jobSearchTerm = "";

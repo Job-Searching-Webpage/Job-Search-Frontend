@@ -31,7 +31,7 @@ export interface Team {
   email: string;
   languages: string[];
   patenta: string;
-  macchina: boolean;
+  car: string;
   qualification: string;
   esperienze: experience[];
   backUpPerson: BackUpPerson;
