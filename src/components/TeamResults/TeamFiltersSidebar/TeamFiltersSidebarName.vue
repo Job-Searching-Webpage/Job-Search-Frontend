@@ -4,7 +4,7 @@
       v-model.lazy.trim="nameSearchTerm"
       class="p-3 h-12 border border-solid border-brand-gray-1 shadow-gray rounded w-full text-base"
       placeholder="Ledjo, Silver"
-      data-test="experience-search-input"
+      data-test="name-search-input"
     />
   </div>
 </template>
