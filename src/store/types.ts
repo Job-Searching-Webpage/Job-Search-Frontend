@@ -4,7 +4,6 @@ export interface GlobalState {
   isLoggedIn: boolean;
   jobs: Job[];
   teams: Team[];
-  //degrees for teams?
   degrees: Degree[];
   skillsSearchTerm: string;
   locationSearchTerm: string;
@@ -14,9 +13,9 @@ export interface GlobalState {
 
   nameSearchTerm: string;
   jobSearchTerm: string;
+  periodSearchTerm: string;
   selectedQualifications: string[];
   selectedLanguages: string[];
-  selectedTeamDisponibility: string[];
   selectedTeamPatenta: string[];
   selectedTeamAddress: string[];
 }

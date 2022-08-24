@@ -7,7 +7,6 @@ import {
   ADD_SELECTED_JOB_TYPES,
   ADD_SELECTED_DEGREES,
   ADD_SELECTED_LOCATIONS,
-  ADD_SELECTED_DISPONIBILITY,
   ADD_SELECTED_TEAM_LANGUAGES,
   ADD_SELECTED_PATENTA,
   ADD_SELECTED_QUALIFICATIONS,
@@ -17,6 +16,7 @@ import {
   UPDATE_LOCATION_SEARCH_TERM,
   UPDATE_NAME_SEARCH_TERM,
   UPDATE_JOB_SEARCH_TERM,
+  UPDATE_PERIOD_SEARCH_TERM,
 } from "@/store/constants";
 
 import { GlobalState } from "@/store/types";
@@ -47,9 +47,6 @@ const mutations = {
   [ADD_SELECTED_LOCATIONS](state: GlobalState, locations: string[]) {
     state.selectedTeamAddress = locations;
   },
-  [ADD_SELECTED_DISPONIBILITY](state: GlobalState, disponibility: string[]) {
-    state.selectedTeamDisponibility = disponibility;
-  },
   [ADD_SELECTED_TEAM_LANGUAGES](state: GlobalState, teamLanguages: string[]) {
     state.selectedLanguages = teamLanguages;
   },
@@ -68,11 +65,11 @@ const mutations = {
   },
   [CLEAR_USER_TEAM_FILTER_SELECTIONS](state: GlobalState) {
     state.selectedTeamAddress = [];
-    state.selectedTeamDisponibility = [];
     state.selectedTeamPatenta = [];
     state.selectedLanguages = [];
     state.nameSearchTerm = "";
     state.jobSearchTerm = "";
+    state.periodSearchTerm = "";
   },
   [UPDATE_SKILLS_SEARCH_TERM](state: GlobalState, skillsSearchTerm: string) {
     state.skillsSearchTerm = skillsSearchTerm;
@@ -88,6 +85,9 @@ const mutations = {
   },
   [UPDATE_JOB_SEARCH_TERM](state: GlobalState, jobSearchTerm: string) {
     state.jobSearchTerm = jobSearchTerm;
+  },
+  [UPDATE_PERIOD_SEARCH_TERM](state: GlobalState, periodSearchTerm: string) {
+    state.periodSearchTerm = periodSearchTerm;
   },
 };
 

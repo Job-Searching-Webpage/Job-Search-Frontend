@@ -10,7 +10,7 @@ import {
   UNIQUE_ORGANIZATIONS,
   UNIQUE_LOCATIONS,
   UNIQUE_LANGUAGES,
-  UNIQUE_DISPONIBILITIES,
+  UNIQUE_PERIODS,
   UNIQUE_PATENTA,
   FETCH_JOBS,
   FETCH_DEGREES,
@@ -59,9 +59,9 @@ export const useUniqueTeamLanguages = () => {
   return computed<Set<string>>(() => store.getters[UNIQUE_LANGUAGES]);
 };
 
-export const useUniqueDisponibilities = () => {
+export const useUniquePeriods = () => {
   const store = useStore(key);
-  return computed<Set<string>>(() => store.getters[UNIQUE_DISPONIBILITIES]);
+  return computed<Set<string>>(() => store.getters[UNIQUE_PERIODS]);
 };
 
 export const useUniquePatenta = () => {

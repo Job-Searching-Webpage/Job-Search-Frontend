@@ -10,12 +10,12 @@ const state = (): GlobalState => {
     locationSearchTerm: "",
     nameSearchTerm: "",
     jobSearchTerm: "",
+    periodSearchTerm: "",
     selectedOrganizations: [],
     selectedJobTypes: [],
     selectedDegrees: [],
     selectedQualifications: [],
     selectedLanguages: [],
-    selectedTeamDisponibility: [],
     selectedTeamPatenta: [],
     selectedTeamAddress: [],
   };

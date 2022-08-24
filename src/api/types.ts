@@ -26,7 +26,7 @@ export interface Team {
   nazionalita: string;
   address: string;
   jobType: string;
-  disponibilita: string;
+  period: string;
   phone: string;
   email: string;
   languages: string[];

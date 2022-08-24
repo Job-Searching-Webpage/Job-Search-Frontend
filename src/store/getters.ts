@@ -9,7 +9,6 @@ import {
   INCLUDE_JOB_BY_SKILL,
   INCLUDE_JOB_BY_LOCATION,
   FILTERED_TEAMS,
-  UNIQUE_DISPONIBILITIES,
   UNIQUE_LOCATIONS,
   UNIQUE_LANGUAGES,
   UNIQUE_PATENTA,
@@ -19,7 +18,8 @@ import {
   INCLUDE_TEAM_BY_LANGUAGE,
   INCLUDE_TEAM_BY_JOB,
   INCLUDE_TEAM_BY_NAME,
-  INCLUDE_TEAM_BY_DISPONIBILITY,
+  UPDATE_NAME_SEARCH_TERM,
+  INCLUDE_TEAM_BY_PERIOD,
   INCLUDE_TEAM_BY_PATENTA,
   INCLUDE_TEAM_BY_ADDRESS,
 } from "@/store/constants";
@@ -41,7 +41,7 @@ interface IncludeTeamGetters {
   INCLUDE_TEAM_BY_LANGUAGE: (team: Team) => boolean;
   INCLUDE_TEAM_BY_JOB: (team: Team) => boolean;
   INCLUDE_TEAM_BY_NAME: (team: Team) => boolean;
-  INCLUDE_TEAM_BY_DISPONIBILITY: (team: Team) => boolean;
+  INCLUDE_TEAM_BY_PERIOD: (team: Team) => boolean;
   INCLUDE_TEAM_BY_PATENTA: (team: Team) => boolean;
   INCLUDE_TEAM_BY_ADDRESS: (team: Team) => boolean;
 }
@@ -92,13 +92,6 @@ const getters = {
   },
 
   /* TEAM GETTERS */
-  [UNIQUE_DISPONIBILITIES](state: GlobalState) {
-    const uniqueDisponibilities = new Set<string>();
-    state.teams.forEach((team) =>
-      uniqueDisponibilities.add(team.disponibilita)
-    );
-    return uniqueDisponibilities;
-  },
   [UNIQUE_LOCATIONS](state: GlobalState) {
     const uniqueLocations = new Set<string>();
     state.teams.forEach((team) => uniqueLocations.add(team.address));
@@ -131,7 +124,9 @@ const getters = {
   },
   [INCLUDE_TEAM_BY_LANGUAGE]: (state: GlobalState) => (team: Team) => {
     if (state.selectedLanguages.length === 0) return true;
-    return Array.from(new Set(state.selectedLanguages.concat(team.languages)));
+    return state.selectedLanguages.every((language) =>
+      team.languages.includes(language)
+    );
   },
   [INCLUDE_TEAM_BY_JOB]: (state: GlobalState) => (team: Team) => {
     return team.jobType
@@ -141,9 +136,10 @@ const getters = {
   [INCLUDE_TEAM_BY_NAME]: (state: GlobalState) => (team: Team) => {
     return team.name.toLowerCase().includes(state.nameSearchTerm.toLowerCase());
   },
-  [INCLUDE_TEAM_BY_DISPONIBILITY]: (state: GlobalState) => (team: Team) => {
-    if (state.selectedTeamDisponibility.length === 0) return true;
-    return state.selectedTeamDisponibility.includes(team.disponibilita);
+  [INCLUDE_TEAM_BY_PERIOD]: (state: GlobalState) => (team: Team) => {
+    return team.period
+      .toLowerCase()
+      .includes(state.periodSearchTerm.toLowerCase());
   },
   [INCLUDE_TEAM_BY_PATENTA]: (state: GlobalState) => (team: Team) => {
     if (state.selectedTeamPatenta.length === 0) return true;
@@ -158,17 +154,15 @@ const getters = {
     return state.selectedTeamAddress.includes(team.address);
   },
   [FILTERED_TEAMS](state: GlobalState, getters: IncludeTeamGetters) {
-    return (
-      state.teams
-        .filter((team) => getters.INCLUDE_TEAM_BY_LOCATION(team))
-        .filter((team) => getters.INCLUDE_TEAM_BY_QUALIFICATION(team))
-        //.filter((team) => getters.INCLUDE_TEAM_BY_LANGUAGE(team))
-        .filter((team) => getters.INCLUDE_TEAM_BY_JOB(team))
-        .filter((team) => getters.INCLUDE_TEAM_BY_NAME(team))
-        .filter((team) => getters.INCLUDE_TEAM_BY_DISPONIBILITY(team))
-        .filter((team) => getters.INCLUDE_TEAM_BY_PATENTA(team))
-        .filter((team) => getters.INCLUDE_TEAM_BY_ADDRESS(team))
-    );
+    return state.teams
+      .filter((team) => getters.INCLUDE_TEAM_BY_LOCATION(team))
+      .filter((team) => getters.INCLUDE_TEAM_BY_QUALIFICATION(team))
+      .filter((team) => getters.INCLUDE_TEAM_BY_LANGUAGE(team))
+      .filter((team) => getters.INCLUDE_TEAM_BY_JOB(team))
+      .filter((team) => getters.INCLUDE_TEAM_BY_NAME(team))
+      .filter((team) => getters.INCLUDE_TEAM_BY_PERIOD(team))
+      .filter((team) => getters.INCLUDE_TEAM_BY_PATENTA(team))
+      .filter((team) => getters.INCLUDE_TEAM_BY_ADDRESS(team));
   },
 };
 export default getters;

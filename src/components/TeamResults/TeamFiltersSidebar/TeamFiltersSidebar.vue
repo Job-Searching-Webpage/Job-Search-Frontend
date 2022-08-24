@@ -21,8 +21,8 @@
         <team-filters-sidebar-locations />
       </accordion>
 
-      <accordion header="Disponibilita">
-        <team-filters-sidebar-disponibilita />
+      <accordion header="Period of Disponibility">
+        <team-filters-sidebar-period />
       </accordion>
 
       <accordion header="Job type">
@@ -46,7 +46,7 @@ import TeamFiltersSidebarLanguages from "@/components/TeamResults/TeamFiltersSid
 import TeamFiltersSidebarQualifications from "@/components/TeamResults/TeamFiltersSidebar/TeamFiltersSidebarQualifications.vue";
 import TeamFiltersSidebarLocations from "@/components/TeamResults/TeamFiltersSidebar/TeamFiltersSidebarLocations.vue";
 import TeamFiltersSidebarName from "@/components/TeamResults/TeamFiltersSidebar/TeamFiltersSidebarName.vue";
-import TeamFiltersSidebarDisponibilita from "@/components/TeamResults/TeamFiltersSidebar/TeamFiltersSidebarDisponibilita.vue";
+import TeamFiltersSidebarPeriod from "@/components/TeamResults/TeamFiltersSidebar/TeamFiltersSidebarPeriod.vue";
 import TeamFiltersSidebarJob from "@/components/TeamResults/TeamFiltersSidebar/TeamFiltersSidebarJob.vue";
 import TeamFiltersSidebarPatenta from "@/components/TeamResults/TeamFiltersSidebar/TeamFiltersSidebarPatenta.vue";
 
@@ -59,7 +59,7 @@ export default defineComponent({
     TeamFiltersSidebarLocations,
     TeamFiltersSidebarName,
     TeamFiltersSidebarPrompt,
-    TeamFiltersSidebarDisponibilita,
+    TeamFiltersSidebarPeriod,
     TeamFiltersSidebarJob,
     TeamFiltersSidebarPatenta,
   },
