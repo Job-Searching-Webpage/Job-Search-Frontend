@@ -44,7 +44,6 @@ interface IncludeTeamGetters {
   INCLUDE_TEAM_BY_NAME: (team: Team) => boolean;
   INCLUDE_TEAM_BY_DISPONIBILITY: (team: Team) => boolean;
   INCLUDE_TEAM_BY_PATENTA: (team: Team) => boolean;
-  //INCLUDE_TEAM_BY_MACCHINA: (team: Team) => boolean;
   INCLUDE_TEAM_BY_ADDRESS: (team: Team) => boolean;
 }
 
@@ -123,8 +122,8 @@ const getters = {
     return uniqueQualifications;
   },
   [INCLUDE_TEAM_BY_LOCATION]: (state: GlobalState) => (team: Team) => {
-    if (state.selectedLocations.length === 0) return true;
-    return state.selectedLocations.includes(team.address);
+    if (state.selectedTeamAddress.length === 0) return true;
+    return state.selectedTeamAddress.includes(team.address);
   },
   [INCLUDE_TEAM_BY_QUALIFICATION]: (state: GlobalState) => (team: Team) => {
     if (state.selectedQualifications.length === 0) return true;
@@ -135,12 +134,12 @@ const getters = {
     return Array.from(new Set(state.selectedLanguages.concat(team.languages)));
   },
   [INCLUDE_TEAM_BY_JOB]: (state: GlobalState) => (team: Team) => {
-    if (state.selectedTeamJob.length === 0) return true;
-    return state.selectedTeamJob.includes(team.jobType);
+    return team.jobType
+      .toLowerCase()
+      .includes(state.jobSearchTerm.toLowerCase());
   },
   [INCLUDE_TEAM_BY_NAME]: (state: GlobalState) => (team: Team) => {
-    if (state.selectedTeamName.length === 0) return true;
-    return state.selectedTeamName.includes(team.name);
+    return team.name.toLowerCase().includes(state.nameSearchTerm.toLowerCase());
   },
   [INCLUDE_TEAM_BY_DISPONIBILITY]: (state: GlobalState) => (team: Team) => {
     if (state.selectedTeamDisponibility.length === 0) return true;
@@ -159,18 +158,15 @@ const getters = {
     return state.selectedTeamAddress.includes(team.address);
   },
   [FILTERED_TEAMS](state: GlobalState, getters: IncludeTeamGetters) {
-    return (
-      state.teams
-        .filter((team) => getters.INCLUDE_TEAM_BY_LOCATION(team))
-        .filter((team) => getters.INCLUDE_TEAM_BY_QUALIFICATION(team))
-        .filter((team) => getters.INCLUDE_TEAM_BY_LANGUAGE(team))
-        .filter((team) => getters.INCLUDE_TEAM_BY_JOB(team))
-        .filter((team) => getters.INCLUDE_TEAM_BY_NAME(team))
-        .filter((team) => getters.INCLUDE_TEAM_BY_DISPONIBILITY(team))
-        .filter((team) => getters.INCLUDE_TEAM_BY_PATENTA(team))
-        //.filter((team) => getters.INCLUDE_TEAM_BY_MACCHINA(team))
-        .filter((team) => getters.INCLUDE_TEAM_BY_ADDRESS(team))
-    );
+    return state.teams
+      .filter((team) => getters.INCLUDE_TEAM_BY_LOCATION(team))
+      .filter((team) => getters.INCLUDE_TEAM_BY_QUALIFICATION(team))
+      .filter((team) => getters.INCLUDE_TEAM_BY_LANGUAGE(team))
+      .filter((team) => getters.INCLUDE_TEAM_BY_JOB(team))
+      .filter((team) => getters.INCLUDE_TEAM_BY_NAME(team))
+      .filter((team) => getters.INCLUDE_TEAM_BY_DISPONIBILITY(team))
+      .filter((team) => getters.INCLUDE_TEAM_BY_PATENTA(team))
+      .filter((team) => getters.INCLUDE_TEAM_BY_ADDRESS(team));
   },
 };
 export default getters;
