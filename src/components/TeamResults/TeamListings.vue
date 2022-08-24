@@ -3,7 +3,7 @@
     <ol>
       <team-listing
         v-for="team in displayedTeams"
-        :key="team.id"
+        :key="team.CF"
         :team="team"
         data-test="team-listing"
       />
