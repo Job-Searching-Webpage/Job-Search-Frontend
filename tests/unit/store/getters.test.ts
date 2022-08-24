@@ -1,5 +1,5 @@
 import getters from "@/store/getters";
-import { createState, createJob, createDegree } from "./utils";
+import { createState, createJob, createDegree, createTeam } from "./utils";
 
 describe("getters", () => {
   describe("UNIQUE_ORGANIZATIONS", () => {
@@ -182,6 +182,297 @@ describe("getters", () => {
       expect(INCLUDE_JOB_BY_DEGREE).toHaveBeenCalledWith(job);
       expect(INCLUDE_JOB_BY_SKILL).toHaveBeenCalledWith(job);
       expect(INCLUDE_JOB_BY_LOCATION).toHaveBeenCalledWith(job);
+    });
+  });
+
+  describe("UNIQUE_LOCATIONS", () => {
+    it("find unique addresses from list of teams", () => {
+      const teams = [
+        createTeam({ address: "New York" }),
+        createTeam({ address: "New York" }),
+        createTeam({ address: "San Francisco" }),
+      ];
+      const state = createState({ teams });
+      const result = getters.UNIQUE_LOCATIONS(state);
+      expect(result).toEqual(new Set(["New York", "San Francisco"]));
+    });
+  });
+
+  describe("UNIQUE_LANGUAGES", () => {
+    it("find unique languages from list of teams", () => {
+      const teams = [
+        createTeam({ languages: ["Italian", "English"] }),
+        createTeam({ languages: ["Italian", "English"] }),
+        createTeam({ languages: ["Albanian", "English"] }),
+      ];
+      const state = createState({ teams });
+      const result = getters.UNIQUE_LANGUAGES(state);
+      expect(result).toEqual(new Set(["Italian", "English", "Albanian"]));
+    });
+  });
+
+  describe("UNIQUE_PATENTA", () => {
+    it("find unique patenta values from list of teams", () => {
+      const teams = [
+        createTeam({ patenta: "True" }),
+        createTeam({ patenta: "True" }),
+        createTeam({ patenta: "False" }),
+      ];
+      const state = createState({ teams });
+      const result = getters.UNIQUE_PATENTA(state);
+      expect(result).toEqual(new Set(["True", "False"]));
+    });
+  });
+
+  describe("UNIQUE_CAR", () => {
+    it("find unique car values from list of teams", () => {
+      const teams = [
+        createTeam({ car: "True" }),
+        createTeam({ car: "True" }),
+        createTeam({ car: "False" }),
+      ];
+      const state = createState({ teams });
+      const result = getters.UNIQUE_CAR(state);
+      expect(result).toEqual(new Set(["True", "False"]));
+    });
+  });
+
+  describe("UNIQUE_QUALIFICATIONS", () => {
+    it("find unique qualifications from list of teams", () => {
+      const teams = [
+        createTeam({ qualification: "Master" }),
+        createTeam({ qualification: "PHD" }),
+        createTeam({ qualification: "Master" }),
+      ];
+      const state = createState({ teams });
+      const result = getters.UNIQUE_QUALIFICATIONS(state);
+      expect(result).toEqual(new Set(["Master", "PHD"]));
+    });
+  });
+
+  describe("INCLUDE_TEAM_BY_LOCATION", () => {
+    describe("When user has not selected any locations", () => {
+      it("includes teams", () => {
+        const state = createState({ selectedTeamAddress: [] });
+        const team = createTeam({ address: "Lisbon" });
+        const includeTeam = getters.INCLUDE_TEAM_BY_LOCATION(state)(team);
+        expect(includeTeam).toBe(true);
+      });
+    });
+    it("identifies if address is associated by the give team", () => {
+      const state = createState({ selectedTeamAddress: ["Lisbon", "Tirana"] });
+      const team = createTeam({ address: "Lisbon" });
+      const includeTeam = getters.INCLUDE_TEAM_BY_LOCATION(state)(team);
+      expect(includeTeam).toBe(true);
+    });
+  });
+
+  describe("INCLUDE_TEAM_BY_QUALIFICATION", () => {
+    describe("When user has not selected any qualifications", () => {
+      it("includes teams", () => {
+        const state = createState({ selectedQualifications: [] });
+        const team = createTeam({ qualification: "Master" });
+        const includeTeam = getters.INCLUDE_TEAM_BY_QUALIFICATION(state)(team);
+        expect(includeTeam).toBe(true);
+      });
+    });
+    it("identifies if qualification is associated by the give team", () => {
+      const state = createState({ selectedQualifications: ["Master", "PHD"] });
+      const team = createTeam({ qualification: "Master" });
+      const includeTeam = getters.INCLUDE_TEAM_BY_QUALIFICATION(state)(team);
+      expect(includeTeam).toBe(true);
+    });
+  });
+
+  describe("INCLUDE_TEAM_BY_LANGUAGE", () => {
+    describe("When user has not selected any languages", () => {
+      it("includes teams", () => {
+        const state = createState({ selectedLanguages: [] });
+        const team = createTeam({ languages: ["Italian", "English"] });
+        const includeTeam = getters.INCLUDE_TEAM_BY_LANGUAGE(state)(team);
+        expect(includeTeam).toBe(true);
+      });
+    });
+    it("identifies if language is associated by the give team", () => {
+      const state = createState({ selectedLanguages: ["Italian", "English"] });
+      const team = createTeam({ languages: ["Italian", "English"] });
+      const includeTeam = getters.INCLUDE_TEAM_BY_LANGUAGE(state)(team);
+      expect(includeTeam).toBe(true);
+    });
+  });
+
+  describe("INCLUDE_TEAM_BY_JOB", () => {
+    it("identifies if worker is associated by the given job", () => {
+      const state = createState({
+        jobSearchTerm: "Liv",
+      });
+      const team = createTeam({ jobType: "Living" });
+      const includeTeam = getters.INCLUDE_TEAM_BY_JOB(state)(team);
+      expect(includeTeam).toBe(true);
+    });
+
+    it("handles inconsistent character casing", () => {
+      const state = createState({
+        jobSearchTerm: "vuE",
+      });
+      const team = createTeam({ jobType: "Vue Developer" });
+      const includeTeam = getters.INCLUDE_TEAM_BY_JOB(state)(team);
+      expect(includeTeam).toBe(true);
+    });
+
+    describe("When user has not entered any jobs", () => {
+      it("includes jobs", () => {
+        const state = createState({ jobSearchTerm: "" });
+        const team = createTeam({ jobType: "Vue Developer" });
+        const includeTeam = getters.INCLUDE_TEAM_BY_JOB(state)(team);
+        expect(includeTeam).toBe(true);
+      });
+    });
+  });
+
+  describe("INCLUDE_TEAM_BY_NAME", () => {
+    it("identifies if name is associated by the given team", () => {
+      const state = createState({ nameSearchTerm: "Human" });
+      const team = createTeam({ name: "Human" });
+      const includeTeam = getters.INCLUDE_TEAM_BY_NAME(state)(team);
+      expect(includeTeam).toBe(true);
+    });
+
+    it("handles inconsistent character casing", () => {
+      const state = createState({ nameSearchTerm: "humAn" });
+      const team = createTeam({ name: "Human" });
+      const includeTeam = getters.INCLUDE_TEAM_BY_NAME(state)(team);
+      expect(includeTeam).toBe(true);
+    });
+
+    describe("When user has not entered any names", () => {
+      it("includes names", () => {
+        const state = createState({ nameSearchTerm: "" });
+        const team = createTeam({ name: "Human" });
+        const includeTeam = getters.INCLUDE_TEAM_BY_NAME(state)(team);
+        expect(includeTeam).toBe(true);
+      });
+    });
+  });
+
+  describe("INCLUDE_TEAM_BY_PERIOD", () => {
+    it("identifies if period is associated by the given team", () => {
+      const state = createState({
+        periodSearchTerm: "1 year",
+      });
+      const team = createTeam({ period: "1 year" });
+      const includeTeam = getters.INCLUDE_TEAM_BY_PERIOD(state)(team);
+      expect(includeTeam).toBe(true);
+    });
+
+    it("handles inconsistent character casing", () => {
+      const state = createState({ periodSearchTerm: "1 year" });
+      const team = createTeam({ period: "1 Year" });
+      const includeTeam = getters.INCLUDE_TEAM_BY_PERIOD(state)(team);
+      expect(includeTeam).toBe(true);
+    });
+
+    describe("When user has not entered any periods", () => {
+      it("includes periods", () => {
+        const state = createState({ periodSearchTerm: "" });
+        const team = createTeam({ period: "1 year" });
+        const includeTeam = getters.INCLUDE_TEAM_BY_PERIOD(state)(team);
+        expect(includeTeam).toBe(true);
+      });
+    });
+  });
+
+  describe("INCLUDE_TEAM_BY_PATENTA", () => {
+    describe("When user has not selected any patenta", () => {
+      it("includes teams", () => {
+        const state = createState({ selectedTeamPatenta: [] });
+        const team = createTeam({ patenta: "True" });
+        const includeTeam = getters.INCLUDE_TEAM_BY_PATENTA(state)(team);
+        expect(includeTeam).toBe(true);
+      });
+    });
+    it("identifies if patenta is associated by the give team", () => {
+      const state = createState({ selectedTeamPatenta: ["True", "False"] });
+      const team = createTeam({ patenta: "True" });
+      const includeTeam = getters.INCLUDE_TEAM_BY_PATENTA(state)(team);
+      expect(includeTeam).toBe(true);
+    });
+  });
+
+  describe("INCLUDE_TEAM_BY_CAR", () => {
+    describe("when user has not selected any cars", () => {
+      it("includes teams", () => {
+        const state = createState({ selectedTeamCar: [] });
+        const team = createTeam({ car: "True" });
+        const includeTeam = getters.INCLUDE_TEAM_BY_CAR(state)(team);
+        expect(includeTeam).toBe(true);
+      });
+    });
+    it("identifies if car is associated by the given team", () => {
+      const state = createState({ selectedTeamCar: ["True", "False"] });
+      const team = createTeam({ car: "True" });
+      const includeTeam = getters.INCLUDE_TEAM_BY_CAR(state)(team);
+      expect(includeTeam).toBe(true);
+    });
+  });
+
+  describe("INCLUDE_TEAM_BY_ADDRESS", () => {
+    describe("when user has not entered any addresses", () => {
+      it("includes teams", () => {
+        const state = createState({ selectedTeamAddress: [] });
+        const team = createTeam({ address: "house" });
+        const includeTeam = getters.INCLUDE_TEAM_BY_ADDRESS(state)(team);
+        expect(includeTeam).toBe(true);
+      });
+    });
+    it("identifies if address is associated by the given team", () => {
+      const state = createState({ selectedTeamAddress: ["house", "street"] });
+      const team = createTeam({ address: "house" });
+      const includeTeam = getters.INCLUDE_TEAM_BY_ADDRESS(state)(team);
+      expect(includeTeam).toBe(true);
+    });
+  });
+
+  describe("FILTERED_TEAMS", () => {
+    it("filters workers by the selected filters", () => {
+      const INCLUDE_TEAM_BY_LOCATION = jest.fn().mockReturnValue(true);
+      const INCLUDE_TEAM_BY_QUALIFICATION = jest.fn().mockReturnValue(true);
+      const INCLUDE_TEAM_BY_LANGUAGE = jest.fn().mockReturnValue(true);
+      const INCLUDE_TEAM_BY_JOB = jest.fn().mockReturnValue(true);
+      const INCLUDE_TEAM_BY_NAME = jest.fn().mockReturnValue(true);
+      const INCLUDE_TEAM_BY_PERIOD = jest.fn().mockReturnValue(true);
+      const INCLUDE_TEAM_BY_PATENTA = jest.fn().mockReturnValue(true);
+      const INCLUDE_TEAM_BY_CAR = jest.fn().mockReturnValue(true);
+      const INCLUDE_TEAM_BY_ADDRESS = jest.fn().mockReturnValue(true);
+
+      const mockGetters = {
+        INCLUDE_TEAM_BY_LOCATION,
+        INCLUDE_TEAM_BY_QUALIFICATION,
+        INCLUDE_TEAM_BY_LANGUAGE,
+        INCLUDE_TEAM_BY_JOB,
+        INCLUDE_TEAM_BY_NAME,
+        INCLUDE_TEAM_BY_PERIOD,
+        INCLUDE_TEAM_BY_PATENTA,
+        INCLUDE_TEAM_BY_CAR,
+        INCLUDE_TEAM_BY_ADDRESS,
+      };
+
+      const team = createTeam({ name: "Human" });
+      const state = createState({
+        teams: [team],
+      });
+
+      const result = getters.FILTERED_TEAMS(state, mockGetters);
+      expect(result).toEqual([team]);
+      expect(INCLUDE_TEAM_BY_LOCATION).toHaveBeenCalledWith(team);
+      expect(INCLUDE_TEAM_BY_QUALIFICATION).toHaveBeenCalledWith(team);
+      expect(INCLUDE_TEAM_BY_LANGUAGE).toHaveBeenCalledWith(team);
+      expect(INCLUDE_TEAM_BY_JOB).toHaveBeenCalledWith(team);
+      expect(INCLUDE_TEAM_BY_NAME).toHaveBeenCalledWith(team);
+      expect(INCLUDE_TEAM_BY_PERIOD).toHaveBeenCalledWith(team);
+      expect(INCLUDE_TEAM_BY_PATENTA).toHaveBeenCalledWith(team);
+      expect(INCLUDE_TEAM_BY_CAR).toHaveBeenCalledWith(team);
+      expect(INCLUDE_TEAM_BY_ADDRESS).toHaveBeenCalledWith(team);
     });
   });
 });
