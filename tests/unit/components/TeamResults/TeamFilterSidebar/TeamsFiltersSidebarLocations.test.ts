@@ -6,7 +6,7 @@ const useUniqueLocationsMock = useUniqueLocations as jest.Mock;
 
 import TeamFiltersSidebarLocations from "@/components/TeamResults/TeamFiltersSidebar/TeamFiltersSidebarLocations.vue";
 
-describe("TeamFilterSidebarCar", () => {
+describe("TeamFilterSidebarLocations", () => {
   it("allows user to filter workers by car disponibility", () => {
     useUniqueLocationsMock.mockReturnValue(new Set(["Earth", "Planet"]));
     const wrapper = shallowMount(TeamFiltersSidebarLocations);
