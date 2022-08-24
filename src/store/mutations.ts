@@ -6,7 +6,12 @@ import {
   ADD_SELECTED_JOB_TYPES,
   ADD_SELECTED_DEGREES,
   ADD_SELECTED_LOCATIONS,
+  ADD_SELECTED_DISPONIBILITY,
+  ADD_SELECTED_TEAM_LANGUAGES,
+  ADD_SELECTED_PATENTA,
+  ADD_SELECTED_QUALIFICATIONS,
   CLEAR_USER_JOB_FILTER_SELECTIONS,
+  CLEAR_USER_TEAM_FILTER_SELECTIONS,
   UPDATE_SKILLS_SEARCH_TERM,
   UPDATE_LOCATION_SEARCH_TERM,
   UPDATE_NAME_SEARCH_TERM,
@@ -36,13 +41,34 @@ const mutations = {
     state.selectedDegrees = degrees;
   },
   [ADD_SELECTED_LOCATIONS](state: GlobalState, locations: string[]) {
-    state.selectedLocations = locations;
+    state.selectedTeamAddress = locations;
+  },
+  [ADD_SELECTED_DISPONIBILITY](state: GlobalState, disponibility: string[]) {
+    state.selectedTeamDisponibility = disponibility;
+  },
+  [ADD_SELECTED_TEAM_LANGUAGES](state: GlobalState, teamLanguages: string[]) {
+    state.selectedLanguages = teamLanguages;
+  },
+  [ADD_SELECTED_PATENTA](state: GlobalState, patenta: string[]) {
+    state.selectedTeamPatenta = patenta;
+  },
+  [ADD_SELECTED_QUALIFICATIONS](state: GlobalState, qualifications: string[]) {
+    state.selectedQualifications = qualifications;
   },
   [CLEAR_USER_JOB_FILTER_SELECTIONS](state: GlobalState) {
     state.selectedOrganizations = [];
     state.selectedJobTypes = [];
     state.selectedDegrees = [];
     state.skillsSearchTerm = "";
+    state.locationSearchTerm = "";
+  },
+  [CLEAR_USER_TEAM_FILTER_SELECTIONS](state: GlobalState) {
+    state.selectedTeamAddress = [];
+    state.selectedTeamDisponibility = [];
+    state.selectedTeamPatenta = [];
+    state.selectedLanguages = [];
+    state.nameSearchTerm = "";
+    state.jobSearchTerm = "";
   },
   [UPDATE_SKILLS_SEARCH_TERM](state: GlobalState, skillsSearchTerm: string) {
     state.skillsSearchTerm = skillsSearchTerm;
