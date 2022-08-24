@@ -1,4 +1,4 @@
-import { Job, Degree } from "@/api/types";
+import { Job, Degree, Team } from "@/api/types";
 import { GlobalState } from "@/store/types";
 import state from "@/store/state";
 
@@ -24,5 +24,32 @@ export const createJob = (config: Partial<Job> = {}): Job => ({
   preferredQualifications: [],
   description: [],
   dateAdded: "2021-07-04",
+  ...config,
+});
+
+export const createTeam = (config: Partial<Team> = {}): Team => ({
+  CF: "CF",
+  id: 1,
+  name: "Human",
+  cognome: "Sappiens",
+  dataNascita: "0000-00-00",
+  birthplace: "Earth",
+  nazionalita: "World",
+  address: "Everywhere",
+  jobType: "Living",
+  period: "Always",
+  phone: "3333333333",
+  email: "planet@earth.com",
+  languages: [],
+  patenta: "True",
+  car: "True",
+  qualification: "All Knowing",
+  esperienze: [],
+  backUpPerson: {
+    name: "God",
+    cognome: "Father",
+    email: "jesus@god.com",
+    phone: "333333333",
+  },
   ...config,
 });
