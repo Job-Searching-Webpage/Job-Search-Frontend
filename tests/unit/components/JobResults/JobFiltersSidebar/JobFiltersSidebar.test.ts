@@ -31,4 +31,18 @@ describe("JobFiltersSidebar", () => {
     shallowMount(JobFiltersSidebar);
     expect(commit).toHaveBeenCalledWith("UPDATE_SKILLS_SEARCH_TERM", "Vue");
   });
+  it("reads query params to filter initial jobs for user", () => {
+    const commit = jest.fn();
+    useStoreMock.mockReturnValue({ commit });
+    useRouteMock.mockReturnValue({
+      query: {
+        location: "London",
+      },
+    });
+    shallowMount(JobFiltersSidebar);
+    expect(commit).toHaveBeenCalledWith(
+      "UPDATE_LOCATION_SEARCH_TERM",
+      "London"
+    );
+  });
 });
