@@ -9,6 +9,10 @@ import getDegrees from "@/api/getDegrees";
 jest.mock("@/api/getDegrees");
 const getDegreeMock = getDegrees as jest.Mock;
 
+import getTeams from "@/api/getTeams";
+jest.mock("@/api/getTeams");
+const getTeamMock = getTeams as jest.Mock;
+
 describe("actions", () => {
   describe("FETCH_JOBS", () => {
     beforeEach(() => {
@@ -66,5 +70,32 @@ describe("actions", () => {
         },
       ]);
     });
+  });
+
+  describe("FETCH_TEAMS", () => {
+    beforeEach(() => {
+      getTeamMock.mockResolvedValue([
+        {
+          id: 1,
+          name: "HomoSapiens",
+        },
+      ]);
+    }),
+      it("makes request to fetch teams", async () => {
+        const context = { commit: jest.fn() };
+        await actions.FETCH_TEAMS({ commit: context.commit });
+        expect(getTeams).toHaveBeenCalled();
+      }),
+      it("send message to save received teams in store", async () => {
+        const commit = jest.fn();
+        const context = { commit };
+        await actions.FETCH_TEAMS(context);
+        expect(commit).toHaveBeenCalledWith("RECEIVE_TEAMS", [
+          {
+            id: 1,
+            name: "HomoSapiens",
+          },
+        ]);
+      });
   });
 });
