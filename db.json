@@ -2,16 +2,19 @@
   "teams": [
     {
       "CF": "LLSLJM2900M100..",
+      "id": 1,
       "name": "Ledjo",
       "cognome": "Lleshaj",
       "dataNascita": "0000-00-00",
       "birthplace": "Rreshen",
       "nazionalita": "Albania",
       "address": "Verona",
+      "jobType": "President",
+      "disponibilita": "4 years",
       "phone": "+123456789",
       "email": "ledjo.lleshaj@gmail.com",
       "languages": ["Albanian", "Italian", "English"],
-      "patenta": true,
+      "patenta": false,
       "macchina": true,
       "qualification": "Bachelor",
       "esperienze": [
@@ -34,18 +37,21 @@
     },
     {
       "CF": "SGJ22GK07M..",
+      "id": 2,
       "name": "Silver",
       "cognome": "Gjeka",
       "dataNascita": "0000-00-00",
       "birthplace": "Divjake",
       "nazionalita": "Albania",
       "address": "Verona",
+      "jobType": "King",
+      "disponibilita": "10 years",
       "phone": "+123456789",
       "email": "silver.gjeka@gmail.com",
       "languages": ["Albanian", "Italian", "English"],
       "patenta": true,
       "macchina": true,
-      "qualification": "Bachelor",
+      "qualification": "Master",
       "esperienze": [
         {
           "azienda": "UNIVR",
