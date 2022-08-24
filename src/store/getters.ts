@@ -21,7 +21,6 @@ import {
   INCLUDE_TEAM_BY_NAME,
   INCLUDE_TEAM_BY_DISPONIBILITY,
   INCLUDE_TEAM_BY_PATENTA,
-  //INCLUDE_TEAM_BY_MACCHINA,
   INCLUDE_TEAM_BY_ADDRESS,
 } from "@/store/constants";
 
@@ -91,6 +90,7 @@ const getters = {
       .filter((job) => getters.INCLUDE_JOB_BY_SKILL(job))
       .filter((job) => getters.INCLUDE_JOB_BY_LOCATION(job));
   },
+
   /* TEAM GETTERS */
   [UNIQUE_DISPONIBILITIES](state: GlobalState) {
     const uniqueDisponibilities = new Set<string>();
