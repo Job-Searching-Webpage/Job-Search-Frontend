@@ -21,7 +21,7 @@ export interface Team {
   id: number;
   name: string;
   cognome: string;
-  dataNascita: Date;
+  dataNascita: string;
   birthplace: string;
   nazionalita: string;
   address: string;
