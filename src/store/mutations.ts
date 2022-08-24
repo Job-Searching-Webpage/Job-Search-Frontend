@@ -2,22 +2,22 @@ import {
   LOGIN_USER,
   RECEIVE_JOBS,
   RECEIVE_DEGREES,
-  RECEIVE_TEAMS,
   ADD_SELECTED_ORGANIZATIONS,
   ADD_SELECTED_JOB_TYPES,
   ADD_SELECTED_DEGREES,
+  UPDATE_SKILLS_SEARCH_TERM,
+  UPDATE_LOCATION_SEARCH_TERM,
+  CLEAR_USER_JOB_FILTER_SELECTIONS,
+  RECEIVE_TEAMS,
   ADD_SELECTED_LOCATIONS,
   ADD_SELECTED_TEAM_LANGUAGES,
   ADD_SELECTED_PATENTA,
   ADD_SELECTED_CAR,
   ADD_SELECTED_QUALIFICATIONS,
-  CLEAR_USER_JOB_FILTER_SELECTIONS,
-  CLEAR_USER_TEAM_FILTER_SELECTIONS,
-  UPDATE_SKILLS_SEARCH_TERM,
-  UPDATE_LOCATION_SEARCH_TERM,
   UPDATE_NAME_SEARCH_TERM,
   UPDATE_JOB_SEARCH_TERM,
   UPDATE_PERIOD_SEARCH_TERM,
+  CLEAR_USER_TEAM_FILTER_SELECTIONS,
 } from "@/store/constants";
 
 import { GlobalState } from "@/store/types";
@@ -72,18 +72,13 @@ const mutations = {
     state.selectedTeamPatenta = [];
     state.selectedTeamCar = [];
     state.selectedLanguages = [];
+    state.selectedQualifications = [];
     state.nameSearchTerm = "";
     state.jobSearchTerm = "";
     state.periodSearchTerm = "";
   },
   [UPDATE_SKILLS_SEARCH_TERM](state: GlobalState, skillsSearchTerm: string) {
     state.skillsSearchTerm = skillsSearchTerm;
-  },
-  [UPDATE_LOCATION_SEARCH_TERM](
-    state: GlobalState,
-    locationSearchTerm: string
-  ) {
-    state.locationSearchTerm = locationSearchTerm;
   },
   [UPDATE_NAME_SEARCH_TERM](state: GlobalState, nameSearchTerm: string) {
     state.nameSearchTerm = nameSearchTerm;
