@@ -2,6 +2,7 @@ import { Job, Degree, Team } from "@/api/types";
 
 export interface GlobalState {
   isLoggedIn: boolean;
+  showModal: boolean;
   jobs: Job[];
   teams: Team[];
   degrees: Degree[];

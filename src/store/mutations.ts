@@ -1,5 +1,6 @@
 import {
   LOGIN_USER,
+  BUTTON_CLICK_SHOW_MODAL,
   RECEIVE_JOBS,
   RECEIVE_DEGREES,
   ADD_SELECTED_ORGANIZATIONS,
@@ -25,6 +26,10 @@ import { Job, Degree, Team } from "@/api/types";
 
 const mutations = {
   [LOGIN_USER](state: GlobalState) {
+    state.isLoggedIn = true;
+  },
+  [BUTTON_CLICK_SHOW_MODAL](state: GlobalState) {
+    state.showModal = true;
     state.isLoggedIn = true;
   },
   [RECEIVE_JOBS](state: GlobalState, jobs: Job[]) {

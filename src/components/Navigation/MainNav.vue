@@ -28,12 +28,13 @@
         </nav>
 
         <div class="flex items-center h-full ml-auto">
+          <login-modal-view v-if="showModal" />
           <profile-image v-if="isLoggedIn" data-test="profile-image" />
           <action-button
             v-else
             text="Sign in"
             data-test="login-button"
-            @click="LOGIN_USER()"
+            @click="BUTTON_CLICK_SHOW_MODAL()"
           />
         </div>
       </div>
@@ -85,7 +86,7 @@ import useConfirmRoute from "@/composables/useConfirmRoute";
 import ActionButton from "@/components/Shared/ActionButton.vue";
 import ProfileImage from "@/components/Navigation/ProfileImage.vue";
 import SubNavigation from "@/components/Navigation/SubNavigation.vue";
-import { LOGIN_USER } from "@/store/constants";
+import { LOGIN_USER, BUTTON_CLICK_SHOW_MODAL } from "@/store/constants";
 
 export default defineComponent({
   name: "MainNav",
@@ -124,10 +125,10 @@ export default defineComponent({
         "h-32": this.isLoggedIn,
       };
     },
-    ...mapState(["isLoggedIn"]), //pulls off the isLoggedIn state from the vuex store
+    ...mapState(["isLoggedIn", "showModal"]), //pulls off the isLoggedIn state from the vuex store
   },
   methods: {
-    ...mapMutations([LOGIN_USER]),
+    ...mapMutations([LOGIN_USER, BUTTON_CLICK_SHOW_MODAL]),
   },
 });
 </script>

@@ -3,6 +3,7 @@ import { GlobalState } from "@/store/types";
 const state = (): GlobalState => {
   return {
     isLoggedIn: false,
+    showModal: false,
     jobs: [],
     degrees: [],
     selectedDegrees: [],
