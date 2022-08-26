@@ -75,6 +75,7 @@
       </sub-admin-navigation>
     </div>
   </header>
+  <login-modal-view v-if="showModal" />
 </template>
 
 <script lang="ts">
@@ -86,6 +87,7 @@ import useConfirmRoute from "@/composables/useConfirmRoute";
 import ActionButton from "@/components/Shared/ActionButton.vue";
 import ProfileImage from "@/components/Navigation/ProfileImage.vue";
 import SubNavigation from "@/components/Navigation/SubNavigation.vue";
+import LoginModalView from "../../views/LoginModalView.vue";
 import { LOGIN_USER, BUTTON_CLICK_SHOW_MODAL } from "@/store/constants";
 
 export default defineComponent({
@@ -94,6 +96,7 @@ export default defineComponent({
     ActionButton,
     ProfileImage,
     SubNavigation,
+    LoginModalView,
   },
   data() {
     const onJobResultsPage = useConfirmRoute("JobResults");

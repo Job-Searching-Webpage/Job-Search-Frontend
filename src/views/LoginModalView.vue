@@ -1,65 +1,69 @@
 <template>
-  <div
-    v-show="showModal"
-    class="modal fade fixed top-50 left-50 hidden w-full h-full outline-none"
-  >
-    <div class="modal-dialog relative w-auto pointer-events-none">
-      <div
-        class="modal-content border-none shadow-lg relative flex flex-col w-full pointer-events-auto bg-white bg-clip-padding rounded-md outline-none text-current"
-      >
-        <div class="space-y-6 px-6 pb-4 sm:pb-6 lg:px-8 xl:pb-8">
-          <h3 class="text-xl font-medium text-gray-900 dark:text-white">
-            Sign in to our platform
-          </h3>
-          <div>
-            <div class="mb-2 block">
-              <label for="email" value="Your email" />
+  <div id="modal" class="modal-container text-white">
+    <div class="modal bg-th-card p-4 rounded">
+      <header class="flex justify-between">
+        <h2 class="text-2xl font-bold">Create new logger</h2>
+        <button class="modal-close" onClick="closeModal()">
+          <span class="material-icons">close</span>
+        </button>
+      </header>
+      <section>
+        <div class="flex flex-col mt-2">
+          <form id="create" method="post">
+            <div class="mt-2">
+              <label class="block text-sm font-bold">Logger name</label>
+              <input
+                id="username"
+                class="bg-white text-black rounded p-2 w-full"
+                type="text"
+                name="username"
+              />
             </div>
-            <input
-              id="email"
-              v-model.lazy.trim="email"
-              class="p-3 h-12 border border-solid border-brand-gray-1 shadow-gray rounded w-full text-base"
-              placeholder="name@company.com"
-              required
-            />
-          </div>
-          <div>
-            <div class="mb-2 block">
-              <label for="password" value="Your password" />
+            <div class="mt-2">
+              <label class="block text-sm font-bold">Api key</label>
+              <div class="flex">
+                <input
+                  id="key"
+                  class="bg-white text-black rounded p-2 w-full mr-2"
+                  type="text"
+                  name="key"
+                />
+                <button
+                  onclick="fillKey()"
+                  type="button"
+                  class="border border-white rounded p-2 hover:bg-green-700 text-xs"
+                >
+                  Random
+                </button>
+              </div>
             </div>
-            <input
-              id="password"
-              v-model.lazy="password"
-              class="p-3 h-12 border border-solid border-brand-gray-1 shadow-gray rounded w-full password-input text-base"
-              type="password"
-              placeholder="••••••••••••"
-              required
-            />
-          </div>
-
-          <div class="flex items-center h-full ml-auto w-full">
-            <action-button
-              text="Sign in"
-              data-test="login-button"
-              @click="LOGIN_USER()"
-            />
-          </div>
+          </form>
         </div>
-      </div>
+      </section>
+      <footer class="flex justify-center mt-2 space-x-1">
+        <button
+          onclick="closeModal()"
+          class="border border-white rounded p-2 hover:bg-yellow-700"
+        >
+          Close
+        </button>
+        <button
+          onclick="submitForm()"
+          class="border border-white rounded p-2 hover:bg-th-primary"
+        >
+          Add
+        </button>
+      </footer>
     </div>
   </div>
 </template>
+
 <script lang="ts">
 import { defineComponent, ref } from "vue";
 import { mapMutations /*mapState*/ } from "vuex";
-
-import ActionButton from "@/components/Shared/ActionButton.vue";
 import { LOGIN_USER } from "@/store/constants";
 export default defineComponent({
   name: "LoginModalView",
-  components: {
-    ActionButton,
-  },
   setup() {
     //const showModal = ref(false);
     const email = ref("");
@@ -74,3 +78,24 @@ export default defineComponent({
   },
 });
 </script>
+
+<style>
+.modal-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(46, 39, 39, 0.493);
+  z-index: 1;
+}
+.modal {
+  position: absolute;
+  min-width: 350px;
+  background-color: rgba(61, 21, 21, 0);
+  top: 50%;
+  left: 50%;
+  padding: 20px 40px 20px;
+  transform: translate(-50%, -50%);
+}
+</style>
