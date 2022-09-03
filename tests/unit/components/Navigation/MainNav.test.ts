@@ -64,7 +64,7 @@ describe("MainNav", () => {
       const wrapper = shallowMount(MainNav, createConfig($store));
       const loginButton = wrapper.find("[data-test='login-button']");
       await loginButton.trigger("click");
-      expect(commit).toHaveBeenCalledWith("LOGIN_USER");
+      expect(commit).toHaveBeenCalledWith("BUTTON_CLICK_SHOW_MODAL");
     });
     it("prompts user to sign in", () => {
       const $store = {
