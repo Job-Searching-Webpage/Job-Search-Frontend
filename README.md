@@ -10,6 +10,11 @@ npm install
 npm run serve
 ```
 
+### Run Backend Mock Database
+```
+npm run backend
+```
+
 ### Compiles and minifies for production
 ```
 npm run build
