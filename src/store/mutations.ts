@@ -1,6 +1,7 @@
 import {
   LOGIN_USER,
   BUTTON_CLICK_SHOW_MODAL,
+  CLOSE_MODAL,
   RECEIVE_JOBS,
   RECEIVE_DEGREES,
   ADD_SELECTED_ORGANIZATIONS,
@@ -31,6 +32,9 @@ const mutations = {
   },
   [BUTTON_CLICK_SHOW_MODAL](state: GlobalState) {
     state.showModal = true;
+  },
+  [CLOSE_MODAL](state: GlobalState) {
+    state.showModal = false;
   },
   [RECEIVE_JOBS](state: GlobalState, jobs: Job[]) {
     state.jobs = jobs;

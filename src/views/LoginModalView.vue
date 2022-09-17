@@ -1,9 +1,14 @@
 <template>
   <div id="modal" class="modal-container text-white">
-    <div class="modal bg-th-card p-4 rounded">
+    <div class="modal p-4 border-black bg-brand-gray-3 rounded p-2">
       <header class="flex justify-between">
-        <h2 class="text-2xl font-bold">Login</h2>
-        <button class="modal-close" @click="closeModal()">
+        <h2 class="text-2xl text-black border-black rounded font-bold">
+          Login
+        </h2>
+        <button
+          class="rounded p-2 hover:bg-red-700 text-base text-black font-bold"
+          @click="closeModal()"
+        >
           <span class="material-icons">close</span>
         </button>
       </header>
@@ -11,28 +16,36 @@
         <div class="flex flex-col mt-2">
           <form id="create" method="post">
             <div class="mt-2">
-              <label class="block text-sm font-bold">Username</label>
+              <label class="block text-black text-text-base font-bold"
+                >Username</label
+              >
               <input
                 id="username"
                 v-model="username"
                 class="bg-white text-black rounded p-2 w-full"
+                placeholder="username"
                 type="text"
                 name="username"
               />
             </div>
             <div class="mt-2">
-              <label class="block text-sm font-bold">Password</label>
+              <label class="block text-black text-text-base font-bold"
+                >Password</label
+              >
               <div class="flex">
                 <input
                   id="password"
                   v-model="password"
                   class="bg-white text-black rounded p-2 w-full mr-2"
-                  type="text"
+                  placeholder="********"
+                  type="password"
                   name="password"
                 />
+              </div>
+              <div class="flex content-evenly justify-center">
                 <button
                   type="button"
-                  class="border border-white rounded p-2 hover:bg-green-700 text-xs"
+                  class="text-2xl text-black font-bold border-rounded border-white rounded my-5 py-5 px-20 hover:bg-green-700 text-lg"
                   @click="login()"
                 >
                   Login
@@ -49,7 +62,7 @@
 <script lang="ts">
 import { defineComponent, ref } from "vue";
 import { mapMutations /*mapState*/ } from "vuex";
-import { LOGIN_USER } from "@/store/constants";
+import { LOGIN_USER, CLOSE_MODAL } from "@/store/constants";
 import { sha1 } from "hash-wasm";
 import axios from "axios";
 export default defineComponent({
@@ -64,6 +77,7 @@ export default defineComponent({
       password,
       ...mapMutations({
         loginUser: LOGIN_USER,
+        closeModal: CLOSE_MODAL,
       }),
       //...mapState([isL]) to add isLoggedIn to the component and maybe email psw on state?
     };
@@ -83,13 +97,14 @@ export default defineComponent({
       }
 
       // TODO Remove when login is implemented on the server's side
-      console.log(return_code);
       return_code = 200;
-      console.log(return_code);
+
       if (return_code && return_code < 405) {
         this.loginUser();
-        console.log("I was here!");
       }
+    },
+    closeModal() {
+      this.closeModal();
     },
   },
 });
@@ -108,6 +123,7 @@ export default defineComponent({
 .modal {
   position: absolute;
   min-width: 350px;
+  min-height: 250px;
   background-color: rgba(61, 21, 21, 0);
   top: 50%;
   left: 50%;

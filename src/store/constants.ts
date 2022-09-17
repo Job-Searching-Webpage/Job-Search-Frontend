@@ -1,6 +1,7 @@
 /* USER */
 export const LOGIN_USER = "LOGIN_USER";
 export const BUTTON_CLICK_SHOW_MODAL = "BUTTON_CLICK_SHOW_MODAL";
+export const CLOSE_MODAL = "CLOSE_MODAL";
 
 /* JOBS */
 export const RECEIVE_JOBS = "RECEIVE_JOBS";
