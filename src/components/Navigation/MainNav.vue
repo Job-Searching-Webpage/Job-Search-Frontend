@@ -28,7 +28,6 @@
         </nav>
 
         <div class="flex items-center h-full ml-auto">
-          <login-modal-view v-if="showModal" />
           <profile-image v-if="isLoggedIn" data-test="profile-image" />
           <action-button
             v-else

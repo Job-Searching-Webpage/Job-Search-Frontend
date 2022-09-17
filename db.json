@@ -14,7 +14,7 @@
       "phone": "+123456789",
       "email": "ledjo.lleshaj@gmail.com",
       "languages": ["Albanian", "Italian", "English"],
-      "patenta": false,
+      "patenta": "A",
       "car": false,
       "qualification": "Bachelor",
       "esperienze": [
@@ -49,7 +49,7 @@
       "phone": "+123456789",
       "email": "silver.gjeka@gmail.com",
       "languages": ["Greek", "Italian", "English"],
-      "patenta": true,
+      "patenta": "B",
       "car": true,
       "qualification": "Master",
       "esperienze": [

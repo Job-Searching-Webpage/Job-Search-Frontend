@@ -45,7 +45,7 @@ export default defineComponent({
   },
   methods: {
     changeTitle() {
-      this.interval = setInterval(() => {
+      this.interval = window.setInterval(() => {
         const actions = ["Build", "Design", "Create", "Code"];
 
         this.action = nextElementInList(actions, this.action);

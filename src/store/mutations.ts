@@ -27,10 +27,10 @@ import { Job, Degree, Team } from "@/api/types";
 const mutations = {
   [LOGIN_USER](state: GlobalState) {
     state.isLoggedIn = true;
+    state.showModal = false;
   },
   [BUTTON_CLICK_SHOW_MODAL](state: GlobalState) {
     state.showModal = true;
-    state.isLoggedIn = true;
   },
   [RECEIVE_JOBS](state: GlobalState, jobs: Job[]) {
     state.jobs = jobs;
