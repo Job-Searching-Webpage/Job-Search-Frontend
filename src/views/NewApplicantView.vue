@@ -11,9 +11,9 @@
           >
           <input
             id="codiceFiscale"
+            v-model="CodiceFiscale"
             class="shadow appearance-none borderrounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
             type="text"
-            v-model="CodiceFiscale"
             placeholder="LLSLJM2...."
           />
         </div>
@@ -24,9 +24,9 @@
           >
           <input
             id="id"
+            v-model="id"
             class="shadow appearance-none borderrounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
             type="text"
-            v-model="id"
             placeholder="1"
           />
         </div>
@@ -37,9 +37,9 @@
           >
           <input
             id="name"
+            v-model="Name"
             class="shadow appearance-none borderrounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
             type="text"
-            v-model="Name"
             placeholder="Elon"
           />
         </div>
@@ -53,9 +53,9 @@
           >
           <input
             id="cognome"
+            v-model="Cognome"
             class="shadow appearance-none borderrounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
             type="text"
-            v-model="Cognome"
             placeholder="Obama"
           />
         </div>
@@ -69,9 +69,9 @@
           >
           <input
             id="dataNascita"
+            v-model="dataNascita"
             class="shadow appearance-none borderrounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
             type="text"
-            v-model="dataNascita"
             placeholder="00-00-0000"
           />
         </div>
@@ -85,9 +85,9 @@
           >
           <input
             id="birthPlace"
+            v-model="birthplace"
             class="shadow appearance-none borderrounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
             type="text"
-            v-model="birthPlace"
             placeholder="Earth"
           />
         </div>
@@ -101,9 +101,9 @@
           >
           <input
             id="nazionalita"
+            v-model="Nazionalita"
             class="shadow appearance-none borderrounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
             type="text"
-            v-model="Nazionalita"
             placeholder="Human"
           />
         </div>
@@ -117,9 +117,9 @@
           >
           <input
             id="address"
+            v-model="Address"
             class="shadow appearance-none borderrounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
             type="text"
-            v-model="Address"
             placeholder="Earth"
           />
         </div>
@@ -133,9 +133,9 @@
           >
           <input
             id="jobType"
+            v-model="JobType"
             class="shadow appearance-none borderrounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
             type="text"
-            v-model="JobType"
             placeholder="Engineer"
           />
         </div>
@@ -149,9 +149,9 @@
           >
           <input
             id="period"
+            v-model="Period"
             class="shadow appearance-none borderrounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
             type="text"
-            v-model="Period"
             placeholder="1 year"
           />
         </div>
@@ -162,9 +162,9 @@
           >
           <input
             id="phone"
+            v-model="Phone"
             class="shadow appearance-none borderrounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
             type="text"
-            v-model="Phone"
             placeholder="+000 000 0000"
           />
         </div>
@@ -175,9 +175,9 @@
           >
           <input
             id="email"
+            v-model="Email"
             class="shadow appearance-none borderrounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
             type="text"
-            v-model="Email"
             placeholder="you@me.com"
           />
         </div>
@@ -187,13 +187,13 @@
             for="Languages to do string?"
             class="block text-gray-700 text-sm font-bold mb-2"
           >
-            Languages to do string?</label
+            Languages</label
           >
           <input
-            id="Languages to do string?"
+            id="Languages"
+            v-model="Languages"
             class="shadow appearance-none borderrounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
             type="text"
-            v-model="Languages"
             placeholder="English, Italian, Spanish"
           />
         </div>
@@ -207,9 +207,9 @@
           >
           <input
             id="patenta"
+            v-model="Patenta"
             class="shadow appearance-none borderrounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
             type="text"
-            v-model="Patenta"
             placeholder="A or B or C or D..."
           />
         </div>
@@ -229,9 +229,9 @@
           >
           <input
             id="qualification"
+            v-model="Qualification"
             class="shadow appearance-none borderrounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
             type="text"
-            v-model="Qualification"
             placeholder="Analytical Chemist"
           />
         </div>

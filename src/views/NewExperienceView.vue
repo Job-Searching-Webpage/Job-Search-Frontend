@@ -11,9 +11,9 @@
           >
           <input
             id="azienda"
+            v-model="Azienda"
             class="shadow appearance-none borderrounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
             type="text"
-            v-model="Azienda"
             placeholder="UNIVR"
           />
         </div>
@@ -27,9 +27,9 @@
           >
           <input
             id="periodo"
+            v-model="Periodo"
             class="shadow appearance-none borderrounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
             type="text"
-            v-model="Periodo"
             placeholder="1 year"
           />
         </div>
@@ -43,9 +43,9 @@
           >
           <input
             id="duties"
+            v-model="Role"
             class="shadow appearance-none borderrounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
             type="text"
-            v-model="Role"
             placeholder="Analytical Chemist"
           />
         </div>
@@ -56,9 +56,9 @@
           >
           <input
             id="luogo"
+            v-model="Luogo"
             class="shadow appearance-none borderrounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
             type="text"
-            v-model="Luogo"
             placeholder="Verona"
           />
         </div>
@@ -72,9 +72,9 @@
           >
           <input
             id="payment"
+            v-model="Payment"
             class="shadow appearance-none borderrounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
             type="text"
-            v-model="Payment"
             placeholder="€500"
           />
         </div>

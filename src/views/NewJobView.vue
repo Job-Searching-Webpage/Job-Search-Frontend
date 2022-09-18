@@ -8,9 +8,9 @@
           >
           <input
             id="id"
+            v-model="id"
             class="shadow appearance-none borderrounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
             type="text"
-            v-model="id"
             placeholder="123"
           />
         </div>
@@ -20,10 +20,10 @@
             Title</label
           >
           <input
+            v-model="title"
             title="title"
             class="shadow appearance-none borderrounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
             type="text"
-            v-model="title"
             placeholder="Vue ninja"
           />
         </div>
@@ -37,9 +37,9 @@
           >
           <input
             id="organization"
+            v-model="organization"
             class="shadow appearance-none borderrounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
             type="text"
-            v-model="organization"
             placeholder="UNIVR"
           />
         </div>
@@ -53,9 +53,9 @@
           >
           <input
             id="degree"
+            v-model="degree"
             class="shadow appearance-none borderrounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
             type="text"
-            v-model="degree"
             placeholder="Master"
           />
         </div>
@@ -69,9 +69,9 @@
           >
           <input
             id="jobType"
+            v-model="jobType"
             class="shadow appearance-none borderrounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
             type="text"
-            v-model="jobType"
             placeholder="Part-time"
           />
         </div>
@@ -85,9 +85,9 @@
           >
           <input
             id="location"
+            v-model="location"
             class="shadow appearance-none borderrounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
             type="text"
-            v-model="location"
             placeholder="Earth"
           />
         </div>
@@ -101,9 +101,9 @@
           >
           <input
             id="minimumQualifications"
+            v-model="minimumQualifications"
             class="shadow appearance-none borderrounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
             type="text"
-            v-model="minimumQualifications"
             placeholder="Divide different qualifications with #"
           />
         </div>
@@ -117,9 +117,9 @@
           >
           <input
             id="preferredQualification"
+            v-model="preferredQualification"
             class="shadow appearance-none borderrounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
             type="text"
-            v-model="preferredQualification"
             placeholder="Divide different qualifications with #"
           />
         </div>
@@ -133,9 +133,9 @@
           >
           <input
             id="description"
+            v-model="description"
             class="shadow appearance-none borderrounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
             type="text"
-            v-model="description"
             placeholder="Divide different qualifications with #"
           />
         </div>
@@ -149,9 +149,9 @@
           >
           <input
             id="dateAdded"
+            v-model="dateAdded"
             class="shadow appearance-none borderrounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
             type="text"
-            v-model="dateAdded"
             placeholder="00-00-0000"
           />
         </div>
