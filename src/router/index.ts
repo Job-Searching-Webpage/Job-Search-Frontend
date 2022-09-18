@@ -22,6 +22,9 @@ const NewApplicantView = () =>
 const NewJobView = () =>
   import(/* webpackChunkName: "jobs"*/ "@/views/NewJobView.vue");
 
+const NewExperienceView = () =>
+  import(/* webpackChunkName: "experiences"*/ "@/views/NewExperienceView.vue");
+
 const routes = [
   {
     path: "/",
@@ -58,7 +61,11 @@ const routes = [
     name: "NewJob",
     component: NewJobView,
   },
-  //To ADD NEW ROUTES
+  {
+    path: "/team/experience/new",
+    name: "NewExperienceView",
+    component: NewExperienceView,
+  },
 ];
 
 const router = createRouter({

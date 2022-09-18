@@ -114,6 +114,7 @@ export default defineComponent({
         { text: "Teams", url: "/teams" },
         { text: "Add new applicant", url: "/applicant/new" },
         { text: "Add new job offer", url: "/jobs/new" },
+        { text: "Add new experience", url: "/team/experience/new" },
       ],
       onJobResultsPage,
       onLandingPage,
