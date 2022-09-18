@@ -304,7 +304,7 @@ export default defineComponent({
       try {
         return_code = (
           await axios.post(
-            `${process.env.VUE_APP_API_URI}/team//applicant/new/submit`,
+            `${process.env.VUE_APP_API_URI}/team/applicant/new/submit`,
             {
               CodiceFiscale: this.CodiceFiscale,
               id: this.id,
