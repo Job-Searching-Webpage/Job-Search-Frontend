@@ -2,16 +2,13 @@
   <div class="flex justify-center items-center mt-0">
     <div class="w-full max-w-xl">
       <form class="bg-white shadow-md rounded px-12 pt-6 pb-12 mb-4">
-        <div class="codiceFiscale-input mb-4">
-          <label
-            for="codiceFiscale"
-            class="block text-gray-700 text-sm font-bold mb-2"
-          >
-            codiceFiscale</label
+        <div class="CF-input mb-4">
+          <label for="CF" class="block text-gray-700 text-sm font-bold mb-2">
+            CodiceFiscale</label
           >
           <input
-            id="codiceFiscale"
-            v-model="CodiceFiscale"
+            id="CF"
+            v-model="CF"
             class="shadow appearance-none borderrounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
             type="text"
             placeholder="LLSLJM2...."
@@ -37,7 +34,7 @@
           >
           <input
             id="name"
-            v-model="Name"
+            v-model="name"
             class="shadow appearance-none borderrounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
             type="text"
             placeholder="Elon"
@@ -53,7 +50,7 @@
           >
           <input
             id="cognome"
-            v-model="Cognome"
+            v-model="cognome"
             class="shadow appearance-none borderrounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
             type="text"
             placeholder="Obama"
@@ -101,7 +98,7 @@
           >
           <input
             id="nazionalita"
-            v-model="Nazionalita"
+            v-model="nazionalita"
             class="shadow appearance-none borderrounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
             type="text"
             placeholder="Human"
@@ -117,7 +114,7 @@
           >
           <input
             id="address"
-            v-model="Address"
+            v-model="address"
             class="shadow appearance-none borderrounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
             type="text"
             placeholder="Earth"
@@ -133,7 +130,7 @@
           >
           <input
             id="jobType"
-            v-model="JobType"
+            v-model="jobType"
             class="shadow appearance-none borderrounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
             type="text"
             placeholder="Engineer"
@@ -149,7 +146,7 @@
           >
           <input
             id="period"
-            v-model="Period"
+            v-model="period"
             class="shadow appearance-none borderrounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
             type="text"
             placeholder="1 year"
@@ -162,7 +159,7 @@
           >
           <input
             id="phone"
-            v-model="Phone"
+            v-model="phone"
             class="shadow appearance-none borderrounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
             type="text"
             placeholder="+000 000 0000"
@@ -175,7 +172,7 @@
           >
           <input
             id="email"
-            v-model="Email"
+            v-model="email"
             class="shadow appearance-none borderrounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
             type="text"
             placeholder="you@me.com"
@@ -191,7 +188,7 @@
           >
           <input
             id="Languages"
-            v-model="Languages"
+            v-model="languages"
             class="shadow appearance-none borderrounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
             type="text"
             placeholder="English, Italian, Spanish"
@@ -207,7 +204,7 @@
           >
           <input
             id="patenta"
-            v-model="Patenta"
+            v-model="patenta"
             class="shadow appearance-none borderrounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
             type="text"
             placeholder="A or B or C or D..."
@@ -229,7 +226,7 @@
           >
           <input
             id="qualification"
-            v-model="Qualification"
+            v-model="qualification"
             class="shadow appearance-none borderrounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
             type="text"
             placeholder="Analytical Chemist"
@@ -262,40 +259,40 @@ import axios from "axios";
 
 export default defineComponent({
   setup() {
-    const CodiceFiscale = ref("");
+    const CF = ref("");
     const id = ref("");
-    const Name = ref("");
-    const Cognome = ref("");
+    const name = ref("");
+    const cognome = ref("");
     const dataNascita = ref("");
     const birthplace = ref("");
-    const Nazionalita = ref("");
-    const Address = ref("");
-    const JobType = ref("");
-    const Period = ref("");
-    const Phone = ref("");
-    const Email = ref("");
-    const Languages = ref("");
-    const Patenta = ref("");
-    const Car = ref("");
-    const Qualification = ref("");
+    const nazionalita = ref("");
+    const address = ref("");
+    const jobType = ref("");
+    const period = ref("");
+    const phone = ref("");
+    const email = ref("");
+    const languages = ref("");
+    const patenta = ref("");
+    const car = ref("");
+    const qualification = ref("");
 
     return {
-      CodiceFiscale,
+      CF,
       id,
-      Name,
-      Cognome,
+      name,
+      cognome,
       dataNascita,
       birthplace,
-      Nazionalita,
-      Address,
-      JobType,
-      Period,
-      Phone,
-      Email,
-      Languages,
-      Patenta,
-      Car,
-      Qualification,
+      nazionalita,
+      address,
+      jobType,
+      period,
+      phone,
+      email,
+      languages,
+      patenta,
+      car,
+      qualification,
     };
   },
   methods: {
@@ -303,27 +300,24 @@ export default defineComponent({
       let return_code;
       try {
         return_code = (
-          await axios.post(
-            `${process.env.VUE_APP_API_URI}/team/applicant/new/submit`,
-            {
-              CodiceFiscale: this.CodiceFiscale,
-              id: this.id,
-              Name: this.Name,
-              Cognome: this.Cognome,
-              dataNascita: this.dataNascita,
-              birthplace: this.birthplace,
-              Nazionalita: this.Nazionalita,
-              Address: this.Address,
-              JobType: this.JobType,
-              Period: this.Period,
-              Phone: this.Phone,
-              Email: this.Email,
-              Languages: this.Languages,
-              Patenta: this.Patenta,
-              Car: this.Car,
-              Qualification: this.Qualification,
-            }
-          )
+          await axios.post(`http:/team/applicant/new/submit`, {
+            CF: this.CF,
+            id: this.id,
+            name: this.name,
+            cognome: this.cognome,
+            dataNascita: this.dataNascita,
+            birthplace: this.birthplace,
+            nazionalita: this.nazionalita,
+            address: this.address,
+            jobType: this.jobType,
+            period: this.period,
+            phone: this.phone,
+            email: this.email,
+            languages: this.languages,
+            patenta: this.patenta,
+            car: this.car,
+            qualification: this.qualification,
+          })
         ).status;
       } catch (_) {
         /*eslint no-empty: "error"*/
@@ -337,12 +331,12 @@ export default defineComponent({
       }
     },
     ownsCar() {
-      if (this.Car == "true") {
-        this.Car = "false";
-      } else if (this.Car == "false") {
-        this.Car = "true";
+      if (this.car == "true") {
+        this.car = "false";
+      } else if (this.car == "false") {
+        this.car = "true";
       } else {
-        this.Car = "true";
+        this.car = "true";
       }
     },
   },
