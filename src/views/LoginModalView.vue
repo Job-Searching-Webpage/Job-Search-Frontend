@@ -100,10 +100,11 @@ export default defineComponent({
       }
 
       // TODO Remove when login is implemented on the server's side
-      return_code = 200;
 
-      if (return_code && return_code < 405) {
+      if (return_code && return_code == 200) {
         this.loginUser();
+      } else {
+        alert("Wrong username or password");
       }
     },
     closeModal() {
