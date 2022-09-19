@@ -88,9 +88,11 @@ export default defineComponent({
       const baseUrl = process.env.VUE_APP_API_URI;
       try {
         return_code = (
-          await axios.post(`${baseUrl}/login`, {
-            username: this.username,
-            password: await sha1(this.password),
+          await axios.get(`${baseUrl}/signin`, {
+            params: {
+              username: this.username,
+              psw: await sha1(this.password),
+            },
           })
         ).status;
       } catch (_) {
