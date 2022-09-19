@@ -207,17 +207,6 @@ export default defineComponent({
     };
   },
   methods: {
-    parsing(stringToParse: string) {
-      let res = "";
-      let myarray = stringToParse;
-      let myArray = myarray.split("#");
-      for (let i = 0; i < myArray.length; i++) {
-        if (i == myArray.length - 1) res.concat('\\"', myArray[i], '\\"');
-        else res.concat('\\"', myArray[i], '\\",\\r\\n        ');
-      }
-      return res;
-    },
-
     async submit() {
       let return_code;
       const baseUrl = process.env.VUE_APP_API_URL;
@@ -231,13 +220,9 @@ export default defineComponent({
             degree: this.degree,
             jobType: this.jobType,
             location: this.location,
-            minimumQualifications: this.parsing(
-              this.minimumQualifications.valueOf()
-            ),
-            preferredQualification: await this.parsing(
-              this.preferredQualification
-            ),
-            description: this.parsing(this.description),
+            minimumQualifications: this.minimumQualifications,
+            preferredQualification: this.preferredQualification,
+            description: this.description,
             dateAdded: this.dateAdded,
           })
         ).status;
