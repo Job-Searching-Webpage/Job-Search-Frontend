@@ -2,6 +2,9 @@
   <div class="flex justify-center items-center mt-5">
     <div class="w-full m-1 max-w-lg">
       <form class="bg-white shadow-2xl rounded px-10 pt-3 pb-5 mb-4">
+        <h2 class="block text-gray-700 text-xl pl-3 font-bold mb-2">
+          Job Information
+        </h2>
         <div class="title-input mb-4">
           <label
             for="title"

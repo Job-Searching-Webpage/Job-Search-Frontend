@@ -85,12 +85,11 @@ export default defineComponent({
   methods: {
     async login() {
       let return_code;
-      const baseUrl = process.env.VUE_APP_API_URI;
-      const url = `${baseUrl}/signin`;
-      console.log("url: " + url);
+      const baseUrl = process.env.VUE_APP_API_URL;
+
       try {
         return_code = (
-          await axios.get(`/signin`, {
+          await axios.get(`${baseUrl}/signin`, {
             params: {
               username: this.username,
               psw: await sha1(this.password),
@@ -108,6 +107,7 @@ export default defineComponent({
       } else {
         alert("Wrong username or password");
       }
+      this.loginUser();
     },
     closeModal() {
       this.closeModal();

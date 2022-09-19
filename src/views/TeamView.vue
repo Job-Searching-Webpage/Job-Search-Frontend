@@ -1,7 +1,10 @@
 <template>
-  <div class="flex justify-center items-center mt-0">
+  <div class="flex justify-center mt-0">
     <div class="w-full m-1 max-w-lg">
-      <form class="bg-white shadow-2xl rounded px-10 pt-3 pb-4 mb-4">
+      <form class="bg-white shadow-2xl rounded px-5 pt-3 pb-4 mb-4">
+        <h2 class="block text-gray-700 text-xl pl-3 font-bold mb-2">
+          Worker Information
+        </h2>
         <div class="CF-input mb-4">
           <label
             for="CF"
@@ -111,12 +114,16 @@
         </div>
 
         <div class="Languages-input mb-4">
-          <label
-            for="Languages"
-            class="block text-gray-700 text-xl pl-3 font-semibold mb-2"
-          >
-            Languages : {{ team.langages }}</label
-          >
+          <h3 class="block text-gray-700 text-xl pl-3 font-semibold mb-2">
+            Languages
+          </h3>
+          <div>
+            <ul class="pl-8 list-disc">
+              <li v-for="langages in testA" :key="langages">
+                {{ langages }}
+              </li>
+            </ul>
+          </div>
         </div>
 
         <div class="patenta-input mb-4">
@@ -137,7 +144,7 @@
           >
         </div>
 
-        <div class="flex items-center justify-center">
+        <div class="items-center justify-center">
           <a
             class="inline-block align-baseline font-bold text-2xl text-blue-500 hover:text-blue-800"
             href="#"
@@ -146,6 +153,104 @@
           </a>
         </div>
       </form>
+    </div>
+    <div class="w-full m-10 max-w-lg">
+      <div class="w-full m-10 max-w-lg">
+        <form class="bg-white shadow-2xl rounded px-5 pt-3 pb-4 mb-4">
+          <h2 class="block text-gray-700 text-xl pl-3 font-bold mb-2">
+            Old Experiences
+          </h2>
+
+          <div class="azienda-input mb-4">
+            <label
+              for="azienda"
+              class="block text-gray-700 text-xl pl-3 font-semibold mb-2"
+            >
+              Tipo di azienda : {{ team.esperienze }}</label
+            >
+          </div>
+
+          <div class="periodo-input mb-4">
+            <label
+              for="periodo"
+              class="block text-gray-700 text-xl pl-3 font-semibold mb-2"
+            >
+              Periodo : {{ team.esperienze }}</label
+            >
+          </div>
+
+          <div class="duties-input mb-4">
+            <label
+              for="duties"
+              class="block text-gray-700 text-xl pl-3 font-semibold mb-2"
+            >
+              Duties : {{ team.esperienze }}</label
+            >
+          </div>
+
+          <div class="luogo-input mb-4">
+            <label
+              for="luogo"
+              class="block text-gray-700 text-xl pl-3 font-semibold mb-2"
+            >
+              Luogo : {{ team.esperienze }}</label
+            >
+          </div>
+
+          <div class="payment-input mb-4">
+            <label
+              for="payment"
+              class="block text-gray-700 text-xl pl-3 font-semibold mb-2"
+            >
+              Payment : {{ team.esperienze }}</label
+            >
+          </div>
+        </form>
+      </div>
+
+      <div v-show="hasBackUp" class="w-full max-w-lg m-10">
+        <form class="bg-white shadow-2xl rounded px-5 pt-3 pb-4">
+          <h2 class="block text-gray-700 text-xl pl-3 font-bold mb-2">
+            Back up Person
+          </h2>
+
+          <div class="name-input mb-4">
+            <label
+              for="name"
+              class="block text-gray-700 text-xl pl-3 font-semibold mb-2"
+            >
+              name : {{ team.backUpPerson }}</label
+            >
+          </div>
+
+          <div class="cognome-input mb-4">
+            <label
+              for="cognome"
+              class="block text-gray-700 text-xl pl-3 font-semibold mb-2"
+            >
+              cognome : {{ team.backUpPerson }}</label
+            >
+          </div>
+
+          <div class="email-input mb-4">
+            <label
+              for="email"
+              class="block text-gray-700 text-xl pl-3 font-semibold mb-2"
+            >
+              email : {{ team.backUpPerson }}</label
+            >
+          </div>
+
+          <div class="phone-input mb-4">
+            <label
+              for="phone"
+              class="block text-gray-700 text-xl pl-3 font-semibold mb-2"
+            >
+              phone : {{ team.backUpPerson }}</label
+            >
+          </div>
+        </form>
+      </div>
     </div>
   </div>
 </template>
@@ -168,7 +273,8 @@ export default defineComponent({
     const currentTeamId = route.params.id;
     const team = getTeamById(currentTeamId);
     const test = "test";
-    return { currentTeamId, team, test };
+    const testA = ["testA", "testB", "testC"];
+    return { currentTeamId, team, test, testA, hasBackUp: true };
   },
 });
 </script>
