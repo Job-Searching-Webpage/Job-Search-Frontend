@@ -224,7 +224,7 @@ export default defineComponent({
 
       try {
         return_code = (
-          await axios.post(`${baseUrl}/jobs/new/submit`, {
+          await axios.post(`${baseUrl}/JobSave`, {
             id: this.id,
             title: this.title,
             organization: this.organization,
