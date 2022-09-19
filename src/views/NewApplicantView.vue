@@ -214,7 +214,7 @@
           <label for="car" class="block text-gray-700 text-sm font-bold mb-2">
             Owns a car</label
           >
-          <input :id="Car" type="checkbox" class="mr-3" @change="ownsCar()" />
+          <input :id="car" type="checkbox" class="mr-3" @change="ownsCar()" />
         </div>
 
         <div class="qualification-input mb-4">
@@ -298,9 +298,10 @@ export default defineComponent({
   methods: {
     async submit() {
       let return_code;
+      const baseUrl = process.env.VUE_APP_API_URL;
       try {
         return_code = (
-          await axios.post(`http:/team/applicant/new/submit`, {
+          await axios.post(`${baseUrl}/team/applicant/new/submit`, {
             CF: this.CF,
             id: this.id,
             name: this.name,

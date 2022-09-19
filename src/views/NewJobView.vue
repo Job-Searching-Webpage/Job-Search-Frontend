@@ -220,9 +220,11 @@ export default defineComponent({
 
     async submit() {
       let return_code;
+      const baseUrl = process.env.VUE_APP_API_URL;
+
       try {
         return_code = (
-          await axios.post(`${process.env.VUE_APP_API_URI}/jobs/new/submit`, {
+          await axios.post(`${baseUrl}/jobs/new/submit`, {
             id: this.id,
             title: this.title,
             organization: this.organization,

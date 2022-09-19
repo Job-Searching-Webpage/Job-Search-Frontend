@@ -122,18 +122,17 @@ export default defineComponent({
   methods: {
     async submit() {
       let return_code;
+      const baseUrl = process.env.VUE_APP_API_URL;
+
       try {
         return_code = (
-          await axios.post(
-            `${process.env.VUE_APP_API_URI}/team/experience/new/submit`,
-            {
-              Azienda: this.Azienda,
-              Periodo: this.Periodo,
-              Role: this.Role,
-              Luogo: this.Luogo,
-              Payment: this.Payment,
-            }
-          )
+          await axios.post(`${baseUrl}/team/experience/new/submit`, {
+            Azienda: this.Azienda,
+            Periodo: this.Periodo,
+            Role: this.Role,
+            Luogo: this.Luogo,
+            Payment: this.Payment,
+          })
         ).status;
       } catch (_) {
         /*eslint no-empty: "error"*/
