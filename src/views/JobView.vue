@@ -1,46 +1,91 @@
 <template>
-  <div
-    class="block mx-auto bg-white border border-solid border-brand-gray-2 rounded hover:shadow-gray"
-  >
-    <div class="pt-5 pb-2 mx-8 border-b border-solid border-brand-gray-2">
-      <div class="text-2xl font-bold">Job Page for job {{ currentJobId }}</div>
-      <h2 class="mb-2 text-2xl font-bold">
-        {{ job.title }}
-        Title
-      </h2>
-      <div class="flex flex-row align-middle">
-        <div class="flex flex-col">
-          <span
-            ><!--{{ job.organization }}-->
-            organization</span
+  <div class="flex justify-center items-center mt-5">
+    <div class="w-full m-1 max-w-lg">
+      <form class="bg-white shadow-2xl rounded px-10 pt-3 pb-5 mb-4">
+        <div class="title-input mb-4">
+          <label
+            for="title"
+            class="block text-gray-700 text-xl pl-3 font-semibold mb-3"
+          >
+            Title : {{ test }}</label
           >
         </div>
 
-        <div class="pt-5 pb-2 mx-8 border-b border-solid border-brand-gray-2">
-          <ul>
-            <li class="inline-block">
-              <!--{{ job.location }}-->
-              location
-            </li>
-          </ul>
+        <div class="organization-input mb-4">
+          <label
+            for="organization"
+            class="block text-gray-700 text-xl pl-3 font-semibold mb-2"
+          >
+            Organization : {{ job.organization }}</label
+          >
         </div>
-      </div>
-      <div class="px-8 py-4">
-        <div>
-          <h3 class="mt-1 mb-2">Qualifications bitches</h3>
+
+        <div class="location-input mb-4">
+          <label
+            for="location"
+            class="block text-gray-700 text-xl pl-3 font-semibold mb-2"
+          >
+            Location : {{ job.location }}</label
+          >
+        </div>
+
+        <div class="min-qualification-input mb-4">
+          <h3 class="block text-gray-700 text-xl pl-3 font-semibold mb-2">
+            Minimum Qualifications bitches
+          </h3>
           <div>
             <ul class="pl-8 list-disc">
-              <li
-                v-for="qualification in job.minimumQualifications"
-                :key="qualification"
-              >
-                <!--{{ qualification }}-->
-                Qualifications bitches
+              <li v-for="qualification in testA" :key="qualification">
+                {{ qualification }}
               </li>
             </ul>
           </div>
         </div>
-      </div>
+
+        <div class="pref-qualification-input mb-4">
+          <h3 class="block text-gray-700 text-xl pl-3 font-semibold mb-2">
+            Preferred Qualifications bitches
+          </h3>
+          <div>
+            <ul class="pl-8 list-disc">
+              <li v-for="qualification in testA" :key="qualification">
+                {{ qualification }}
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="description-input mb-4">
+          <h3 class="block text-gray-700 text-xl pl-3 font-semibold mb-2">
+            Descriptions bitches
+          </h3>
+          <div>
+            <ul class="pl-8 list-disc">
+              <li v-for="description in testA" :key="description">
+                {{ description }}
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="date-input mb-4">
+          <label
+            for="date"
+            class="block text-gray-700 text-xl pl-3 font-semibold mb-2"
+          >
+            Published Date : {{ job.dateAdded }}</label
+          >
+        </div>
+
+        <div class="flex justify-center mb-15">
+          <a
+            class="inline-block align-baseline font-bold text-2xl text-blue-500 hover:text-blue-800"
+            href="#"
+          >
+            Cancel
+          </a>
+        </div>
+      </form>
     </div>
   </div>
 </template>
@@ -56,10 +101,11 @@ export default defineComponent({
     const route = useRoute();
     const currentJobId = route.params.id;
     const job: any = getJobById(currentJobId);
-
+    const testA = ["A", "B", "C"];
     return {
       job,
       currentJobId,
+      testA,
     };
   },
 });
