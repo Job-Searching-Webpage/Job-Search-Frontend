@@ -143,15 +143,6 @@
             Qualification : {{ team.qualification }}</label
           >
         </div>
-
-        <div class="items-center justify-center">
-          <a
-            class="inline-block align-baseline font-bold text-2xl text-blue-500 hover:text-blue-800"
-            href="#"
-          >
-            Cancel
-          </a>
-        </div>
       </form>
     </div>
     <div class="w-full m-10 max-w-lg">
@@ -250,6 +241,14 @@
             >
           </div>
         </form>
+      </div>
+      <div class="ml-20">
+        <a
+          class="inline-block align-baseline font-bold text-2xl text-blue-500 hover:text-blue-800"
+          href="#"
+        >
+          Go Back
+        </a>
       </div>
     </div>
   </div>

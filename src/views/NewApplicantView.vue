@@ -2,6 +2,9 @@
   <div class="flex justify-center items-center mt-0">
     <div class="w-full max-w-xl">
       <form class="bg-white shadow-md rounded px-12 pt-6 pb-12 mb-4">
+        <h2 class="block text-gray-700 text-xl font-bold mb-2">
+          New Applicant
+        </h2>
         <div class="CF-input mb-4">
           <label for="CF" class="block text-gray-700 text-sm font-bold mb-2">
             CodiceFiscale</label
