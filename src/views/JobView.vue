@@ -7,7 +7,7 @@
             for="title"
             class="block text-gray-700 text-xl pl-3 font-semibold mb-3"
           >
-            Title : {{ test }}</label
+            Title : {{ testA }}</label
           >
         </div>
 
