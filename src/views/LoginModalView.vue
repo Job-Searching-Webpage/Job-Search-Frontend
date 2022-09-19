@@ -85,9 +85,10 @@ export default defineComponent({
   methods: {
     async login() {
       let return_code;
+      const baseUrl = process.env.VUE_APP_API_URI;
       try {
         return_code = (
-          await axios.post(`${process.env.VUE_APP_API_URI}/login`, {
+          await axios.post(`${baseUrl}/login`, {
             username: this.username,
             password: await sha1(this.password),
           })
