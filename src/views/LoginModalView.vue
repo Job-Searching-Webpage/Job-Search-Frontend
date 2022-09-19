@@ -86,9 +86,11 @@ export default defineComponent({
     async login() {
       let return_code;
       const baseUrl = process.env.VUE_APP_API_URI;
+      const url = `${baseUrl}/signin`;
+      console.log("url: " + url);
       try {
         return_code = (
-          await axios.get(`${baseUrl}/signin`, {
+          await axios.get(`/signin`, {
             params: {
               username: this.username,
               psw: await sha1(this.password),
