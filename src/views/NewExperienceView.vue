@@ -212,6 +212,7 @@
 </template>
 
 <script lang="ts">
+import getTeamId from "@/api/getTeamId";
 import { defineComponent, ref } from "vue";
 import axios from "axios";
 
@@ -249,16 +250,18 @@ export default defineComponent({
     async submitExperience() {
       let return_code;
       const baseUrl = process.env.VUE_APP_API_URL;
-
+      let teamId = await getTeamId(this.CodiceFiscaleExp);
+      console.log(teamId);
       try {
         return_code = (
-          await axios.post(`${baseUrl}/team/experience/new/submit`, {
-            CodiceFiscale: this.CodiceFiscaleExp,
-            Azienda: this.Azienda,
-            Periodo: this.Periodo,
-            Role: this.Role,
-            Luogo: this.Luogo,
-            Payment: this.Payment,
+          await axios.post(`${baseUrl}/EsperienzeSave/`, {
+            //CodiceFiscale: this.CodiceFiscaleExp,
+            workerId: teamId,
+            azienda: this.Azienda,
+            periodo: this.Periodo,
+            duties: this.Role,
+            luogo: this.Luogo,
+            payment: this.Payment,
           })
         ).status;
       } catch (_) {
@@ -277,11 +280,13 @@ export default defineComponent({
     async submitBackUpPerson() {
       let return_code;
       const baseUrl = process.env.VUE_APP_API_URL;
-
+      let teamId = await getTeamId(this.CodiceFiscale);
+      console.log(teamId);
       try {
         return_code = (
           await axios.post(`${baseUrl}/EsperienzeSave/`, {
-            CodiceFiscale: this.CodiceFiscale,
+            CF_BC_person: this.CodiceFiscale,
+            workerId: teamId,
             name: this.name,
             cognome: this.cognome,
             email: this.email,
