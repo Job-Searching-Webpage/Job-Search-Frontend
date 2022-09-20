@@ -216,7 +216,7 @@ export default defineComponent({
 
       try {
         return_code = (
-          await axios.post(`${baseUrl}/JobSave`, {
+          await axios.post(`${baseUrl}/JobSave/`, {
             id: this.id,
             title: this.title,
             organization: this.organization,
@@ -234,10 +234,11 @@ export default defineComponent({
       }
 
       // TODO Remove when login is implemented on the server's side
-      return_code = 200;
 
-      if (return_code && return_code < 405) {
-        console.log("New applicant submitted");
+      if (return_code && return_code == 200) {
+        alert("Job added successfully");
+      } else {
+        alert("Error on adding job");
       }
     },
   },
