@@ -148,8 +148,8 @@
     <div class="w-full m-10 max-w-lg">
       <div class="w-full m-10 max-w-lg">
         <form
-          v-for="exp in team.esperienze"
-          :key="exp.azienda"
+          v-for="exp in experience"
+          :key="exp"
           class="bg-white shadow-2xl rounded px-5 pt-3 pb-4 mb-4"
         >
           <h2 class="block text-gray-700 text-xl pl-3 font-bold mb-2">
@@ -161,7 +161,7 @@
               for="azienda"
               class="block text-gray-700 text-xl pl-3 font-semibold mb-2"
             >
-              Tipo di azienda : {{ exp.azienda }}</label
+              Tipo di azienda : {{ experience.azienda }}</label
             >
           </div>
 
@@ -170,7 +170,7 @@
               for="periodo"
               class="block text-gray-700 text-xl pl-3 font-semibold mb-2"
             >
-              Periodo : {{ exp.periodo }}</label
+              Periodo : {{ experience.periodo }}</label
             >
           </div>
 
@@ -179,7 +179,7 @@
               for="duties"
               class="block text-gray-700 text-xl pl-3 font-semibold mb-2"
             >
-              Duties : {{ exp.duties }}</label
+              Duties : {{ experience.duties }}</label
             >
           </div>
 
@@ -188,7 +188,7 @@
               for="luogo"
               class="block text-gray-700 text-xl pl-3 font-semibold mb-2"
             >
-              Luogo : {{ exp.luogo }}</label
+              Luogo : {{ experience.luogo }}</label
             >
           </div>
 
@@ -197,7 +197,7 @@
               for="payment"
               class="block text-gray-700 text-xl pl-3 font-semibold mb-2"
             >
-              Payment : {{ exp.payment }}</label
+              Payment : {{ experience.payment }}</label
             >
           </div>
         </form>
@@ -205,8 +205,8 @@
 
       <div v-show="hasBackUp" class="w-full max-w-lg m-10">
         <form
-          v-for="backup in team.backUpPerson"
-          :key="backup.name"
+          v-for="backUp in backup"
+          :key="backUp"
           class="bg-white shadow-2xl rounded px-5 pt-3 pb-4"
         >
           <h2 class="block text-gray-700 text-xl pl-3 font-bold mb-2">
@@ -263,7 +263,9 @@
 </template>
 <script lang="ts">
 import getTeamById from "@/api/getTeamById";
-import { Team } from "@/api/types";
+import getBackupById from "@/api/getBackupById";
+import getExperienceById from "@/api/getExperienceById";
+import { BackUpPerson, Team, experience } from "@/api/types";
 import { defineComponent } from "vue";
 
 import { useRoute } from "vue-router";
@@ -278,16 +280,25 @@ export default defineComponent({
   data: () => {
     return {
       team: {} as Team,
-      testA: [],
+      backup: {} as BackUpPerson,
+      experience: {} as experience,
       hasBackUp: true,
+      hasExperience: true,
     };
   },
   async created() {
     const route = useRoute();
     const currentTeamId = route.params.id;
-    let test = await getTeamById(currentTeamId);
-    console.log(test);
-    this.team = test;
+    let teams = await getTeamById(currentTeamId);
+    console.log(teams);
+    let backups = await getBackupById(currentTeamId);
+    console.log(backups);
+    let experiences = await getExperienceById(currentTeamId);
+    console.log(experiences);
+
+    this.team = teams;
+    this.backup = backups;
+    this.experience = experiences;
     //const test = "test";
     //const testA = ["testA", "testB", "testC"];
     //return { currentTeamId, team, test, testA, hasBackUp: true };
