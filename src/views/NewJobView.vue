@@ -223,9 +223,9 @@ export default defineComponent({
             degree: this.degree,
             jobType: this.jobType,
             location: this.location,
-            minimumQualifications: this.minimumQualifications,
-            preferredQualification: this.preferredQualification,
-            description: this.description,
+            minimumQualifications: this.minimumQualifications.split("#"),
+            preferredQualification: this.preferredQualification.split("#"),
+            description: this.description.split("#"),
             dateAdded: this.dateAdded,
           })
         ).status;
