@@ -24,6 +24,13 @@
           "duties": "student",
           "luogo": "Verona",
           "payment": "€500"
+        },
+        {
+          "azienda": "UNIVR2",
+          "periodo": "2 years",
+          "duties": "student",
+          "luogo": "Verona",
+          "payment": "€1000"
         }
       ],
       "backUpPerson": [
