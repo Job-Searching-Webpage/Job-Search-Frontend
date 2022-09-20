@@ -224,7 +224,7 @@ export default defineComponent({
             jobType: this.jobType,
             location: this.location,
             minimumQualifications: this.minimumQualifications.split("#"),
-            preferredQualification: this.preferredQualification.split("#"),
+            preferredQualifications: this.preferredQualification.split("#"),
             description: this.description.split("#"),
             dateAdded: this.dateAdded,
           })
