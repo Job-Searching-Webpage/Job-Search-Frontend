@@ -1,15 +1,15 @@
 <template>
   <div id="modal" class="modal-container text-white">
-    <div class="modal p-4 border-black bg-brand-gray-3 rounded p-2">
+    <div class="modal p-4 border-black rounded p-10">
       <header class="flex justify-between">
         <h2 class="text-2xl text-black border-black rounded font-bold">
           Login
         </h2>
         <button
-          class="rounded p-2 hover:bg-red-700 text-base text-black font-bold"
+          class="rounded p-2 text-2xl text-black font-bold px-4 hover:bg-red-500 hover:text-white"
           @click="closeModal()"
         >
-          <span class="material-icons">close</span>
+          <span class="material-icons">X</span>
         </button>
       </header>
       <section>
@@ -22,13 +22,13 @@
               <input
                 id="username"
                 v-model="username"
-                class="bg-white text-black rounded p-2 w-full"
+                class="bg-brand-gray-1 text-black rounded p-4 w-full"
                 placeholder="username"
                 type="text"
                 name="username"
               />
             </div>
-            <div class="mt-2">
+            <div class="mt-10">
               <label class="block text-black text-text-base font-bold"
                 >Password</label
               >
@@ -36,7 +36,7 @@
                 <input
                   id="password"
                   v-model="password"
-                  class="bg-white text-black rounded p-2 w-full mr-2"
+                  class="bg-brand-gray-1 text-black rounded p-4 w-full mr-2"
                   placeholder="********"
                   type="password"
                   name="password"
@@ -45,7 +45,7 @@
               <div class="flex content-evenly justify-center">
                 <button
                   type="button"
-                  class="text-2xl text-black font-bold border-rounded border-white rounded my-5 py-5 px-20 hover:bg-green-700 text-lg"
+                  class="text-2xl text-white font-bold border-rounded border-white rounded my-5 py-5 px-20 bg-brand-blue-1 hover:bg-brand-blue-2 text-lg"
                   @click="login()"
                 >
                   Login
@@ -128,9 +128,9 @@ export default defineComponent({
 }
 .modal {
   position: absolute;
-  min-width: 350px;
-  min-height: 250px;
-  background-color: rgba(61, 21, 21, 0);
+  min-width: 500px;
+  min-height: 400px;
+  background-color: white;
   top: 50%;
   left: 50%;
   padding: 20px 40px 20px;
