@@ -14,10 +14,10 @@
           >
           <input
             id="codicefiscale"
-            v-model="codicefiscale"
+            v-model="CodiceFiscaleExp"
             class="shadow appearance-none borderrounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
             type="text"
-            placeholder="UNIVR"
+            placeholder="LLSLJM..."
           />
         </div>
         <div class="azienda-input mb-4">
@@ -268,8 +268,10 @@ export default defineComponent({
       // TODO Remove when login is implemented on the server's side
       return_code = 200;
 
-      if (return_code && return_code < 405) {
-        console.log("Experience submitted");
+      if (return_code && return_code == 200) {
+        alert("Experience added successfully");
+      } else {
+        alert("Error on adding a new Experience");
       }
     },
     async submitBackUpPerson() {
@@ -278,7 +280,7 @@ export default defineComponent({
 
       try {
         return_code = (
-          await axios.post(`${baseUrl}/team/backup/new/submit`, {
+          await axios.post(`${baseUrl}/EsperienzeSave/`, {
             CodiceFiscale: this.CodiceFiscale,
             name: this.name,
             cognome: this.cognome,

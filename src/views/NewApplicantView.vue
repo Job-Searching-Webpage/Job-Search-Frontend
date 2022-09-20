@@ -330,8 +330,10 @@ export default defineComponent({
       // TODO Remove when login is implemented on the server's side
       return_code = 200;
 
-      if (return_code && return_code < 405) {
-        console.log("New applicant submitted");
+      if (return_code && return_code == 200) {
+        alert("New worker added successfully");
+      } else {
+        alert("Error on adding a new Worker");
       }
     },
     ownsCar() {
