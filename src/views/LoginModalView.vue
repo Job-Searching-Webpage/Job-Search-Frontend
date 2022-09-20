@@ -105,7 +105,7 @@ export default defineComponent({
       if (return_code && return_code == 200) {
         this.loginUser();
       } else {
-        this.$alert("Wrong username or password");
+        alert("Wrong username or password");
       }
       this.loginUser();
     },
