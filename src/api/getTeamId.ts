@@ -8,7 +8,7 @@ export default async function getTeamId(
 
   try {
     const response = await axios.get<Team>(
-      `${baseUrl}/getTeamID_By_CF/${teamCF}`
+      `${baseUrl}/getTeamID_By_CF/${teamCF}/`
     );
     return response.data;
   } catch (error) {

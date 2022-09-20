@@ -8,7 +8,7 @@ export default async function getExperienceById(
 
   try {
     const response = await axios.get<experience>(
-      `${baseUrl}/getExperienceById/${expId}`
+      `${baseUrl}/getExperienceById/${expId}/`
     );
     return response.data;
   } catch (error) {
