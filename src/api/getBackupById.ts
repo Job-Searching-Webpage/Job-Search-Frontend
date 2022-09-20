@@ -8,7 +8,7 @@ export default async function getBackupById(
 
   try {
     const response = await axios.get<BackUpPerson>(
-      `${baseUrl}/getBackupById/${backupId}`
+      `${baseUrl}/getBackUpById/${backupId}`
     );
     return response.data;
   } catch (error) {
