@@ -1,5 +1,6 @@
 import { createApp } from "vue";
 
+//import VueSimpleAlert from "vue-simple-alert";
 import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
 import { library } from "@fortawesome/fontawesome-svg-core";
 import {
@@ -19,5 +20,6 @@ library.add(faSearch, faAngleDown, faAngleUp);
 createApp(App)
   .use(store, key)
   .use(router)
+  //.use(VueSimpleAlert)
   .component("font-awesome-icon", FontAwesomeIcon)
   .mount("#app");

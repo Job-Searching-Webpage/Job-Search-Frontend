@@ -5,6 +5,21 @@
         <h2 class="block text-gray-700 text-xl pl-3 font-bold mb-2">
           New Experience
         </h2>
+        <div class="codicefiscale-input mb-4">
+          <label
+            for="codicefiscale"
+            class="block text-gray-700 text-sm font-bold mb-2"
+          >
+            Codicefiscale or the worker</label
+          >
+          <input
+            id="codicefiscale"
+            v-model="codicefiscale"
+            class="shadow appearance-none borderrounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
+            type="text"
+            placeholder="UNIVR"
+          />
+        </div>
         <div class="azienda-input mb-4">
           <label
             for="azienda"
@@ -202,6 +217,7 @@ import axios from "axios";
 
 export default defineComponent({
   setup() {
+    const CodiceFiscaleExp = ref("");
     const Azienda = ref("");
     const Periodo = ref("");
     const Role = ref("");
@@ -215,6 +231,7 @@ export default defineComponent({
     const phone = ref("");
 
     return {
+      CodiceFiscaleExp,
       Azienda,
       Periodo,
       Role,
@@ -236,6 +253,7 @@ export default defineComponent({
       try {
         return_code = (
           await axios.post(`${baseUrl}/team/experience/new/submit`, {
+            CodiceFiscale: this.CodiceFiscaleExp,
             Azienda: this.Azienda,
             Periodo: this.Periodo,
             Role: this.Role,
@@ -275,8 +293,10 @@ export default defineComponent({
       // TODO Remove when login is implemented on the server's side
       return_code = 200;
 
-      if (return_code && return_code < 405) {
-        console.log("Back Up Person submitted");
+      if (return_code && return_code == 200) {
+        alert("Backup Person added successfully");
+      } else {
+        alert("Error on adding a new Backup Person");
       }
     },
   },
