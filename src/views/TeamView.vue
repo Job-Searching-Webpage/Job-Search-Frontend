@@ -149,7 +149,7 @@
       <div class="w-full m-10 max-w-lg">
         <form
           v-for="exp in experience"
-          :key="exp"
+          :key="exp.azienda"
           class="bg-white shadow-2xl rounded px-5 pt-3 pb-4 mb-4"
         >
           <h2 class="block text-gray-700 text-xl pl-3 font-bold mb-2">
@@ -161,7 +161,7 @@
               for="azienda"
               class="block text-gray-700 text-xl pl-3 font-semibold mb-2"
             >
-              Tipo di azienda : {{ experience.azienda }}</label
+              Tipo di azienda : {{ exp.azienda }}</label
             >
           </div>
 
@@ -170,7 +170,7 @@
               for="periodo"
               class="block text-gray-700 text-xl pl-3 font-semibold mb-2"
             >
-              Periodo : {{ experience.periodo }}</label
+              Periodo : {{ exp.periodo }}</label
             >
           </div>
 
@@ -179,7 +179,7 @@
               for="duties"
               class="block text-gray-700 text-xl pl-3 font-semibold mb-2"
             >
-              Duties : {{ experience.duties }}</label
+              Duties : {{ exp.duties }}</label
             >
           </div>
 
@@ -188,7 +188,7 @@
               for="luogo"
               class="block text-gray-700 text-xl pl-3 font-semibold mb-2"
             >
-              Luogo : {{ experience.luogo }}</label
+              Luogo : {{ exp.luogo }}</label
             >
           </div>
 
@@ -197,7 +197,7 @@
               for="payment"
               class="block text-gray-700 text-xl pl-3 font-semibold mb-2"
             >
-              Payment : {{ experience.payment }}</label
+              Payment : {{ exp.payment }}</label
             >
           </div>
         </form>
@@ -206,7 +206,7 @@
       <div v-show="hasBackUp" class="w-full max-w-lg m-10">
         <form
           v-for="backUp in backup"
-          :key="backUp"
+          :key="backUp.email"
           class="bg-white shadow-2xl rounded px-5 pt-3 pb-4"
         >
           <h2 class="block text-gray-700 text-xl pl-3 font-bold mb-2">
@@ -218,7 +218,7 @@
               for="name"
               class="block text-gray-700 text-xl pl-3 font-semibold mb-2"
             >
-              name : {{ backup.name }}</label
+              name : {{ backUp.name }}</label
             >
           </div>
 
@@ -227,7 +227,7 @@
               for="cognome"
               class="block text-gray-700 text-xl pl-3 font-semibold mb-2"
             >
-              cognome : {{ backup.cognome }}</label
+              cognome : {{ backUp.cognome }}</label
             >
           </div>
 
@@ -236,7 +236,7 @@
               for="email"
               class="block text-gray-700 text-xl pl-3 font-semibold mb-2"
             >
-              email : {{ backup.email }}</label
+              email : {{ backUp.email }}</label
             >
           </div>
 
@@ -245,7 +245,7 @@
               for="phone"
               class="block text-gray-700 text-xl pl-3 font-semibold mb-2"
             >
-              phone : {{ backup.phone }}</label
+              phone : {{ backUp.phone }}</label
             >
           </div>
         </form>
@@ -280,8 +280,8 @@ export default defineComponent({
   data: () => {
     return {
       team: {} as Team,
-      backup: {} as BackUpPerson,
-      experience: {} as experience,
+      backup: [] as BackUpPerson[],
+      experience: [] as experience[],
       hasBackUp: true,
       hasExperience: true,
     };
@@ -291,14 +291,12 @@ export default defineComponent({
     const currentTeamId = route.params.id;
     let teams = await getTeamById(currentTeamId);
     console.log(teams);
-    let backups = await getBackupById(currentTeamId);
-    console.log(backups);
+    let backup = await getBackupById(currentTeamId);
+    console.log(backup);
     let experiences = await getExperienceById(currentTeamId);
     console.log(experiences);
 
     this.team = teams;
-    this.backup = backups;
-    this.experience = experiences;
     //const test = "test";
     //const testA = ["testA", "testB", "testC"];
     //return { currentTeamId, team, test, testA, hasBackUp: true };

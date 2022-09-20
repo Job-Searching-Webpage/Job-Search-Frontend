@@ -7,7 +7,7 @@ export default async function getJobById(
   const baseUrl = process.env.VUE_APP_API_URL;
   try {
     const response = await axios.get<Job>(
-      `${baseUrl}/jobs/${jobid}` //change url later to getJobById
+      `${baseUrl}/getJob_by_Id/${jobid}/` //change url later to getJobById
     );
     return response.data;
   } catch (error) {
