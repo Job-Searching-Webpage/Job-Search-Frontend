@@ -34,7 +34,7 @@ export interface Team {
   car: string;
   qualification: string;
   esperienze: experience[];
-  backUpPerson: BackUpPerson;
+  backUpPerson: BackUpPerson[];
 }
 
 export interface experience {
