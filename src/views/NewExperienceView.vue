@@ -284,7 +284,7 @@ export default defineComponent({
       console.log(teamId);
       try {
         return_code = (
-          await axios.post(`${baseUrl}/EsperienzeSave/`, {
+          await axios.post(`${baseUrl}/saveBackUpPerson/`, {
             CF_BC_person: this.CodiceFiscale,
             workerId: teamId,
             name: this.name,
