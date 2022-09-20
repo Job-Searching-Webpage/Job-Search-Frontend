@@ -45,11 +45,6 @@ export const createTeam = (config: Partial<Team> = {}): Team => ({
   car: "True",
   qualification: "All Knowing",
   esperienze: [],
-  backUpPerson: {
-    name: "God",
-    cognome: "Father",
-    email: "jesus@god.com",
-    phone: "333333333",
-  },
+  backUpPerson: [],
   ...config,
 });

@@ -10,7 +10,7 @@
             for="CF"
             class="block text-gray-700 text-xl pl-3 font-semibold mb-3"
           >
-            CodiceFiscale : {{ test }}</label
+            CodiceFiscale : {{ team.CF }}</label
           >
         </div>
 
@@ -119,8 +119,8 @@
           </h3>
           <div>
             <ul class="pl-8 list-disc">
-              <li v-for="langages in testA" :key="langages">
-                {{ langages }}
+              <li v-for="languages in team.languages" :key="languages">
+                {{ languages }}
               </li>
             </ul>
           </div>
@@ -147,7 +147,11 @@
     </div>
     <div class="w-full m-10 max-w-lg">
       <div class="w-full m-10 max-w-lg">
-        <form class="bg-white shadow-2xl rounded px-5 pt-3 pb-4 mb-4">
+        <form
+          v-for="exp in team.esperienze"
+          :key="exp.azienda"
+          class="bg-white shadow-2xl rounded px-5 pt-3 pb-4 mb-4"
+        >
           <h2 class="block text-gray-700 text-xl pl-3 font-bold mb-2">
             Old Experiences
           </h2>
@@ -157,7 +161,7 @@
               for="azienda"
               class="block text-gray-700 text-xl pl-3 font-semibold mb-2"
             >
-              Tipo di azienda : {{ team.esperienze }}</label
+              Tipo di azienda : {{ exp.azienda }}</label
             >
           </div>
 
@@ -166,7 +170,7 @@
               for="periodo"
               class="block text-gray-700 text-xl pl-3 font-semibold mb-2"
             >
-              Periodo : {{ team.esperienze }}</label
+              Periodo : {{ exp.periodo }}</label
             >
           </div>
 
@@ -175,7 +179,7 @@
               for="duties"
               class="block text-gray-700 text-xl pl-3 font-semibold mb-2"
             >
-              Duties : {{ team.esperienze }}</label
+              Duties : {{ exp.duties }}</label
             >
           </div>
 
@@ -184,7 +188,7 @@
               for="luogo"
               class="block text-gray-700 text-xl pl-3 font-semibold mb-2"
             >
-              Luogo : {{ team.esperienze }}</label
+              Luogo : {{ exp.luogo }}</label
             >
           </div>
 
@@ -193,14 +197,18 @@
               for="payment"
               class="block text-gray-700 text-xl pl-3 font-semibold mb-2"
             >
-              Payment : {{ team.esperienze }}</label
+              Payment : {{ exp.payment }}</label
             >
           </div>
         </form>
       </div>
 
       <div v-show="hasBackUp" class="w-full max-w-lg m-10">
-        <form class="bg-white shadow-2xl rounded px-5 pt-3 pb-4">
+        <form
+          v-for="backup in team.backUpPerson"
+          :key="backup.name"
+          class="bg-white shadow-2xl rounded px-5 pt-3 pb-4"
+        >
           <h2 class="block text-gray-700 text-xl pl-3 font-bold mb-2">
             Back up Person
           </h2>
@@ -210,7 +218,7 @@
               for="name"
               class="block text-gray-700 text-xl pl-3 font-semibold mb-2"
             >
-              name : {{ team.backUpPerson }}</label
+              name : {{ backup.name }}</label
             >
           </div>
 
@@ -219,7 +227,7 @@
               for="cognome"
               class="block text-gray-700 text-xl pl-3 font-semibold mb-2"
             >
-              cognome : {{ team.backUpPerson }}</label
+              cognome : {{ backup.cognome }}</label
             >
           </div>
 
@@ -228,7 +236,7 @@
               for="email"
               class="block text-gray-700 text-xl pl-3 font-semibold mb-2"
             >
-              email : {{ team.backUpPerson }}</label
+              email : {{ backup.email }}</label
             >
           </div>
 
@@ -237,7 +245,7 @@
               for="phone"
               class="block text-gray-700 text-xl pl-3 font-semibold mb-2"
             >
-              phone : {{ team.backUpPerson }}</label
+              phone : {{ backup.phone }}</label
             >
           </div>
         </form>
@@ -255,7 +263,7 @@
 </template>
 <script lang="ts">
 import getTeamById from "@/api/getTeamById";
-//import { Team } from "@/api/types";
+import { Team } from "@/api/types";
 import { defineComponent } from "vue";
 
 import { useRoute } from "vue-router";
@@ -267,13 +275,22 @@ export default defineComponent({
   //required: true,
   //},
   //},
-  setup() {
+  data: () => {
+    return {
+      team: {} as Team,
+      testA: [],
+      hasBackUp: true,
+    };
+  },
+  async created() {
     const route = useRoute();
     const currentTeamId = route.params.id;
-    const team = getTeamById(currentTeamId);
-    const test = "test";
-    const testA = ["testA", "testB", "testC"];
-    return { currentTeamId, team, test, testA, hasBackUp: true };
+    let test = await getTeamById(currentTeamId);
+    console.log(test);
+    this.team = test;
+    //const test = "test";
+    //const testA = ["testA", "testB", "testC"];
+    //return { currentTeamId, team, test, testA, hasBackUp: true };
   },
 });
 </script>
