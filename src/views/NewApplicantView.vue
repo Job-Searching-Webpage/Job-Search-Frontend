@@ -304,7 +304,7 @@ export default defineComponent({
       const baseUrl = process.env.VUE_APP_API_URL;
       try {
         return_code = (
-          await axios.post(`${baseUrl}/team/applicant/new/submit`, {
+          await axios.post(`${baseUrl}/team/applicant/new/submit/`, {
             CF: this.CF,
             id: this.id,
             name: this.name,
