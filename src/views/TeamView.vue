@@ -297,6 +297,8 @@ export default defineComponent({
     console.log(experiences);
 
     this.team = teams;
+    //this.backup = backup;
+    //this.experience = experiences;
     //const test = "test";
     //const testA = ["testA", "testB", "testC"];
     //return { currentTeamId, team, test, testA, hasBackUp: true };

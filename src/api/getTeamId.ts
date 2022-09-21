@@ -13,6 +13,7 @@ export default async function getTeamId(
     return response.data;
   } catch (error) {
     console.error(error);
+    alert("There is no worker with this codice fiscale");
     throw new Error(`API ${error}`);
   }
 }
