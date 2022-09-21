@@ -255,7 +255,6 @@ export default defineComponent({
       try {
         return_code = (
           await axios.post(`${baseUrl}/EsperienzeSave/`, {
-            //CodiceFiscale: this.CodiceFiscaleExp,
             workerId: teamId,
             azienda: this.Azienda,
             periodo: this.Periodo,
@@ -268,7 +267,6 @@ export default defineComponent({
         /*eslint no-empty: "error"*/
       }
 
-      // TODO Remove when login is implemented on the server's side
       if (return_code && return_code == 200) {
         alert("Experience added successfully");
       } else {
@@ -294,10 +292,6 @@ export default defineComponent({
       } catch (_) {
         /*eslint no-empty: "error"*/
       }
-
-      // TODO Remove when login is implemented on the server's side
-      return_code = 200;
-
       if (return_code && return_code == 200) {
         alert("Backup Person added successfully");
       } else {

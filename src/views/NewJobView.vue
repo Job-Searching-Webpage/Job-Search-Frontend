@@ -5,18 +5,6 @@
         <h2 class="block text-gray-700 text-xl font-bold mb-2">
           New Job Offer
         </h2>
-        <div class="id-input mb-4">
-          <label for="id" class="block text-gray-700 text-sm font-bold mb-2">
-            id</label
-          >
-          <input
-            id="id"
-            v-model="id"
-            class="shadow appearance-none borderrounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
-            type="text"
-            placeholder="123"
-          />
-        </div>
 
         <div class="title-input mb-4">
           <label for="title" class="block text-gray-700 text-sm font-bold mb-2">
@@ -185,7 +173,6 @@ import axios from "axios";
 
 export default defineComponent({
   setup() {
-    const id = ref("");
     const title = ref("");
     const organization = ref("");
     const degree = ref("");
@@ -197,7 +184,6 @@ export default defineComponent({
     const dateAdded = ref("");
 
     return {
-      id,
       title,
       organization,
       degree,
@@ -217,7 +203,6 @@ export default defineComponent({
       try {
         return_code = (
           await axios.post(`${baseUrl}/JobSave/`, {
-            id: this.id,
             title: this.title,
             organization: this.organization,
             degree: this.degree,
@@ -232,9 +217,6 @@ export default defineComponent({
       } catch (_) {
         /*eslint no-empty: "error"*/
       }
-
-      // TODO Remove when login is implemented on the server's side
-
       if (return_code && return_code == 200) {
         alert("Job added successfully");
       } else {

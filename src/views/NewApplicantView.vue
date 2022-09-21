@@ -326,8 +326,6 @@ export default defineComponent({
       } catch (_) {
         /*eslint no-empty: "error"*/
       }
-
-      // TODO Remove when login is implemented on the server's side
       if (return_code && return_code == 200) {
         alert("New worker added successfully");
       } else {
