@@ -18,19 +18,6 @@
           />
         </div>
 
-        <div class="id-input mb-4">
-          <label for="id" class="block text-gray-700 text-sm font-bold mb-2">
-            id</label
-          >
-          <input
-            id="id"
-            v-model="id"
-            class="shadow appearance-none borderrounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
-            type="text"
-            placeholder="1"
-          />
-        </div>
-
         <div class="name-input mb-4">
           <label for="name" class="block text-gray-700 text-sm font-bold mb-2">
             Name</label
@@ -263,7 +250,6 @@ import axios from "axios";
 export default defineComponent({
   setup() {
     const CF = ref("");
-    const id = ref("");
     const name = ref("");
     const cognome = ref("");
     const dataNascita = ref("");
@@ -281,7 +267,6 @@ export default defineComponent({
 
     return {
       CF,
-      id,
       name,
       cognome,
       dataNascita,
@@ -306,7 +291,6 @@ export default defineComponent({
         return_code = (
           await axios.post(`${baseUrl}/team/applicant/new/submit/`, {
             CF: this.CF,
-            id: this.id,
             name: this.name,
             cognome: this.cognome,
             dataNascita: this.dataNascita,

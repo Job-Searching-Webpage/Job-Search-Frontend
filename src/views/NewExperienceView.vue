@@ -10,7 +10,7 @@
             for="codicefiscale"
             class="block text-gray-700 text-sm font-bold mb-2"
           >
-            Codicefiscale or the worker</label
+            Codicefiscale of the worker</label
           >
           <input
             id="codicefiscale"
