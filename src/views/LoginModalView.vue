@@ -21,7 +21,7 @@
               >
               <input
                 id="username"
-                v-model="username"
+                v-model="state.username"
                 class="bg-brand-gray-1 text-black rounded p-4 w-full"
                 placeholder="username"
                 type="text"
@@ -35,13 +35,14 @@
               <div class="flex">
                 <input
                   id="password"
-                  v-model="password"
+                  v-model="state.password"
                   class="bg-brand-gray-1 text-black rounded p-4 w-full mr-2"
                   placeholder="********"
                   type="password"
                   name="password"
                 />
               </div>
+
               <div class="flex content-evenly justify-center">
                 <button
                   type="button"
@@ -60,8 +61,12 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, ref } from "vue";
+import { defineComponent, ref, reactive, computed } from "vue";
 import { mapMutations /*mapState*/ } from "vuex";
+
+import { required, minLength } from "@vuelidate/validators";
+import { useVuelidate } from "@vuelidate/core";
+
 import { LOGIN_USER, CLOSE_MODAL } from "@/store/constants";
 import { sha1 } from "hash-wasm";
 import axios from "axios";
@@ -72,14 +77,29 @@ export default defineComponent({
     const username = ref("");
     const password = ref("");
 
+    const state = reactive({
+      username: "",
+      password: "",
+    });
+
+    const rules = computed(() => {
+      return {
+        username: { required, minLength: minLength(4) },
+        password: { required, minLength: minLength(8) },
+      };
+    });
+
+    const v$ = useVuelidate(rules, state);
+
     return {
       username,
       password,
+      v$,
+      state,
       ...mapMutations({
         loginUser: LOGIN_USER,
         closeModal: CLOSE_MODAL,
       }),
-      //...mapState([isL]) to add isLoggedIn to the component and maybe email psw on state?
     };
   },
   methods: {
@@ -91,8 +111,8 @@ export default defineComponent({
         return_code = (
           await axios.get(`${baseUrl}/signin`, {
             params: {
-              username: this.username,
-              psw: await sha1(this.password),
+              username: this.state.username,
+              psw: await sha1(this.state.password),
             },
           })
         ).status;
@@ -100,14 +120,23 @@ export default defineComponent({
         /*eslint no-empty: "error"*/
       }
 
-      // TODO Remove when login is implemented on the server's side
-
-      if (return_code && return_code == 200) {
+      this.v$.$validate();
+      if (this.v$.username.$error) {
+        alert(
+          " Username " +
+            this.v$.username.$errors[0].$message.toString().slice(10)
+        );
+      } else if (this.v$.password.$error) {
+        alert(
+          "Password " +
+            this.v$.password.$errors[0].$message.toString().slice(10)
+        );
+      } else if (return_code && return_code == 200) {
         this.loginUser();
       } else {
         alert("Wrong username or password");
       }
-      this.loginUser();
+      //this.loginUser();
     },
     closeModal() {
       this.closeModal();
