@@ -3,11 +3,11 @@ import { BackUpPerson } from "@/api/types";
 
 export default async function getBackupById(
   backupId: string | string[]
-): Promise<BackUpPerson> {
+): Promise<BackUpPerson[]> {
   const baseUrl = process.env.VUE_APP_API_URL;
 
   try {
-    const response = await axios.get<BackUpPerson>(
+    const response = await axios.get<BackUpPerson[]>(
       `${baseUrl}/getBackUpById/${backupId}/`
     );
     return response.data;
