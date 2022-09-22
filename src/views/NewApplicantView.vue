@@ -260,7 +260,6 @@ import {
   maxLength,
   email,
   alpha,
-  alphaNum,
   helpers,
 } from "@vuelidate/validators";
 import { useVuelidate } from "@vuelidate/core";
@@ -285,15 +284,6 @@ export default defineComponent({
       qualification: "",
     });
 
-    const phone = helpers.regex(
-      "alphaNum",
-      /^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$/
-    );
-    const date = helpers.regex(
-      "alphaNum",
-      /^(0?[1-9]|[12][0-9]|3[01])[/-](0?[1-9]|1[012])[/-]\d{4}$/
-    );
-
     const rules = computed(() => {
       return {
         CF: {
@@ -310,8 +300,6 @@ export default defineComponent({
         },
         dataNascita: {
           required,
-          date,
-          minLength: minLength(10),
         },
         birthplace: {
           required,
@@ -323,7 +311,6 @@ export default defineComponent({
         },
         address: {
           required,
-          alphaNum,
           minLength: minLength(4),
         },
         jobType: {
@@ -332,18 +319,14 @@ export default defineComponent({
         },
         period: {
           required,
-          alphaNum,
           minLength: minLength(4),
         },
         phone: {
           required,
-          phone,
-          minLength: minLength(4),
         },
         email: {
           required,
           email,
-          minLength: minLength(4),
         },
         languages: {
           required,

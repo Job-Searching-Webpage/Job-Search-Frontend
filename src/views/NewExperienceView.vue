@@ -223,8 +223,6 @@ import {
   maxLength,
   email,
   alpha,
-  alphaNum,
-  helpers,
 } from "@vuelidate/validators";
 import { useVuelidate } from "@vuelidate/core";
 
@@ -245,16 +243,10 @@ export default defineComponent({
       phone: "",
     });
 
-    const phone = helpers.regex(
-      "alphaNum",
-      /^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$/
-    );
-
     const rules = computed(() => {
       return {
         CodiceFiscaleExp: {
           required,
-          alphaNum,
           minLength: minLength(16),
           maxLength: maxLength(16),
         },
@@ -264,7 +256,6 @@ export default defineComponent({
         },
         Periodo: {
           required,
-          alphaNum,
         },
         Role: {
           required,
@@ -276,11 +267,9 @@ export default defineComponent({
         },
         Payment: {
           required,
-          alphaNum,
         },
         CodiceFiscale: {
           required,
-          alphaNum,
           minLength: minLength(16),
           maxLength: maxLength(16),
         },

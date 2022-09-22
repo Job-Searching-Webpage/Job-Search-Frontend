@@ -11,7 +11,7 @@
             Title</label
           >
           <input
-            v-model="title"
+            v-model="state.title"
             title="title"
             class="shadow appearance-none borderrounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
             type="text"
@@ -28,7 +28,7 @@
           >
           <input
             id="organization"
-            v-model="organization"
+            v-model="state.organization"
             class="shadow appearance-none borderrounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
             type="text"
             placeholder="UNIVR"
@@ -44,7 +44,7 @@
           >
           <input
             id="degree"
-            v-model="degree"
+            v-model="state.degree"
             class="shadow appearance-none borderrounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
             type="text"
             placeholder="Master"
@@ -60,7 +60,7 @@
           >
           <input
             id="jobType"
-            v-model="jobType"
+            v-model="state.jobType"
             class="shadow appearance-none borderrounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
             type="text"
             placeholder="Part-time"
@@ -76,7 +76,7 @@
           >
           <input
             id="location"
-            v-model="location"
+            v-model="state.location"
             class="shadow appearance-none borderrounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
             type="text"
             placeholder="Earth"
@@ -92,7 +92,7 @@
           >
           <input
             id="minimumQualifications"
-            v-model="minimumQualifications"
+            v-model="state.minimumQualifications"
             class="shadow appearance-none borderrounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
             type="text"
             placeholder="Divide different qualifications with #"
@@ -108,7 +108,7 @@
           >
           <input
             id="preferredQualification"
-            v-model="preferredQualification"
+            v-model="state.preferredQualification"
             class="shadow appearance-none borderrounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
             type="text"
             placeholder="Divide different qualifications with #"
@@ -124,7 +124,7 @@
           >
           <input
             id="description"
-            v-model="description"
+            v-model="state.description"
             class="shadow appearance-none borderrounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
             type="text"
             placeholder="Divide different qualifications with #"
@@ -140,7 +140,7 @@
           >
           <input
             id="dateAdded"
-            v-model="dateAdded"
+            v-model="state.dateAdded"
             class="shadow appearance-none borderrounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
             type="text"
             placeholder="00-00-0000"
@@ -188,10 +188,7 @@ export default defineComponent({
       description: "",
       dateAdded: "",
     });
-    const date = helpers.regex(
-      "alphaNum",
-      /^(0?[1-9]|[12][0-9]|3[01])[/-](0?[1-9]|1[012])[/-]\d{4}$/
-    );
+
     const rules = computed(() => {
       return {
         title: {
@@ -232,7 +229,6 @@ export default defineComponent({
         },
         dateAdded: {
           required,
-          date,
         },
       };
     });
