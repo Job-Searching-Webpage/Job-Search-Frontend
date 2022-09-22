@@ -61,8 +61,8 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, ref, reactive, computed } from "vue";
-import { mapMutations /*mapState*/ } from "vuex";
+import { defineComponent, reactive, computed } from "vue";
+import { mapMutations } from "vuex";
 
 import { required, minLength } from "@vuelidate/validators";
 import { useVuelidate } from "@vuelidate/core";
@@ -73,10 +73,6 @@ import axios from "axios";
 export default defineComponent({
   name: "LoginModalView",
   setup() {
-    //const showModal = ref(false);
-    const username = ref("");
-    const password = ref("");
-
     const state = reactive({
       username: "",
       password: "",
@@ -92,8 +88,6 @@ export default defineComponent({
     const v$ = useVuelidate(rules, state);
 
     return {
-      username,
-      password,
       v$,
       state,
       ...mapMutations({
@@ -107,19 +101,6 @@ export default defineComponent({
       let return_code;
       const baseUrl = process.env.VUE_APP_API_URL;
 
-      try {
-        return_code = (
-          await axios.get(`${baseUrl}/signin`, {
-            params: {
-              username: this.state.username,
-              psw: await sha1(this.state.password),
-            },
-          })
-        ).status;
-      } catch (_) {
-        /*eslint no-empty: "error"*/
-      }
-
       this.v$.$validate();
       if (this.v$.username.$error) {
         alert(
@@ -131,12 +112,26 @@ export default defineComponent({
           "Password " +
             this.v$.password.$errors[0].$message.toString().slice(10)
         );
-      } else if (return_code && return_code == 200) {
-        this.loginUser();
       } else {
-        alert("Wrong username or password");
+        try {
+          return_code = (
+            await axios.get(`${baseUrl}/signin`, {
+              params: {
+                username: this.state.username,
+                psw: await sha1(this.state.password),
+              },
+            })
+          ).status;
+        } catch (_) {
+          /*eslint no-empty: "error"*/
+        }
+
+        if (return_code && return_code == 200) {
+          this.loginUser();
+        } else {
+          alert("Wrong username or password");
+        }
       }
-      //this.loginUser();
     },
     closeModal() {
       this.closeModal();

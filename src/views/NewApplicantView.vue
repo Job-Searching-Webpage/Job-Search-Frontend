@@ -1,5 +1,5 @@
 <template>
-  <div class="flex justify-center items-center mt-0">
+  <div v-if="isLoggedIn" class="flex justify-center items-center mt-0">
     <div class="w-full max-w-xl">
       <form class="bg-white shadow-md rounded px-12 pt-6 pb-12 mb-4">
         <h2 class="block text-gray-700 text-xl font-bold mb-2">
@@ -11,7 +11,7 @@
           >
           <input
             id="CF"
-            v-model="CF"
+            v-model="state.CF"
             class="shadow appearance-none borderrounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
             type="text"
             placeholder="LLSLJM2...."
@@ -24,7 +24,7 @@
           >
           <input
             id="name"
-            v-model="name"
+            v-model="state.name"
             class="shadow appearance-none borderrounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
             type="text"
             placeholder="Elon"
@@ -40,7 +40,7 @@
           >
           <input
             id="cognome"
-            v-model="cognome"
+            v-model="state.cognome"
             class="shadow appearance-none borderrounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
             type="text"
             placeholder="Obama"
@@ -56,7 +56,7 @@
           >
           <input
             id="dataNascita"
-            v-model="dataNascita"
+            v-model="state.dataNascita"
             class="shadow appearance-none borderrounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
             type="text"
             placeholder="00-00-0000"
@@ -72,7 +72,7 @@
           >
           <input
             id="birthPlace"
-            v-model="birthplace"
+            v-model="state.birthplace"
             class="shadow appearance-none borderrounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
             type="text"
             placeholder="Earth"
@@ -88,7 +88,7 @@
           >
           <input
             id="nazionalita"
-            v-model="nazionalita"
+            v-model="state.nazionalita"
             class="shadow appearance-none borderrounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
             type="text"
             placeholder="Human"
@@ -104,7 +104,7 @@
           >
           <input
             id="address"
-            v-model="address"
+            v-model="state.address"
             class="shadow appearance-none borderrounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
             type="text"
             placeholder="Earth"
@@ -120,7 +120,7 @@
           >
           <input
             id="jobType"
-            v-model="jobType"
+            v-model="state.jobType"
             class="shadow appearance-none borderrounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
             type="text"
             placeholder="Engineer"
@@ -136,7 +136,7 @@
           >
           <input
             id="period"
-            v-model="period"
+            v-model="state.period"
             class="shadow appearance-none borderrounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
             type="text"
             placeholder="1 year"
@@ -149,7 +149,7 @@
           >
           <input
             id="phone"
-            v-model="phone"
+            v-model="state.phone"
             class="shadow appearance-none borderrounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
             type="text"
             placeholder="+000 000 0000"
@@ -162,7 +162,7 @@
           >
           <input
             id="email"
-            v-model="email"
+            v-model="state.email"
             class="shadow appearance-none borderrounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
             type="text"
             placeholder="you@me.com"
@@ -178,7 +178,7 @@
           >
           <input
             id="Languages"
-            v-model="languages"
+            v-model="state.languages"
             class="shadow appearance-none borderrounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
             type="text"
             placeholder="English, Italian, Spanish"
@@ -194,7 +194,7 @@
           >
           <input
             id="patenta"
-            v-model="patenta"
+            v-model="state.patenta"
             class="shadow appearance-none borderrounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
             type="text"
             placeholder="A or B or C or D..."
@@ -204,7 +204,12 @@
           <label for="car" class="block text-gray-700 text-sm font-bold mb-2">
             Owns a car</label
           >
-          <input :id="car" type="checkbox" class="mr-3" @change="ownsCar()" />
+          <input
+            :id="state.car"
+            type="checkbox"
+            class="mr-3"
+            @change="ownsCar()"
+          />
         </div>
 
         <div class="qualification-input mb-4">
@@ -216,7 +221,7 @@
           >
           <input
             id="qualification"
-            v-model="qualification"
+            v-model="state.qualification"
             class="shadow appearance-none borderrounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
             type="text"
             placeholder="Analytical Chemist"
@@ -241,88 +246,234 @@
       </form>
     </div>
   </div>
+  <div v-else>You Have to login to see this page</div>
 </template>
 
 <script lang="ts">
-import { defineComponent, ref } from "vue";
+import { defineComponent, reactive, computed } from "vue";
+import { mapState } from "vuex";
+
 import axios from "axios";
+import {
+  required,
+  minLength,
+  maxLength,
+  email,
+  alpha,
+  alphaNum,
+  helpers,
+} from "@vuelidate/validators";
+import { useVuelidate } from "@vuelidate/core";
 
 export default defineComponent({
   setup() {
-    const CF = ref("");
-    const name = ref("");
-    const cognome = ref("");
-    const dataNascita = ref("");
-    const birthplace = ref("");
-    const nazionalita = ref("");
-    const address = ref("");
-    const jobType = ref("");
-    const period = ref("");
-    const phone = ref("");
-    const email = ref("");
-    const languages = ref("");
-    const patenta = ref("");
-    const car = ref("");
-    const qualification = ref("");
+    const state = reactive({
+      CF: "",
+      name: "",
+      cognome: "",
+      dataNascita: "",
+      birthplace: "",
+      nazionalita: "",
+      address: "",
+      jobType: "",
+      period: "",
+      phone: "",
+      email: "",
+      languages: "",
+      patenta: "",
+      car: "",
+      qualification: "",
+    });
+
+    const phone = helpers.regex(
+      "alphaNum",
+      /^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$/
+    );
+    const date = helpers.regex(
+      "alphaNum",
+      /^(0?[1-9]|[12][0-9]|3[01])[/-](0?[1-9]|1[012])[/-]\d{4}$/
+    );
+
+    const rules = computed(() => {
+      return {
+        CF: {
+          required,
+          minLength: minLength(16),
+        },
+        name: {
+          required,
+          minLength: minLength(4),
+        },
+        cognome: {
+          required,
+          minLength: minLength(4),
+        },
+        dataNascita: {
+          required,
+          date,
+          minLength: minLength(10),
+        },
+        birthplace: {
+          required,
+          minLength: minLength(4),
+        },
+        nazionalita: {
+          required,
+          minLength: minLength(4),
+        },
+        address: {
+          required,
+          alphaNum,
+          minLength: minLength(4),
+        },
+        jobType: {
+          required,
+          minLength: minLength(4),
+        },
+        period: {
+          required,
+          alphaNum,
+          minLength: minLength(4),
+        },
+        phone: {
+          required,
+          phone,
+          minLength: minLength(4),
+        },
+        email: {
+          required,
+          email,
+          minLength: minLength(4),
+        },
+        languages: {
+          required,
+          minLength: minLength(4),
+        },
+        patenta: {
+          required,
+          alpha,
+          minLength: maxLength(1),
+        },
+        qualification: {
+          required,
+          minLength: minLength(4),
+        },
+      };
+    });
+
+    const v$ = useVuelidate(rules, state);
 
     return {
-      CF,
-      name,
-      cognome,
-      dataNascita,
-      birthplace,
-      nazionalita,
-      address,
-      jobType,
-      period,
-      phone,
-      email,
-      languages,
-      patenta,
-      car,
-      qualification,
+      state,
+      v$,
     };
+  },
+  computed: {
+    ...mapState(["isLoggedIn"]),
   },
   methods: {
     async submit() {
       let return_code;
       const baseUrl = process.env.VUE_APP_API_URL;
-      try {
-        return_code = (
-          await axios.post(`${baseUrl}/team/applicant/new/submit/`, {
-            CF: this.CF,
-            name: this.name,
-            cognome: this.cognome,
-            dataNascita: this.dataNascita,
-            birthplace: this.birthplace,
-            nazionalita: this.nazionalita,
-            address: this.address,
-            jobType: this.jobType,
-            period: this.period,
-            phone: this.phone,
-            email: this.email,
-            languages: this.languages,
-            patenta: this.patenta,
-            car: this.car,
-            qualification: this.qualification,
-          })
-        ).status;
-      } catch (_) {
-        /*eslint no-empty: "error"*/
-      }
-      if (return_code && return_code == 200) {
-        alert("New worker added successfully");
+
+      this.v$.$validate();
+      if (this.v$.CF.$error) {
+        alert(
+          "CodiceFiscale " + this.v$.CF.$errors[0].$message.toString().slice(10)
+        );
+      } else if (this.v$.name.$error) {
+        alert("Name " + this.v$.name.$errors[0].$message.toString().slice(10));
+      } else if (this.v$.cognome.$error) {
+        alert(
+          "Cognome " + this.v$.cognome.$errors[0].$message.toString().slice(10)
+        );
+      } else if (this.v$.dataNascita.$error) {
+        alert(
+          "DataNascita " +
+            this.v$.dataNascita.$errors[0].$message.toString().slice(10)
+        );
+      } else if (this.v$.birthplace.$error) {
+        alert(
+          "Birthplace " +
+            this.v$.birthplace.$errors[0].$message.toString().slice(10)
+        );
+      } else if (this.v$.nazionalita.$error) {
+        alert(
+          "Nazionalita " +
+            this.v$.nazionalita.$errors[0].$message.toString().slice(10)
+        );
+      } else if (this.v$.address.$error) {
+        alert(
+          "Address " + this.v$.address.$errors[0].$message.toString().slice(10)
+        );
+      } else if (this.v$.jobType.$error) {
+        alert(
+          "JobType " + this.v$.jobType.$errors[0].$message.toString().slice(10)
+        );
+      } else if (this.v$.period.$error) {
+        alert(
+          "Period " + this.v$.period.$errors[0].$message.toString().slice(10)
+        );
+      } else if (this.v$.phone.$error) {
+        alert(
+          "Phone " + this.v$.phone.$errors[0].$message.toString().slice(10)
+        );
+      } else if (this.v$.email.$error) {
+        alert(
+          "Email " + this.v$.email.$errors[0].$message.toString().slice(10)
+        );
+      } else if (this.v$.languages.$error) {
+        alert(
+          "Languages " +
+            this.v$.languages.$errors[0].$message.toString().slice(10)
+        );
+      } else if (this.v$.patenta.$error) {
+        alert(
+          "Patenta " + this.v$.patenta.$errors[0].$message.toString().slice(10)
+        );
+      } else if (this.v$.qualification.$error) {
+        alert(
+          "Qualification " +
+            this.v$.qualification.$errors[0].$message.toString().slice(10)
+        );
       } else {
-        alert("Error on adding a new Worker");
+        try {
+          return_code = (
+            await axios.post(`${baseUrl}/team/applicant/new/submit/`, {
+              CF: this.state.CF,
+              name: this.state.name,
+              cognome: this.state.cognome,
+              dataNascita: this.state.dataNascita,
+              birthplace: this.state.birthplace,
+              nazionalita: this.state.nazionalita,
+              address: this.state.address,
+              jobType: this.state.jobType,
+              period: this.state.period,
+              phone: this.state.phone,
+              email: this.state.email,
+              languages: this.state.languages,
+              patenta: this.state.patenta,
+              car: this.state.car,
+              qualification: this.state.qualification,
+            })
+          ).status;
+        } catch (_) {
+          /*eslint no-empty: "error"*/
+        }
+        if (return_code && return_code == 200) {
+          alert("New worker added successfully");
+        } else {
+          alert("Error on adding a new Worker");
+        }
       }
     },
     ownsCar() {
-      if (this.car == "true") {
-        this.car = "false";
-      } else if (this.car == "false") {
-        this.car = "true";
+      if (this.state.car == "true") {
+        this.state.car = "false";
+      } else if (this.state.car == "false") {
+        this.state.car = "true";
       } else {
-        this.car = "true";
+        this.state.car = "true";
       }
     },
   },

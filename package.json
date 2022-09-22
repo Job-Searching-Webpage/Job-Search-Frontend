@@ -28,12 +28,14 @@
     "vue": "^3.2.13",
     "vue-router": "^4.0.3",
     "vue3-simple-alert": "^1.0.4",
+    "vuelidate": "^0.7.7",
     "vuex": "^4.0.0"
   },
   "devDependencies": {
     "@babel/core": "^7.12.16",
     "@babel/eslint-parser": "^7.12.16",
     "@types/jest": "^27.0.1",
+    "@types/vuelidate": "^0.7.15",
     "@typescript-eslint/eslint-plugin": "^5.4.0",
     "@typescript-eslint/parser": "^5.4.0",
     "@vue/cli-plugin-babel": "~5.0.0",

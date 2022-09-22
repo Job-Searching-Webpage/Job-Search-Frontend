@@ -1,5 +1,5 @@
 <template>
-  <div class="flex justify-center items-center mt-0">
+  <div v-if="isLoggedIn" class="flex justify-center items-center mt-0">
     <div class="w-full max-w-md">
       <form class="bg-white shadow-md rounded px-10 pt-6 pb-10 mb-4">
         <h2 class="block text-gray-700 text-xl pl-3 font-bold mb-2">
@@ -14,7 +14,7 @@
           >
           <input
             id="codicefiscale"
-            v-model="CodiceFiscaleExp"
+            v-model="state.CodiceFiscaleExp"
             class="shadow appearance-none borderrounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
             type="text"
             placeholder="LLSLJM..."
@@ -29,7 +29,7 @@
           >
           <input
             id="azienda"
-            v-model="Azienda"
+            v-model="state.Azienda"
             class="shadow appearance-none borderrounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
             type="text"
             placeholder="UNIVR"
@@ -45,7 +45,7 @@
           >
           <input
             id="periodo"
-            v-model="Periodo"
+            v-model="state.Periodo"
             class="shadow appearance-none borderrounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
             type="text"
             placeholder="1 year"
@@ -61,7 +61,7 @@
           >
           <input
             id="duties"
-            v-model="Role"
+            v-model="state.Role"
             class="shadow appearance-none borderrounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
             type="text"
             placeholder="Analytical Chemist"
@@ -74,7 +74,7 @@
           >
           <input
             id="luogo"
-            v-model="Luogo"
+            v-model="state.Luogo"
             class="shadow appearance-none borderrounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
             type="text"
             placeholder="Verona"
@@ -90,7 +90,7 @@
           >
           <input
             id="payment"
-            v-model="Payment"
+            v-model="state.Payment"
             class="shadow appearance-none borderrounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
             type="text"
             placeholder="€500"
@@ -129,7 +129,7 @@
           >
           <input
             id="CodiceFiscale"
-            v-model="CodiceFiscale"
+            v-model="state.CodiceFiscale"
             class="shadow appearance-none borderrounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
             type="text"
             placeholder="CF of the person that is backing up"
@@ -142,7 +142,7 @@
           >
           <input
             id="name"
-            v-model="name"
+            v-model="state.name"
             class="shadow appearance-none borderrounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
             type="text"
             placeholder="Human"
@@ -158,7 +158,7 @@
           >
           <input
             id="cognome"
-            v-model="cognome"
+            v-model="state.cognome"
             class="shadow appearance-none borderrounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
             type="text"
             placeholder="Being"
@@ -171,9 +171,9 @@
           >
           <input
             id="email"
-            v-model="email"
+            v-model="state.email"
             class="shadow appearance-none borderrounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
-            type="text"
+            type="email"
             placeholder="homo@sapiens.com"
           />
         </div>
@@ -184,9 +184,9 @@
           >
           <input
             id="phone"
-            v-model="phone"
+            v-model="state.phone"
             class="shadow appearance-none borderrounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
-            type="text"
+            type="phone"
             placeholder="000 0000000"
           />
         </div>
@@ -209,93 +209,210 @@
       </form>
     </div>
   </div>
+  <div v-else>You Have to login to see this page</div>
 </template>
 
 <script lang="ts">
 import getTeamId from "@/api/getTeamId";
-import { defineComponent, ref } from "vue";
+import { defineComponent, reactive, computed } from "vue";
+import { mapState } from "vuex";
 import axios from "axios";
+import {
+  required,
+  minLength,
+  maxLength,
+  email,
+  alpha,
+  alphaNum,
+  helpers,
+} from "@vuelidate/validators";
+import { useVuelidate } from "@vuelidate/core";
 
 export default defineComponent({
   setup() {
-    const CodiceFiscaleExp = ref("");
-    const Azienda = ref("");
-    const Periodo = ref("");
-    const Role = ref("");
-    const Luogo = ref("");
-    const Payment = ref("");
+    const state = reactive({
+      CodiceFiscaleExp: "",
+      Azienda: "",
+      Periodo: "",
+      Role: "",
+      Luogo: "",
+      Payment: "",
 
-    const CodiceFiscale = ref("");
-    const name = ref("");
-    const cognome = ref("");
-    const email = ref("");
-    const phone = ref("");
+      CodiceFiscale: "",
+      name: "",
+      cognome: "",
+      email: "",
+      phone: "",
+    });
+
+    const phone = helpers.regex(
+      "alphaNum",
+      /^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$/
+    );
+
+    const rules = computed(() => {
+      return {
+        CodiceFiscaleExp: {
+          required,
+          alphaNum,
+          minLength: minLength(16),
+          maxLength: maxLength(16),
+        },
+        Azienda: {
+          required,
+          alpha,
+        },
+        Periodo: {
+          required,
+          alphaNum,
+        },
+        Role: {
+          required,
+          alpha,
+        },
+        Luogo: {
+          required,
+          alpha,
+        },
+        Payment: {
+          required,
+          alphaNum,
+        },
+        CodiceFiscale: {
+          required,
+          alphaNum,
+          minLength: minLength(16),
+          maxLength: maxLength(16),
+        },
+        name: {
+          required,
+          alpha,
+        },
+        cognome: {
+          required,
+          alpha,
+        },
+        email: {
+          required,
+          email,
+        },
+        phone: {
+          required,
+          phone,
+        },
+      };
+    });
+    const v$ = useVuelidate(rules, state);
 
     return {
-      CodiceFiscaleExp,
-      Azienda,
-      Periodo,
-      Role,
-      Luogo,
-      Payment,
-
-      CodiceFiscale,
-      name,
-      cognome,
-      email,
-      phone,
+      state,
+      v$,
     };
+  },
+  computed: {
+    ...mapState(["isLoggedIn"]),
   },
   methods: {
     async submitExperience() {
       let return_code;
       const baseUrl = process.env.VUE_APP_API_URL;
-      let teamId = await getTeamId(this.CodiceFiscaleExp);
+      let teamId = await getTeamId(this.state.CodiceFiscaleExp);
       console.log(teamId);
-      try {
-        return_code = (
-          await axios.post(`${baseUrl}/EsperienzeSave/`, {
-            workerId: teamId,
-            azienda: this.Azienda,
-            periodo: this.Periodo,
-            duties: this.Role,
-            luogo: this.Luogo,
-            payment: this.Payment,
-          })
-        ).status;
-      } catch (_) {
-        /*eslint no-empty: "error"*/
-      }
-
-      if (return_code && return_code == 200) {
-        alert("Experience added successfully");
+      this.v$.$validate();
+      if (this.v$.CodiceFiscaleExp.$error) {
+        alert(
+          "Codice Fiscale di Esperienza " +
+            this.v$.CodiceFiscaleExp.$errors[0].$message.toString().slice(10)
+        );
+      } else if (this.v$.Azienda.$error) {
+        alert(
+          "Azienda " + this.v$.Azienda.$errors[0].$message.toString().slice(10)
+        );
+      } else if (this.v$.Periodo.$error) {
+        alert(
+          "Periodo " + this.v$.Periodo.$errors[0].$message.toString().slice(10)
+        );
+      } else if (this.v$.Role.$error) {
+        alert("Ruolo " + this.v$.Role.$errors[0].$message.toString().slice(10));
+      } else if (this.v$.Luogo.$error) {
+        alert(
+          "Luogo " + this.v$.Luogo.$errors[0].$message.toString().slice(10)
+        );
+      } else if (this.v$.Payment.$error) {
+        alert(
+          "Payment " + this.v$.Payment.$errors[0].$message.toString().slice(10)
+        );
       } else {
-        alert("Error on adding a new Experience");
+        try {
+          return_code = (
+            await axios.post(`${baseUrl}/EsperienzeSave/`, {
+              workerId: teamId,
+              azienda: this.state.Azienda,
+              periodo: this.state.Periodo,
+              duties: this.state.Role,
+              luogo: this.state.Luogo,
+              payment: this.state.Payment,
+            })
+          ).status;
+        } catch (_) {
+          /*eslint no-empty: "error"*/
+        }
+
+        if (return_code && return_code == 200) {
+          alert("Experience added successfully");
+        } else {
+          alert("Error on adding a new Experience");
+        }
       }
     },
+
     async submitBackUpPerson() {
       let return_code;
       const baseUrl = process.env.VUE_APP_API_URL;
-      let teamId = await getTeamId(this.CodiceFiscale);
+      let teamId = await getTeamId(this.state.CodiceFiscale);
       console.log(teamId);
-      try {
-        return_code = (
-          await axios.post(`${baseUrl}/saveBackUpPerson/`, {
-            CF_BC_person: this.CodiceFiscale,
-            workerId: teamId,
-            name: this.name,
-            cognome: this.cognome,
-            email: this.email,
-            phone: this.phone,
-          })
-        ).status;
-      } catch (_) {
-        /*eslint no-empty: "error"*/
-      }
-      if (return_code && return_code == 200) {
-        alert("Backup Person added successfully");
+
+      this.v$.$validate();
+
+      if (this.v$.CodiceFiscale.$error) {
+        alert(
+          "Codice Fiscale " +
+            this.v$.CodiceFiscale.$errors[0].$message.toString().slice(10)
+        );
+      } else if (this.v$.name.$error) {
+        alert("Name " + this.v$.name.$errors[0].$message.toString().slice(10));
+      } else if (this.v$.cognome.$error) {
+        alert(
+          "Cognome " + this.v$.cognome.$errors[0].$message.toString().slice(10)
+        );
+      } else if (this.v$.email.$error) {
+        alert(
+          "Email " + this.v$.email.$errors[0].$message.toString().slice(10)
+        );
+      } else if (this.v$.phone.$error) {
+        alert(
+          "Phone " + this.v$.phone.$errors[0].$message.toString().slice(10)
+        );
       } else {
-        alert("Error on adding a new Backup Person");
+        try {
+          return_code = (
+            await axios.post(`${baseUrl}/saveBackUpPerson/`, {
+              CF_BC_person: this.state.CodiceFiscale,
+              workerId: teamId,
+              name: this.state.name,
+              cognome: this.state.cognome,
+              email: this.state.email,
+              phone: this.state.phone,
+            })
+          ).status;
+        } catch (_) {
+          /*eslint no-empty: "error"*/
+        }
+        if (return_code && return_code == 200) {
+          alert("Backup Person added successfully");
+        } else {
+          alert("Error on adding a new Backup Person");
+        }
       }
     },
   },

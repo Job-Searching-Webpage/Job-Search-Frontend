@@ -1,5 +1,5 @@
 <template>
-  <div class="flex justify-center items-center mt-0">
+  <div v-if="isLoggedIn" class="flex justify-center items-center mt-0">
     <div class="w-full max-w-xl">
       <form class="bg-white shadow-md rounded px-12 pt-6 pb-12 mb-4">
         <h2 class="block text-gray-700 text-xl font-bold mb-2">
@@ -165,62 +165,165 @@
       </form>
     </div>
   </div>
+  <div v-else>You Have to login to see this page</div>
 </template>
 
 <script lang="ts">
-import { defineComponent, ref } from "vue";
+import { defineComponent, reactive, computed } from "vue";
+import { mapState } from "vuex";
 import axios from "axios";
+import { required, minLength, maxLength, helpers } from "@vuelidate/validators";
+import { useVuelidate } from "@vuelidate/core";
 
 export default defineComponent({
   setup() {
-    const title = ref("");
-    const organization = ref("");
-    const degree = ref("");
-    const jobType = ref("");
-    const location = ref("");
-    const minimumQualifications = ref("");
-    const preferredQualification = ref("");
-    const description = ref("");
-    const dateAdded = ref("");
+    const state = reactive({
+      title: "",
+      organization: "",
+      degree: "",
+      jobType: "",
+      location: "",
+      minimumQualifications: "",
+      preferredQualification: "",
+      description: "",
+      dateAdded: "",
+    });
+    const date = helpers.regex(
+      "alphaNum",
+      /^(0?[1-9]|[12][0-9]|3[01])[/-](0?[1-9]|1[012])[/-]\d{4}$/
+    );
+    const rules = computed(() => {
+      return {
+        title: {
+          required,
+          minLength: minLength(3),
+          maxLength: maxLength(20),
+        },
+        organization: {
+          required,
+          minLength: minLength(3),
+          maxLength: maxLength(20),
+        },
+        degree: {
+          required,
+          minLength: minLength(3),
+          maxLength: maxLength(20),
+        },
+        jobType: {
+          required,
+          minLength: minLength(3),
+          maxLength: maxLength(20),
+        },
+        location: {
+          required,
+          minLength: minLength(3),
+        },
+        minimumQualifications: {
+          required,
+          minLength: minLength(3),
+        },
+        preferredQualification: {
+          required,
+          minLength: minLength(3),
+        },
+        description: {
+          required,
+          minLength: minLength(3),
+        },
+        dateAdded: {
+          required,
+          date,
+        },
+      };
+    });
+    const v$ = useVuelidate(rules, state);
 
     return {
-      title,
-      organization,
-      degree,
-      jobType,
-      location,
-      minimumQualifications,
-      preferredQualification,
-      description,
-      dateAdded,
+      state,
+      v$,
     };
+  },
+  computed: {
+    ...mapState(["isLoggedIn"]), //pulls off the isLoggedIn state from the vuex store
   },
   methods: {
     async submit() {
       let return_code;
       const baseUrl = process.env.VUE_APP_API_URL;
 
-      try {
-        return_code = (
-          await axios.post(`${baseUrl}/JobSave/`, {
-            title: this.title,
-            organization: this.organization,
-            degree: this.degree,
-            jobType: this.jobType,
-            location: this.location,
-            minimumQualifications: this.minimumQualifications.split("#"),
-            preferredQualifications: this.preferredQualification.split("#"),
-            description: this.description.split("#"),
-            dateAdded: this.dateAdded,
-          })
-        ).status;
-      } catch (_) {
-        /*eslint no-empty: "error"*/
-      }
-      if (return_code && return_code == 200) {
-        alert("Job added successfully");
+      this.v$.$validate();
+      if (this.v$.title.$error) {
+        alert(
+          "Title " + this.v$.title.$errors[0].$message.toString().slice(10)
+        );
+      } else if (this.v$.organization.$error) {
+        alert(
+          "Organization " +
+            this.v$.organization.$errors[0].$message.toString().slice(10)
+        );
+      } else if (this.v$.degree.$error) {
+        alert(
+          "Degree " + this.v$.degree.$errors[0].$message.toString().slice(10)
+        );
+      } else if (this.v$.jobType.$error) {
+        alert(
+          "Job Type " + this.v$.jobType.$errors[0].$message.toString().slice(10)
+        );
+      } else if (this.v$.location.$error) {
+        alert(
+          "Location " +
+            this.v$.location.$errors[0].$message.toString().slice(10)
+        );
+      } else if (this.v$.minimumQualifications.$error) {
+        alert(
+          "Minimum Qualifications " +
+            this.v$.minimumQualifications.$errors[0].$message
+              .toString()
+              .slice(10)
+        );
+      } else if (this.v$.preferredQualification.$error) {
+        alert(
+          "Preferred Qualification " +
+            this.v$.preferredQualification.$errors[0].$message
+              .toString()
+              .slice(10)
+        );
+      } else if (this.v$.description.$error) {
+        alert(
+          "Description " +
+            this.v$.description.$errors[0].$message.toString().slice(10)
+        );
+      } else if (this.v$.dateAdded.$error) {
+        alert(
+          "Date Added " +
+            this.v$.dateAdded.$errors[0].$message.toString().slice(10)
+        );
       } else {
-        alert("Error on adding job");
+        try {
+          return_code = (
+            await axios.post(`${baseUrl}/JobSave/`, {
+              title: this.state.title,
+              organization: this.state.organization,
+              degree: this.state.degree,
+              jobType: this.state.jobType,
+              location: this.state.location,
+              minimumQualifications:
+                this.state.minimumQualifications.split("#"),
+              preferredQualifications:
+                this.state.preferredQualification.split("#"),
+              description: this.state.description.split("#"),
+              dateAdded: this.state.dateAdded,
+            })
+          ).status;
+        } catch (_) {
+          /*eslint no-empty: "error"*/
+        }
+
+        if (return_code && return_code == 200) {
+          alert("Job added successfully");
+        } else {
+          alert("Error on adding job");
+        }
       }
     },
   },
