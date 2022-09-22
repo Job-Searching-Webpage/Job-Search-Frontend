@@ -223,6 +223,7 @@ import {
   maxLength,
   email,
   alpha,
+  helpers,
 } from "@vuelidate/validators";
 import { useVuelidate } from "@vuelidate/core";
 
@@ -242,6 +243,13 @@ export default defineComponent({
       email: "",
       phone: "",
     });
+
+    const validate = new RegExp(
+      //eslint-disable-next-line
+      "^(\\+\\d{1,2}\\s)?\\(?\\d{3}\\)?[\\s.-]\\d{3}[\\s.-]\\d{4}$"
+    );
+
+    const phone = (value: string) => validate.test(value);
 
     const rules = computed(() => {
       return {
@@ -287,7 +295,10 @@ export default defineComponent({
         },
         phone: {
           required,
-          phone,
+          phone: helpers.withMessage(
+            "Phone number should have the format 123-456-7890",
+            phone
+          ),
         },
       };
     });
@@ -376,12 +387,10 @@ export default defineComponent({
         );
       } else if (this.v$.email.$error) {
         alert(
-          "Email " + this.v$.email.$errors[0].$message.toString().slice(10)
+          "This Email " + this.v$.email.$errors[0].$message.toString().slice()
         );
       } else if (this.v$.phone.$error) {
-        alert(
-          "Phone " + this.v$.phone.$errors[0].$message.toString().slice(10)
-        );
+        alert(this.v$.phone.$errors[0].$message);
       } else {
         try {
           return_code = (

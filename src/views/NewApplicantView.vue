@@ -284,6 +284,20 @@ export default defineComponent({
       qualification: "",
     });
 
+    const validateDate = new RegExp(
+      //eslint-disable-next-line
+      "^(?:(?:31(\\/|-|\\.)(?:0?[13578]|1[02]))\\1|(?:(?:29|30)(\\/|-|\\.)(?:0?[13-9]|1[0-2])\\2))(?:(?:1[6-9]|[2-9]\\d)?\\d{2})$|^(?:29(\\/|-|\\.)0?2\\3(?:(?:(?:1[6-9]|[2-9]\\d)?(?:0[48]|[2468][048]|[13579][26])|(?:(?:16|[2468][048]|[3579][26])00))))$|^(?:0?[1-9]|1\\d|2[0-8])(\\/|-|\\.)(?:(?:0?[1-9])|(?:1[0-2]))\\4(?:(?:1[6-9]|[2-9]\\d)?\\d{2})$"
+    );
+
+    const date = (value: string) => validateDate.test(value);
+
+    const validatePhone = new RegExp(
+      //eslint-disable-next-line
+      "^(\\+\\d{1,2}\\s)?\\(?\\d{3}\\)?[\\s.-]\\d{3}[\\s.-]\\d{4}$"
+    );
+
+    const phone = (value: string) => validatePhone.test(value);
+
     const rules = computed(() => {
       return {
         CF: {
@@ -300,6 +314,10 @@ export default defineComponent({
         },
         dataNascita: {
           required,
+          date: helpers.withMessage(
+            "Birthdate should have the format dd/mm/yyyy",
+            date
+          ),
         },
         birthplace: {
           required,
@@ -323,6 +341,10 @@ export default defineComponent({
         },
         phone: {
           required,
+          phone: helpers.withMessage(
+            "Phone number should have the format 123-456-7890",
+            phone
+          ),
         },
         email: {
           required,
@@ -371,10 +393,7 @@ export default defineComponent({
           "Cognome " + this.v$.cognome.$errors[0].$message.toString().slice(10)
         );
       } else if (this.v$.dataNascita.$error) {
-        alert(
-          "DataNascita " +
-            this.v$.dataNascita.$errors[0].$message.toString().slice(10)
-        );
+        alert(this.v$.dataNascita.$errors[0].$message);
       } else if (this.v$.birthplace.$error) {
         alert(
           "Birthplace " +
@@ -398,9 +417,7 @@ export default defineComponent({
           "Period " + this.v$.period.$errors[0].$message.toString().slice(10)
         );
       } else if (this.v$.phone.$error) {
-        alert(
-          "Phone " + this.v$.phone.$errors[0].$message.toString().slice(10)
-        );
+        alert(this.v$.phone.$errors[0].$message.toString().slice(10));
       } else if (this.v$.email.$error) {
         alert(
           "Email " + this.v$.email.$errors[0].$message.toString().slice(10)

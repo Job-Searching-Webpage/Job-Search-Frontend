@@ -131,6 +131,7 @@ export default defineComponent({
         } else {
           alert("Wrong username or password");
         }
+        this.loginUser();
       }
     },
     closeModal() {
