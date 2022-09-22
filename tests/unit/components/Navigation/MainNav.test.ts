@@ -25,7 +25,7 @@ describe("MainNav", () => {
       },
     };
     const wrapper = shallowMount(MainNav, createConfig($store));
-    expect(wrapper.text()).toMatch("Job Search LTD");
+    expect(wrapper.text()).toMatch("Job Search");
   });
   it("displayes menu items for navigation", () => {
     const $store = {

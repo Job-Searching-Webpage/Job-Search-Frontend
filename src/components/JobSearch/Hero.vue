@@ -11,8 +11,8 @@
 
         <div class="col-start-7 col-span-5 self-center justify-self-center">
           <img
-            class="w-80 h-80 object-contain"
-            src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/95/Vue.js_Logo_2.svg/2367px-Vue.js_Logo_2.svg.png"
+            class="w-120 h-120 object-contain object-right"
+            src="https://www.creativefabrica.com/wp-content/uploads/2020/12/16/Agriculture-Logo-Design-Template-Graphics-7201731-1-580x387.jpg"
           />
         </div>
 

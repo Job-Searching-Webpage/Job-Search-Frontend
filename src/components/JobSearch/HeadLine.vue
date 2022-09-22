@@ -7,7 +7,7 @@
       <span :class="actionClasses">{{ action }}</span>
       for everyone
     </h1>
-    <h2 class="text-3xl font-light">Find your next job at Job Search LTD.</h2>
+    <h2 class="text-3xl font-light">Find your next job at Job Search.</h2>
   </section>
 </template>
 
@@ -46,7 +46,7 @@ export default defineComponent({
   methods: {
     changeTitle() {
       this.interval = window.setInterval(() => {
-        const actions = ["Build", "Design", "Create", "Code"];
+        const actions = ["Jobs", "Help", "Create", "Green"];
 
         this.action = nextElementInList(actions, this.action);
       }, 3000);
@@ -56,16 +56,16 @@ export default defineComponent({
 </script>
 
 <style scoped>
-.build {
+.jobs {
   color: #1a73e8;
 }
-.create {
+.green {
   color: #34a853;
 }
-.design {
+.create {
   color: #f9ab00;
 }
-.code {
+.help {
   color: #d93025;
 }
 </style>

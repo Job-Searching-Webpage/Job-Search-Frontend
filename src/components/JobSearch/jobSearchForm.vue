@@ -10,7 +10,7 @@
         <label class="absolute left-0 -top-10">Role</label>
         <text-input
           v-model="role"
-          placeholder="Vue Developer"
+          placeholder="Farmer"
           data-test="role-input"
         />
       </div>

@@ -24,7 +24,7 @@ describe("HeadLine", () => {
     jest.runOnlyPendingTimers();
     await nextTick();
     const actionPhrase = wrapper.find("[data-test='action-phrase']");
-    expect(actionPhrase.text()).toBe("Design for everyone");
+    expect(actionPhrase.text()).toBe("Jobs for everyone");
   });
   it("removes interval when component dissapears", () => {
     const wrapper = mount(HeadLine);

@@ -7,7 +7,7 @@
         <router-link
           :to="{ name: 'Home' }"
           class="flex items-center h-full text-xl"
-          >Job Search LTD
+          >Job Search
         </router-link>
         <nav class="h-full ml-12">
           <ul class="flex h-full p-0 m-0 list-none">
@@ -111,7 +111,7 @@ export default defineComponent({
         { text: "Jobs", url: "/jobs/results" },
       ],
       adminItems: [
-        { text: "Teams", url: "/teams" },
+        { text: "Worker", url: "/teams" },
         { text: "Add new applicant", url: "/applicant/new" },
         { text: "Add new job offer", url: "/jobs/new" },
         {
